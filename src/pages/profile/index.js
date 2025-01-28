@@ -3,16 +3,21 @@ import styles from './profile.module.css';
 import { Avatars, People } from '@@/components/layout';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
+import { useRouter } from 'next/router';
 const ProfileCalculator = dynamic(() => import('@@/components/layout/Profile/ProfileCalculator/ProfileCalculator'), { ssr: false });
 
 
 const Profile = ({ date }) => {
   const [open, setOpen] = useState(false);
-
+  const router = useRouter();
   return (
     <section className={ styles.section }>
-      <div onClick={()=>{setOpen(true)}} className={styles.addPerson}>Добавить человека</div>
+
+      { date.date.is_admin && <div onClick={()=>{router.push('/admin/users')}} style={{marginBottom: '20px'}} className={ styles.addPerson }>Админ панель</div> }
+
+
+      <div onClick={ () => { setOpen(true); } } className={ styles.addPerson }>Добавить человека</div>
       {
         date.people === 0 ? <People date={ date } /> :
           date.people === 1 ?
@@ -36,6 +41,7 @@ export async function getServerSideProps({ req }) {
 
   const response = await fetchProfile(accessToken);
   const date = response || { is_error: true };
+
   return {
     props: { date },
   };

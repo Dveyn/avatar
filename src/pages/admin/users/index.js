@@ -35,6 +35,7 @@ export async function getServerSideProps({ req, params }) {
 
 
   const result = await getUsersAdmin(accessToken);
+  console.log(result)
   const date = result.date;
   return {
     props: { date },

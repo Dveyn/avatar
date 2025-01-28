@@ -1,4 +1,4 @@
-const API_URL = 'https://avalik-avatar.ru/api';
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 export const signup = async (date) => {
@@ -14,7 +14,7 @@ export const signup = async (date) => {
     return response.json();
 };
 
-export const forgot = async(date) => {
+export const forgot = async (date) => {
     const response = await fetch(`${API_URL}/auth/forgot`, {
         method: 'POST',
         headers: {
@@ -25,7 +25,7 @@ export const forgot = async(date) => {
     );
 
     return response.json();
-}
+};
 
 export const signin = async (date) => {
     const response = await fetch(`${API_URL}/auth/login`, {
@@ -203,7 +203,7 @@ export const setPreview = async (data) => {
     }
     );
     return response.json();
-}
+};
 
 export const setAll = async (data) => {
     const response = await fetch(`${API_URL}/admin/set_all`, {
@@ -215,4 +215,4 @@ export const setAll = async (data) => {
     }
     );
     return response.json();
-}
+};
