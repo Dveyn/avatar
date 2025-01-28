@@ -5,9 +5,9 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 
 const Signin = () => {
-  
+
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = await signin({email: email,password: password});
+    const result = await signin({ email: email, password: password });
     if (result?.accessToken && result?.refreshToken) {
       Cookies.set('accessToken', result.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
       Cookies.set('refreshToken', result.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
@@ -34,6 +34,7 @@ const Signin = () => {
       <div className={ styles.form }>
         <div className={ styles.form_body }>
           <h2 className={ styles.title }>Вход</h2>
+          <div className={ styles.pretitle }>Внимание! Мы обновили сайт, если не получается войти в профиль, вопспользуйтесь востановлением пароля</div>
           <form onSubmit={ handleSubmit }>
             <div>
               <label className={ styles.label } htmlFor="email">Email:</label>
@@ -62,7 +63,7 @@ const Signin = () => {
               { loading ? 'Загрузка...' : 'Войти' }
             </button>
 
-            <div className={ styles.btn } onClick={()=>{router.push('/forgot')}}>Забыли пароль</div>
+            <div className={ styles.btn } onClick={ () => { router.push('/forgot'); } }>Забыли пароль</div>
           </form>
         </div>
       </div>

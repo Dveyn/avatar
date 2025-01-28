@@ -20,7 +20,7 @@ export const Header = () => {
           </a>
           <a className={ styles.right } href="/#aboutme">
             Обо мне
-          </a>
+          </a> 
           <a className={ styles.lk } href="/profile">
             Личный кабинет
           </a>

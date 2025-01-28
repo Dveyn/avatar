@@ -16,7 +16,6 @@ export default function Home() {
       <WhoAreAvatars />
       <ToolDescription />
       <Method />
-      <Footer />
       <AvatarExample />
       <AboutMe />
     </>
