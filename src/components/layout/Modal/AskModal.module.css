@@ -95,7 +95,7 @@
   font-size: 14px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .form {
     gap: 10px;
   }

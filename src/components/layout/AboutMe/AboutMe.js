@@ -4,7 +4,7 @@ export const AboutMe = () => {
   return (
     <section className={ styles.about } id='aboutme'>
       <h2 className={ styles.title }>Обо мне</h2>
-      <video src='/IMG_9646.MP4' controls="controls" className={ styles.video } />
+      <video src='/IMG_9646.MP4' controls="controls" preload="auto" className={styles.video} />
       <div className={ styles.text }>
         <p>Привет! Я Света Ким, предприниматель, коуч, эксперт по матрице судьбы, автор метода Аватаров и мама троих детей.</p>
 

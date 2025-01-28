@@ -37,7 +37,6 @@
   text-align: center;
 }
 
-.menu {}
 
 .title {
   color: #424242;
@@ -59,26 +58,41 @@
   font-weight: 300;
 }
 
-@media (max-width: 425px) {
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
   .footerImg {
     background: url(/images/icon/Vector_14.svg);
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
     margin: auto;
     display: block;
     padding: 15px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 20px;
   }
+
   .logo {
     width: 45%;
     margin: auto;
   }
+
   .imgBlock {
     width: 30%;
     margin: auto;
+    text-align: center;
   }
-  .imgBlock img{
-    width: 100%;
+
+  .imgBlock img {
+    width: 50px
 
   }
 }

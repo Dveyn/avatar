@@ -117,7 +117,7 @@
   width: 20dvw;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .title {
     font-size: 29px;
     line-height: 29px;

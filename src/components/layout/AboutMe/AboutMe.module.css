@@ -1,7 +1,5 @@
 .about {
   padding: 50px;
-  position: sticky;
-  top: 0;
   background: url(/images/icon/bg2.jpg);
   background-size: cover;
   display: flex;
@@ -31,6 +29,8 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  position: relative;
+  z-index: 5;
 }
 
 .title {
@@ -54,6 +54,6 @@
   }
 
   .text {
-    font-size: 16px;
+    font-size: 13px;
   }
 }

@@ -177,10 +177,7 @@
   .form {
     width: 100%;
   }
- }
 
-
-@media (max-width: 425px) {
   .form {
     background: url(/images/icon/form_rt.png);
     background-position: center center;

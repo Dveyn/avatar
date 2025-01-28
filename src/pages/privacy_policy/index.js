@@ -2,7 +2,6 @@
 const PrivacyPolicy = () => {
   return (
     <>
-
       <div className="container">
         <h1>Политика конфиденциальности</h1>
 
