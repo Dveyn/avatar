@@ -5,17 +5,192 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "PORT=3100 next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
+    "js-cookie": "^3.0.5",
+    "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.4",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-next": "15.1.4"
   }
+}
+
+
+
+server {
+	server_name audit-boost.ru  www.audit-boost.ru;
+	charset UTF-8;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/audit-boost.ru/*.conf;
+	access_log /var/www/httpd-logs/audit-boost.ru.access.log;
+	error_log /var/www/httpd-logs/audit-boost.ru.error.log notice;
+	ssi on;
+	set $root_path /var/www/www-root/data/www/audit-boost.ru;
+	root $root_path;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+	location / {
+		location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @php;
+		}
+	}
+	location @php {
+		include /etc/nginx/vhosts-resources/audit-boost.ru/dynamic/*.conf;
+		fastcgi_index index.php;
+		fastcgi_param PHP_ADMIN_VALUE "sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@audit-boost.ru";
+		fastcgi_pass unix:/var/www/php-fpm/8.sock;
+		fastcgi_split_path_info ^((?U).+\.ph(?:p\d*|tml))(/?.+)$;
+		try_files $uri =404;
+		include fastcgi_params;
+	}
+	
+	return 301 https://$host:443$request_uri;
+	listen 188.120.232.208:80;
+}
+server {
+	server_name audit-boost.ru www.audit-boost.ru;
+	ssl_certificate "/var/www/httpd-cert/www-root/audit-boost.ru_le1.crtca";
+	ssl_certificate_key "/var/www/httpd-cert/www-root/audit-boost.ru_le1.key";
+	ssl_ciphers EECDH:+AES256:-3DES:RSA+AES:!NULL:!RC4;
+	ssl_prefer_server_ciphers on;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+	ssl_dhparam /etc/ssl/certs/dhparam4096.pem;
+	charset UTF-8;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/audit-boost.ru/*.conf;
+	access_log /var/www/httpd-logs/audit-boost.ru.access.log;
+	error_log /var/www/httpd-logs/audit-boost.ru.error.log notice;
+	ssi on;
+	set $root_path /var/www/www-root/data/www/audit-boost.ru;
+	root $root_path;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+    location / {
+        proxy_pass http://localhost:3002;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+		location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @php;
+		}
+    }
+	location @php {
+		include /etc/nginx/vhosts-resources/audit-boost.ru/dynamic/*.conf;
+		fastcgi_index index.php;
+		fastcgi_param PHP_ADMIN_VALUE "sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@audit-boost.ru";
+		fastcgi_pass unix:/var/www/php-fpm/8.sock;
+		fastcgi_split_path_info ^((?U).+\.ph(?:p\d*|tml))(/?.+)$;
+		try_files $uri =404;
+		include fastcgi_params;
+	}
+	add_header Strict-Transport-Security "max-age=31536000;";
+	if ($host = www.audit-boost.ru) {
+        return 301 https://audit-boost.ru$request_uri;
+    }
+
+	listen 188.120.232.208:443 ssl http2;
+}
+
+
+
+server {
+	server_name avalik-avatar.ru www.avalik-avatar.ru;
+	charset off;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/avalik-avatar.ru/*.conf;
+	access_log /var/www/httpd-logs/avalik-avatar.ru.access.log;
+	error_log /var/www/httpd-logs/avalik-avatar.ru.error.log notice;
+	ssi on;
+	set $root_path /var/www/www-root/data/www/avalik-avatar.ru;
+	root $root_path;
+	listen 188.120.232.208:80;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+	location / {
+		location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @php;
+		}
+		location ~* ^.+\.(jpg|jpeg|gif|png|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|swf|webp|woff|woff2)$ {
+			expires 24h;
+		}
+	}
+	location @php {
+		include /etc/nginx/vhosts-resources/avalik-avatar.ru/dynamic/*.conf;
+		fastcgi_index index.php;
+		fastcgi_param PHP_ADMIN_VALUE "sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@avalik-avatar.ru";
+		fastcgi_pass unix:/var/www/php-fpm/15.sock;
+		fastcgi_split_path_info ^((?U).+\.ph(?:p\d*|tml))(/?.+)$;
+		try_files $uri =404;
+		include fastcgi_params;
+	}
+}
+server {
+	server_name avalik-avatar.ru www.avalik-avatar.ru;
+	ssl_certificate "/var/www/httpd-cert/www-root/avalik-avatar.ru_le1.crtca";
+	ssl_certificate_key "/var/www/httpd-cert/www-root/avalik-avatar.ru_le1.key";
+	ssl_ciphers EECDH:+AES256:-3DES:RSA+AES:!NULL:!RC4;
+	ssl_prefer_server_ciphers on;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+	ssl_dhparam /etc/ssl/certs/dhparam4096.pem;
+	charset off;
+	index index.php index.html;
+	disable_symlinks if_not_owner from=$root_path;
+	include /etc/nginx/vhosts-includes/*.conf;
+	include /etc/nginx/vhosts-resources/avalik-avatar.ru/*.conf;
+	access_log /var/www/httpd-logs/avalik-avatar.ru.access.log;
+	error_log /var/www/httpd-logs/avalik-avatar.ru.error.log notice;
+	ssi on;
+	set $root_path /var/www/www-root/data/www/avalik-avatar.ru;
+	root $root_path;
+	listen 188.120.232.208:443 ssl http2;
+	gzip on;
+	gzip_comp_level 5;
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+  location / {
+        proxy_pass http://localhost:3100;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+	location ~ [^/]\.ph(p\d*|tml)$ {
+			try_files /does_not_exists @php;
+	}
+}
+	location ~* ^.+\.(jpg|jpeg|gif|png|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|swf|webp|woff|woff2)$ {
+			expires 24h;
+		}
+	}
+
+	location @php {
+		include /etc/nginx/vhosts-resources/avalik-avatar.ru/dynamic/*.conf;
+		fastcgi_index index.php;
+		fastcgi_param PHP_ADMIN_VALUE "sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@avalik-avatar.ru";
+		fastcgi_pass unix:/var/www/php-fpm/15.sock;
+		fastcgi_split_path_info ^((?U).+\.ph(?:p\d*|tml))(/?.+)$;
+		try_files $uri =404;
+		include fastcgi_params;
+	}
 }

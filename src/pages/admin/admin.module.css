@@ -1,0 +1,42 @@
+.section {
+  background: url(/images/icon/background.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100dvw;
+  min-height: 100dvh;
+  padding-top: 80px;
+}
+
+.body {
+  background: #EEE4D8;
+  margin: 100%;
+  margin: auto;
+  margin-top: 1.2rem;
+  border: 0.4rem solid #FFFFFF;
+  padding: 15px;
+  margin: 40px;
+}
+
+.title {
+  font-family: Parisian;
+  font-size: 40px;
+  font-weight: 400;
+  color: #57576C;
+  text-align: center;
+}
+
+.item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  color: #333;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+
+.btn {
+  color: red;
+  cursor: pointer;
+}

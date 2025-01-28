@@ -1,0 +1,164 @@
+.box {
+  position: relative;
+}
+
+.section {
+  background: url(/images/icon/bg5.png);
+  height: 96dvh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 20px 40px;
+  overflow: hidden;
+}
+
+.section2 {
+  height: 68dvh;
+  z-index: 2;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 80px 40px;
+}
+
+.blur {
+  border-radius: 3000px;
+  background-color: #6b73c9;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  width: 50dvw;
+  height: 50dvw;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(113px);
+}
+
+.title {
+  color: #ffffff;
+  font-size: 72px;
+  font-family: 'Parisian', Arial, sans-serif;
+  line-height: 65px;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
+.pretitle {
+  color: #ffffff;
+  font-size: 42px;
+  font-family: 'Parisian', Arial, sans-serif;
+  line-height: 65px;
+  font-weight: 400;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  margin: 15px 0;
+}
+
+.form {
+  width: 64dvw;
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  color: #434343;
+  font-size: 15px;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.form1 {
+  background: url(/images/icon/photo1.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  aspect-ratio: 519 / 300;
+  padding: 4%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.form2 {
+  background: url(/images/icon/photo2.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  aspect-ratio: 519 / 300;
+  padding: 4%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+
+
+.mage_circle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(16%, -8%);
+  width: 50dvw;
+  max-width: 800px;
+}
+
+
+.sword {
+  position: absolute;
+  top: 10dvh;
+  right: 7dvw;
+  width: 20dvw;
+}
+
+@media (max-width: 425px) {
+  .title {
+    font-size: 29px;
+    line-height: 29px;
+  }
+
+  .pretitle {
+    font-size: 19px;
+    line-height: 19px;
+  }
+
+  .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .form i {
+    display: none;
+  }
+
+  .form p {
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    height: 33%;
+    padding: 20px;
+  }
+
+  .form1 {
+    background: url(/images/icon/photo1_mob.png);
+    aspect-ratio: 300 / 519;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .form2 {
+    background: url(/images/icon/photo2_mob.png);
+    aspect-ratio: 300 / 519;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

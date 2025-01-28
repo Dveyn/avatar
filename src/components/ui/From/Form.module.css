@@ -1,0 +1,73 @@
+.form {
+  background: url(/images/icon/Frame_42.svg);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  aspect-ratio: 504.994 / 292.075;
+  width: 100%; 
+  box-sizing: border-box;
+  position: relative;
+}
+
+@keyframes stars {
+  0% {
+    transform: translate(var(--translate-x), var(--translate-y)) scale(1);
+  }
+
+  50% {
+    transform: translate(var(--translate-x), var(--translate-y)) scale(1.2);
+  }
+
+  100% {
+    transform: translate(var(--translate-x), var(--translate-y)) scale(1);
+  }
+}
+
+.star,
+.star2,
+.star3,
+.star4 {
+  background: url(/images/icon/звезда1.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  aspect-ratio: 1 / 1;
+  width: 80px;
+  position: absolute;
+  z-index: 3;
+  transition: all 0.5 ease;
+  animation: stars 5s infinite;
+  -webkit-transition: all 0.5 ease;
+  -moz-transition: all 0.5 ease;
+  -ms-transition: all 0.5 ease;
+  -o-transition: all 0.5 ease;
+  -webkit-animation: stars 5s infinite;
+}
+
+.star {
+  --translate-x: -47%;
+  --translate-y: -40%;
+  top: 0;
+  left: 0;
+}
+
+.star2 {
+  --translate-x: 47%;
+  --translate-y: -40%;
+  top: 0;
+  right: 0;
+}
+
+.star3 {
+  --translate-x: 47%;
+  --translate-y: 50%;
+  bottom: 0;
+  right: 0;
+}
+
+.star4 {
+  bottom: 0;
+  left: 0;
+  --translate-x: -47%;
+  --translate-y: 50%;
+}

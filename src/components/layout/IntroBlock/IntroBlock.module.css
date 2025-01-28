@@ -1,0 +1,222 @@
+/* Стиль для стандартных экранов */
+.IntroBlock {
+  background: url('/images/icon/bg_intro.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: transparent;
+  border-style: solid;
+  height: 100dvh;
+  position: relative;
+  top: -10px;
+  overflow: hidden;
+  margin-bottom: -11px;
+}
+
+.voln {
+  background: url(/images/icon/voln.svg);
+  width: 100dvw;
+  height: 8dvw;
+  position: absolute;
+  bottom: 0;
+  zoom: 1.006;
+  background-position: center center;
+  background-size: 100% 150%;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.circle {
+  position: absolute;
+  background: url('/images/icon/circle.svg');
+  transform-origin: center center;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: transparent;
+  border-style: solid;
+  width: 102dvh;
+  height: 102dvh;
+  left: 50%;
+  top: 48%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 107px;
+  font-family: 'Parisian', Arial, sans-serif;
+  line-height: 1.15;
+  font-weight: 400;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  transform-origin: center center;
+  margin: 0;
+  margin-bottom: 40px;
+  margin-top: 100px;
+}
+
+.text {
+  color: #ffffff;
+  font-size: 22px;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.3;
+  font-weight: 500;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  max-width: 284px;
+  text-align: center;
+}
+
+.action {
+  color: rgb(255, 225, 11);
+}
+
+.char1 {
+  background: url(/images/icon/char1.png);
+  transform-origin: center center;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: transparent;
+  border-style: solid;
+  position: absolute;
+  left: 0;
+  bottom: 8dvh;
+  width: 65dvh;
+  height: 70dvh;
+}
+
+.char2 {
+  background: url(/images/icon/char2.png);
+  transform-origin: center center;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: transparent;
+  border-style: solid;
+  position: absolute;
+  right: 0;
+  bottom: 1dvh;
+  width: 65dvh;
+  height: 70dvh;
+}
+
+/* Медиазапросы */
+
+/* Для экранов до 1024px (таблетки и большие мобильные устройства) */
+@media (max-width: 1280) {
+  .IntroBlock {
+    height: 80dvh;
+  }
+
+  .circle {
+    width: 80dvh;
+    height: 80dvh;
+    top: 50%;
+  }
+
+  .title {
+    font-size: 70px;
+    margin-top: 80px;
+  }
+
+  .text {
+    font-size: 20px;
+    max-width: 250px;
+  }
+
+  .char1,
+  .char2 {
+    width: 50dvh;
+    height: 55dvh;
+    bottom: 6dvh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .IntroBlock {
+    height: 70dvh;
+  }
+
+  .circle {
+    width: 60dvh;
+    height: 60dvh;
+  }
+
+  .title {
+    font-size: 50px;
+    margin-top: 60px;
+  }
+
+  .text {
+    font-size: 18px;
+    max-width: 230px;
+  }
+
+  .char1,
+  .char2 {
+    width: 40dvh;
+    height: 45dvh;
+    bottom: 4dvh;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .IntroBlock {
+    height: 70dvh;
+  }
+
+  .circle {
+    width: 60dvh;
+    height: 60dvh;
+  }
+
+  .title {
+    font-size: 50px;
+    margin-top: 60px;
+  }
+
+  .text {
+    font-size: 18px;
+    max-width: 230px;
+  }
+
+  .char1,
+  .char2 {
+    width: 30dvh;
+    height: 35dvh;
+    bottom: 4dvh;
+  }
+
+  .char1 {
+    left: -200px;
+    transform: translate(50%, 0);
+    -webkit-transform: translate(50%, 0);
+    -moz-transform: translate(50%, 0);
+    -ms-transform: translate(50%, 0);
+    -o-transform: translate(50%, 0);
+  }
+
+  .char2 {
+    right: -200px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+  }
+}

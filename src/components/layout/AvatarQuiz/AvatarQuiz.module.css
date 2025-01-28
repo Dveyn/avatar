@@ -1,0 +1,124 @@
+.section {
+  height: 100dvh;
+  background: url(/images/icon/bg3.png);
+  top: 5px;
+  background-size: 120% 120%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.top {
+  width: 100%;
+  min-height: 40px;
+  filter: blur(40px);
+  background-color: #ffffff;
+  background-position: center center;
+  position: relative;
+  z-index: 2;
+}
+
+.form {
+  width: 65dvw;
+  margin: auto;
+  margin-top: 15dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+}
+
+.text {
+  color: #57576c;
+  font-size: 25px;
+  font-family: 'Parisian', Arial, sans-serif;
+  font-weight: 400;
+  transform-origin: center center;
+  line-height: 34px;
+  padding: 60px;
+}
+
+.char {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  position: absolute;
+  width: 120%;
+  top: -24%;
+  left: -15%;
+}
+
+@media (max-width: 768px) {
+
+
+  .form i {
+    display: none;
+  }
+
+
+
+  .text {
+    z-index: 2;
+    font-size: 12px;
+    padding: 20px;
+    line-height: 1;
+  }
+
+  .char {
+    z-index: 2;
+  }
+
+}
+
+@media (max-width: 425px) {
+  .form {
+    background: none;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form i {
+    display: none;
+  }
+
+  .form::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    background: url(/images/icon/Frame_42.svg);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 504.994 / 292.075;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+  }
+
+  .text {
+    z-index: 2;
+    font-size: 12px;
+    padding: 20px;
+    line-height: 1;
+  }
+
+  .char {
+    z-index: 2;
+  }
+  .char .img {
+    position: absolute;
+    width: 90%;
+    top: -67%;
+    left: 0;
+  }
+}

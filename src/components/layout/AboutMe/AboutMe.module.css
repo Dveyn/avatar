@@ -1,0 +1,57 @@
+.about {
+  padding: 50px;
+  position: sticky;
+  height: 100dvh;
+  top: 0;
+  background: url(/images/icon/bg2.jpg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.text {
+  color: #ffffff;
+  background: #5e5da7;
+  font-size: 18px;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.2;
+  font-weight: 400;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.video {
+  max-width: 600px;
+  min-width: 300px;
+  width: 80%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 70px;
+  font-family: 'Parisian', Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+
+  margin-bottom: 80px;
+  max-width: 60dvw;
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 36px;
+  }
+  .about {
+    padding: 10px
+  }
+  .text {
+    font-size: 16px;
+  }
+}

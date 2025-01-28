@@ -1,0 +1,132 @@
+html{
+    box-sizing: border-box;
+    font-size: 1.78vw;
+}
+/*результат калькулятора*/
+
+.recommendation{
+    margin-bottom: 0.75rem;
+}
+
+.block-text1{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.block-images{padding: 0.5rem
+}
+.block-text1 p{
+    margin-bottom: 0.5rem;
+}
+
+
+/*калькулятор*/
+.form-calculator{
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+#infoForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.block-title,
+.form-text,
+.form-title{
+    margin-top: 1.25rem;
+    align-self: center;
+    margin-bottom: 1rem;
+}
+.birthday{
+    display: flex;
+    margin-top: 0.6rem;
+}
+.label-year{
+    color: #747CD6;
+}
+#year{
+    width: 6.75rem;
+    background:#F8F3ED;
+    color: #57576C;
+    border: none;
+}
+#day, #month{
+    /*4.25rem*20px=85px*/
+    width: 4.25rem;
+    background:#F8F3ED;
+    border: none;
+}
+#gender{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    color: #57576C;
+    height: 2.5rem;
+}
+#gender > .form-text{
+    width: 5rem;
+    margin-top: 1.5rem;
+}
+#gender  input[type="button"]{
+    background:#F8F3ED;
+    border: none;
+   width: 5rem;
+}
+.button{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    /*margin: 0.rem;*/
+    width: 12.70rem;
+    height: 2.76rem;
+    left: calc(50% - 12.70rem/2 - 0.075rem);
+    background: linear-gradient(91.63deg, #FFF18D -11.81%, #FFE000 99.46%);
+    box-shadow: inset -0.920588px 0.920588px 2.20941px 0.920588px #CCB300;
+    border-radius: 1.38rem;
+    border-color:  #F0E8B0;
+    border: 0.25rem #F0E8B0;
+}
+.button input[type="button"]{
+    border: none;
+
+}
+
+
+
+.text-button input[type='button']{
+    border: none;
+}
+/*изменение цвета*/
+
+input[type="button"]:hover{
+    color: #747CD6;
+}
+
+.gender input[type="button"]:hover{
+    color: #747CD6;
+}
+.selected{
+    color: #747CD6;
+}
+
+
+
+
+
+
+
+
+
+button::-moz-focus-inner
+{
+  border: 0;
+}
+
+
+

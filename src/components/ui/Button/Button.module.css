@@ -1,0 +1,20 @@
+.btn {
+  display: inline-block; /* Делаем элемент кнопкой */
+  background: url('/images/icon/btn.png');
+  background-position: center center; /* Центрируем изображение */
+  background-size: contain; /* Изображение будет сжато так, чтобы поместиться в кнопку */
+  background-repeat: no-repeat; /* Убираем повторение фона */
+  border: none; /* Убираем границу */
+  cursor: pointer; /* Добавляем курсор для кнопки */
+  aspect-ratio: 380 / 121;
+  padding: 30px;
+  color: #655c1a;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.55;
+  font-weight: 600;
+  border-radius: 30px;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}

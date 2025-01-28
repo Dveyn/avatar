@@ -1,0 +1,33 @@
+.section {
+  background: url(/images/icon/background.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100dvw;
+  min-height: 100dvh;
+  padding-top: 80px;
+}
+
+.title {
+  font-family: Parisian;
+  font-size: 40px;
+  font-weight: 400;
+  color: #57576C;
+  text-align: center;
+}
+
+.addPerson {
+  font-family: Parisian;
+  font-size: 25px;
+  font-weight: 400;
+  color: #57576C;
+  margin: auto;
+  text-align: center;
+  background: #d5b681;
+  width: 160px;
+  padding: 20px;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}

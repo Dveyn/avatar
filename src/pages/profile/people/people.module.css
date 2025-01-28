@@ -1,0 +1,8 @@
+.section {
+  background: url(/images/icon/background.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100dvw;
+  min-height: 100dvh;
+  padding-top: 80px;
+}

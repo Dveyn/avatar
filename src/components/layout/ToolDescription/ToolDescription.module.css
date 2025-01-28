@@ -1,0 +1,249 @@
+.section {
+  background-color: #59569d;
+  padding: 40px 20px;
+  position: relative;
+  top: -2px;
+  min-height: 100dvh;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 60px;
+  font-family: 'Parisian', Arial, sans-serif;
+  line-height: 66px;
+  font-weight: 400;
+  margin-top: 100px;
+}
+
+.description {
+  color: #efeff9;
+  font-size: 14px;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 19px;
+  font-weight: 400;
+  max-width: 50dvw;
+}
+
+.stars_map {
+  background: url(/images/icon/stars_map.png);
+  aspect-ratio: 1 / 1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 30dvw;
+  position: absolute;
+  right: -11%;
+  top: 0;
+  animation: rotate 30s linear infinite;
+  -webkit-animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.form_block {
+  margin-top: 40px;
+  display: flex;
+  grid-gap: 70px;
+  gap: 70px;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 42dvw;
+  position: relative;
+  z-index: 3;
+}
+
+.h3 {
+  color: #57576c;
+  font-size: 27px;
+  font-family: 'Parisian', Arial, sans-serif;
+  line-height: 1.35;
+  font-weight: 400;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.text_block {
+  margin-left: 40px;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.text {
+  color: #57576c;
+  font-size: 14px;
+  font-family: 'Manrope', Arial, sans-serif;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.btn {
+  width: 230px;
+}
+
+
+.img {
+  width: 69%;
+}
+
+.img img {
+  width: 100%;
+}
+
+
+.img1 {
+  width: 65%;
+  bottom: -18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img1 img {
+  transform: rotate(4deg);
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
+  -o-transform: rotate(4deg);
+  position: relative;
+  bottom: -10px;
+  width: 85%;
+  margin-left: 10px;
+}
+
+.img2 {
+  position: relative;
+  right: -2px;
+  bottom: 30px;
+  width: 80%;
+}
+
+.img3 {
+  width: 80%;
+  position: relative;
+  bottom: 22px;
+}
+
+.img4 {
+  position: relative;
+  width: 81%;
+  bottom: 25px;
+  right: -9px;
+}
+
+
+@media (max-width: 768px) {
+  .stars_map {
+    position: relative;
+    right: 0;
+    margin: auto;
+    width: 60dvw;
+    margin-bottom: 0;
+  }
+  .title {
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+  .description {
+    font-size: 14px;
+    max-width: 100dvw;
+  }
+
+  .form i {
+    display: none;
+  }
+  .form {
+    width: 100%;
+  }
+ }
+
+
+@media (max-width: 425px) {
+  .form {
+    background: url(/images/icon/form_rt.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 292.075/504.994;
+    width: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+  }
+
+  .form_block {
+    padding: 0;
+  }
+
+  .text_block {
+    margin: auto;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10%;
+  }
+  .h3 {
+    font-size: 25px;
+    line-height: 1.15;
+    width: 100%;
+  }
+  .text {
+    font-size: 13px;
+    line-height: 14px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn {
+    margin: auto;
+  }
+  .img1 {
+    width: 50%;
+    bottom: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img2 {
+    width: 50%;
+    bottom: 4px;
+    right: -46px;
+    position: relative;
+    overflow: hidden;
+  }
+  .img3 {
+    width: 50%;
+    bottom: 15px;
+    right: -45px;
+    position: relative;
+    overflow: hidden;
+  }
+  .img4 {
+    width: 50%;
+    bottom: 1px;
+    right: -49px;
+    position: relative;
+    overflow: hidden;
+  }
+ }
