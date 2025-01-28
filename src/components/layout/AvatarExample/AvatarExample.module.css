@@ -114,6 +114,7 @@
 .end {
   height: 80dvh;
   padding: 40px;
+  overflow: hidden;
 }
 
 .end_text {

@@ -1,14 +1,13 @@
 .about {
   padding: 50px;
   position: sticky;
-  height: 100dvh;
   top: 0;
   background: url(/images/icon/bg2.jpg);
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  overflow: auto;
 }
 
 .text {
@@ -44,13 +43,16 @@
   margin-bottom: 80px;
   max-width: 60dvw;
 }
+
 @media (max-width: 768px) {
   .title {
     font-size: 36px;
   }
+
   .about {
     padding: 10px
   }
+
   .text {
     font-size: 16px;
   }

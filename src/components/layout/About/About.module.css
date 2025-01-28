@@ -168,14 +168,13 @@
 }
 
 
-/* Экран шириной до 769px */
-/* @media (max-width: 769px) {} */
-
-/* Экран шириной до 320px */
 @media (max-width: 768px) {
+  .about {
+    overflow-x: hidden;
+  }
   .circle {
-    width: 90dvw;
-    height: 90dvw;
+    width: 80dvw;
+    height: 80dvw;
   }
 
   .text1 {
@@ -191,21 +190,21 @@
   }
 
   .char {
-    width: 100dvw;
+    width: 90dvw;
     max-height: 100dvh;
     object-fit: contain;
   }
 
   .char_text1 {
     position: absolute;
-    top: 25%;
+    top: 40%;
     height: 200px;
     z-index: 3;
   }
 
   .char_text2 {
     position: absolute;
-    top: 25%;
+    top: 40%;
     height: 200px;
     z-index: 3;
   }
