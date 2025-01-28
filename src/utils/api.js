@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3102/api';
+const API_URL = 'https://avalik-avatar.ru/api';
 
 
 export const signup = async (date) => {
