@@ -190,6 +190,46 @@
   }
 
   .end_char {
+    width: 30dvw;
+  }
+
+  .end_stars {
+    width: 70dvw;
+  }
+}
+
+
+@media (max-width: 460px) {
+  .text {
+    margin-top: auto;
+    width: 90dvw;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .advantages {
+    display: none;
+  }
+
+  .end {
+    height: auto;
+    padding: 10px;
+  }
+
+  .end_text {
+    font-size: 22px;
+    width: auto;
+  }
+
+  .end_char_box {
+    height: 450px;
+    position: relative;
+  }
+
+  .end_char {
     width: 70dvw;
   }
 
