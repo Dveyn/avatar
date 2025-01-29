@@ -16,8 +16,8 @@ const PaymentForm = () => {
       }
 
       form.receipt.value = JSON.stringify({
-        EmailCompany: "mail@mail.com",
-        Taxation: "patent",
+        EmailCompany: "info@avalik-avatar.ru",
+        Taxation: "usn_income",
         FfdVersion: "1.2",
         Items: [
           {

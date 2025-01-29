@@ -61,8 +61,8 @@ export const Modal = ({ onClose, title, posId, price }) => {
       form.order.value = orderID;
       form.amount.value = price;
       form.receipt.value = JSON.stringify({
-        EmailCompany: "admin@avalik-avatar.ru",
-        Taxation: "patent",
+        EmailCompany: "info@avalik-avatar.ru",
+        Taxation: "usn_income",
         FfdVersion: "1.2",
         Items: [
           {

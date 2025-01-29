@@ -14,7 +14,7 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
     const form = formRef.current;
     const { description, amount, email, receipt } = form;
     if (receipt) {
-
+      form.amount.value = price;
       const { orderID, status } = await setPayments({
         item: {
           isAvatar: true,
@@ -32,10 +32,10 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
       }
 
       form.order.value = orderID;
-      form.amount.value = price;
+      
       form.receipt.value = JSON.stringify({
-        EmailCompany: "admin@avalik-avatar.ru",
-        Taxation: "patent",
+        EmailCompany: "info@avalik-avatar.ru",
+        Taxation: "usn_income",
         FfdVersion: "1.2",
         Items: [
           {
