@@ -14,7 +14,7 @@ const Profile = ({ date }) => {
   return (
     <section className={ styles.section }>
 
-      { date.date.is_admin && <div onClick={()=>{router.push('/admin/users')}} style={{marginBottom: '20px'}} className={ styles.addPerson }>Админ панель</div> }
+      { date.date.is_admin ? <div onClick={()=>{router.push('/admin/users')}} style={{marginBottom: '20px'}} className={ styles.addPerson }>Админ панель</div> : null }
 
 
       <div onClick={ () => { setOpen(true); } } className={ styles.addPerson }>Добавить человека</div>

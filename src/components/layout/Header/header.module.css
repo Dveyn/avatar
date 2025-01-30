@@ -27,7 +27,7 @@
 }
 
 .lk {
-  color: #000000; 
+  color: #000000;
   font-size: 14px;
   font-family: 'Manrope', Arial, sans-serif;
   line-height: 1.55;
@@ -42,7 +42,8 @@
   text-decoration: auto;
 }
 
-.menu .left, .menu .right {
+.menu .left,
+.menu .right {
   margin: 0 15px;
   color: #ffffff;
   text-transform: uppercase;
@@ -70,12 +71,47 @@
   flex-grow: 1;
 }
 
+/* Стили для бургер-меню */
+.burger {
+  display: none; /* По умолчанию скрываем */
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.burgerLine {
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+  margin: 4px 0;
+}
+
+/* Стили для мобильной версии */
 @media (max-width: 769px) {
- .lk, .left, .right {
-    margin: 0px 4px !important;
-    font-size: 8px !important;
+  .burger {
+    display: flex; /* Показываем бургер в мобильной версии */
   }
-  .lk {
+
+  .menu {
+    display: none; /* Скрываем обычное меню */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #48acda;
+    padding: 10px;
+    border-radius: 0 0 23px 23px;
+  }
+
+  .menuOpen {
+    display: flex; /* Показываем меню при открытии */
+  }
+
+  .lk,
+  .left,
+  .right {
+    margin: 10px 0 !important;
+    font-size: 14px !important;
     text-align: center;
   }
 }

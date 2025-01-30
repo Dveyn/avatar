@@ -19,7 +19,7 @@ export const ToolDescription = () => {
   const closeModalCalc = () => setIsModalCalcOpen(false);
 
   return (
-    <section className={ styles.section }>
+    <section className={ styles.section } id='services'>
       <div className={ styles.stars_map }></div>
       <h2 className={ styles.title }>Мы предлагаем  <span style={ { color: 'rgb(255, 225, 6)' } }>новый инструмент </span><br /> для самопознания</h2>
       <p className={ styles.description }>
