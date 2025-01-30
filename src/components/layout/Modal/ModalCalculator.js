@@ -38,6 +38,10 @@ export const ModalCalc = ({ onClose }) => {
       setError('Не указан пол');
       return;
     }
+    if (!mail) {
+      setError('Не указана почта');
+      return;
+    }
 
     const resultData = calculateAvatarData(day, month, year, gender, personalities);
     const date = {
