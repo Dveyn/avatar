@@ -38,7 +38,7 @@ export const AskModal = ({ onClose, ask }) => {
                 <button onClick={ () => handleAnswer('Да') } className={ styles.yesButton }>Да</button>
                 <button onClick={ () => handleAnswer('Нет') } className={ styles.noButton }>Нет</button>
               </div>
-            </div>
+            </div> 
           ) : null }
 
           {success !== '' && <div className={styles.success}>{success}</div>}

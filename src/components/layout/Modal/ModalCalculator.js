@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './ModalCalc.module.css';
 import { calculateAvatarData } from '@@/utils/avatarCalculator';
 import { personalities } from '@@/utils/personality';
@@ -73,6 +73,30 @@ export const ModalCalc = ({ onClose }) => {
     }
   };
 
+
+  const dayRef = useRef(null);
+  const monthRef = useRef(null);
+  const yearRef = useRef(null);
+
+  const handleInputChange = (e, setValue, maxLength, nextRef) => {
+    let value = e.target.value.replace(/\D/g, "").slice(0, maxLength);
+    
+    setValue(value); // Обновляем состояние
+  
+    // Ожидаем обновления интерфейса перед сменой фокуса
+    if (value.length === maxLength && nextRef?.current) {
+      setTimeout(() => {
+        nextRef.current.focus();
+      }, 0);
+    }
+  };
+
+  // Удаление лидирующих нулей при потере фокуса
+  const handleBlur = (setValue, value) => {
+    setValue(value.replace(/^0+/, "") || "0");
+  };
+
+
   return (
     <div className={ styles.modal } onClick={ onClose }>
       <div className={ styles.modalContent } onClick={ (e) => e.stopPropagation() }>
@@ -87,11 +111,40 @@ export const ModalCalc = ({ onClose }) => {
             success === '' &&
             <form className={ styles.form } onSubmit={ handleSubmit }>
               <div className={ styles.date_block }>
-                <input onChange={ (e) => { setDay(e.target.value); } } className={ styles.input } type={ 'number' } min={ 0 } max={ 31 } placeholder="00" />
-                <input onChange={ (e) => { setMonth(e.target.value); } } className={ styles.input } type={ 'number' } min={ 0 } max={ 12 } placeholder="00" />
-                <input onChange={ (e) => { setYear(e.target.value); } } className={ styles.input } type={ 'number' } min={ 1900 } max={ 2025 } placeholder="0000" />
-              </div>
-              <div className={ styles.gender }>
+                <input
+                  ref={ dayRef }
+                  value={ day }
+                  onChange={ (e) => handleInputChange(e, setDay, 2, monthRef) }
+                  onBlur={ () => handleBlur(setDay, day) }
+                  className={ styles.input }
+                  type="number"
+                  min={ 1 }
+                  max={ 31 }
+                  placeholder="00"
+                />
+                <input
+                  ref={ monthRef }
+                  value={ month }
+                  onChange={ (e) => handleInputChange(e, setMonth, 2, yearRef) }
+                  onBlur={ () => handleBlur(setMonth, month) }
+                  className={ styles.input }
+                  type="number"
+                  min={ 1 }
+                  max={ 12 }
+                  placeholder="00"
+                />
+                <input
+                  ref={ yearRef }
+                  value={ year }
+                  onChange={ (e) => handleInputChange(e, setYear, 4) }
+                  onBlur={ () => handleBlur(setYear, year) }
+                  className={ styles.input }
+                  type="number"
+                  min={ 1900 }
+                  max={ 2025 }
+                  placeholder="0000"
+                />
+              </div>             <div className={ styles.gender }>
                 <div className={ styles.title }>Ваш пол:</div>
                 <label className={ `${styles.gender_btn} ${gender === 'male' ? styles.btn_active : ''}` }>
                   Муж
