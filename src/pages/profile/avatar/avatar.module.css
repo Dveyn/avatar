@@ -295,6 +295,7 @@
   .info {
     grid-template-columns: auto;
     gap: 40px;
+    aspect-ratio: auto;
   }
 
   .title {
