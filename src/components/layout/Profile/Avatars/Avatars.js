@@ -29,7 +29,8 @@ export const Avatars = ({ date }) => {
   };
 
   const avatarFree = date.avatars.filter(av => av.keyWord == 'A');
-  const avatarResourse = date.avatars.filter(av => av.keyWord == 'B' || av.keyWord == 'B2' || av.keyWord == 'D');
+  const avatarResourse = date.avatars.filter(av => av.keyWord == 'B' || av.keyWord == 'B2' );
+  const avatarEssence = date.avatars.filter(av => av.keyWord == 'D');
   const avatarFinance = date.avatars.filter(av => av.keyWord == 'V' || av.keyWord == 'G' || av.keyWord == 'L');
   const avatarComm = date.avatars.filter(av => av.keyWord == 'K' || av.keyWord == 'N' || av.keyWord == 'M');
 
@@ -42,6 +43,7 @@ export const Avatars = ({ date }) => {
         <div className={ styles.user_info }>
           { date.date.name }
         </div>
+        <div className={ styles.title }>Эти аватары показывают твой характер</div>
         <div className={ styles.avatar_list }>
           {
             avatarFree.map(avatar => {
@@ -84,6 +86,46 @@ export const Avatars = ({ date }) => {
           <div className={ styles.avatar_list }>
             {
               avatarResourse.map(avatar => {
+                const avatarDate = personalities.find(el => el.id === avatar.avatar_id);
+                return (
+                  <>
+                    <div key={ avatar.id } className={ styles.avatar_card }>
+                      <img
+                        src={ avatarDate.part[`${date.date.gender === 'male' ? 'maleImageSrc' : 'femaleImageSrc'}`] }
+                        onClick={ () => { clickAvatar(avatar); } }
+                      />
+                      {
+                        avatar.preview === 1 || avatar.purchased === 1 ?
+                          <Button
+                            className={ styles.btn }
+                            onClick={ () => {
+                              setOpenAsk(true);
+                              setAsk(date.date.gender === 'male' ? avatarDate.questions.maleQuestions : avatarDate.questions.femaleQuestions);
+                            } }
+                          >Пройти вопросы</Button>
+                          : 
+                          <Button 
+                          className={ styles.btn } 
+                          onClick={ () => { 
+                            setOpenPay(true); 
+                            setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
+                  
+                            setPrice(700);
+                            } }
+                          >Купить</Button>
+                      }
+                    </div>
+                  </>
+                );
+              })
+            }
+          </div>
+        </div>
+        <div>
+          <div className={ styles.title }>Эти аватары показывают твою внутреннюю суть</div>
+          <div className={ styles.avatar_list }>
+            {
+              avatarEssence.map(avatar => {
                 const avatarDate = personalities.find(el => el.id === avatar.avatar_id);
                 return (
                   <>
