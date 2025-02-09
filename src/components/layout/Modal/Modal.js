@@ -53,7 +53,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
         title: title
       });
 
-      if(!status) {
+      if (!status) {
         alert("Произошла ошибка. Повторите попытку позже");
         return;
       }
@@ -79,7 +79,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
       });
     }
     if (typeof pay !== "undefined") {
-       await pay(form);
+      await pay(form);
     } else {
       console.error("Tinkoff JS SDK не загружен");
     }
@@ -104,10 +104,11 @@ export const Modal = ({ onClose, title, posId, price }) => {
         </div>
         <div className={ styles.modalTitle }>{ title }</div>
         <form className={ styles.form } onSubmit={ handleSubmit } ref={ formRef }>
-          <input className={ styles.input } value={ mail } onChange={ handleMail }   name="email" type={ 'email' } placeholder='Ваш email' />
-          <input className={ styles.input } value={ name } onChange={ handleName } placeholder='Ваше имя' />
-          <input className={ styles.input } value={ phone } onChange={ handlePhone }   name="phone" placeholder='Ваш телефон' />
-          <input className={ styles.input } value={ date } onChange={ handleDate } type={ 'date' } placeholder='28.02.2002' />
+        <span>К сожалению, оплата услуг сейчас недоступна.</span>
+          <input type="hidden" className={ styles.input } value={ mail } onChange={ handleMail } name="email"  placeholder='Ваш email' />
+          <input type="hidden" className={ styles.input } value={ name } onChange={ handleName } placeholder='Ваше имя' />
+          <input type="hidden" className={ styles.input } value={ phone } onChange={ handlePhone } name="phone" placeholder='Ваш телефон' />
+          <input type="hidden" className={ styles.input } value={ date } onChange={ handleDate } placeholder='28.02.2002' />
 
 
           <input type="hidden" name="terminalkey" value={ process.env.NEXT_PUBLIC_TERMINAL_KEY } />
@@ -118,7 +119,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
             placeholder="Сумма заказа"
             name="amount"
             type="hidden"
-            value={1}
+            value={ 1 }
             required
           />
           <input
@@ -130,10 +131,10 @@ export const Modal = ({ onClose, title, posId, price }) => {
             type="hidden"
             placeholder="Описание заказа"
             name="description"
-            value={title}
+            value={ title }
           />
 
-          <button type="submit" className={ styles.button }>
+          <button type="submit" disabled={ true } className={ styles.button }>
             Записаться
           </button>
 

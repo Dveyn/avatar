@@ -64,7 +64,7 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
     script.async = true;
     document.body.appendChild(script);
 
-    handleSubmit();
+  //  handleSubmit();
 
     return () => {
       document.body.removeChild(script);
@@ -79,7 +79,7 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
         </div>
         <div className={ styles.modalTitle }>{ title }</div>
         <form className={ styles.form } onSubmit={ handleSubmit } ref={ formRef }>
-
+        <span>К сожалению, оплата услуг сейчас недоступна.</span>
           <input type="hidden" name="terminalkey" value={ process.env.NEXT_PUBLIC_TERMINAL_KEY } />
           <input type="hidden" name="frame" value="false" />
           <input type="hidden" name="language" value="ru" />
