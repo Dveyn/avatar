@@ -216,3 +216,16 @@ export const setAll = async (data) => {
     );
     return response.json();
 };
+
+
+export const getRobokassaSignature = async (data) => {
+    const response = await fetch(`${API_URL}/pay/robokassa-signature`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: data
+    }
+    );
+    return response.json();
+};

@@ -1,23 +1,23 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import { useEffect, useRef, useState } from 'react';
 import styles from './PayModal.module.css';
-import { setPayments } from '@@/utils/api';
+import { getRobokassaSignature, setPayments } from '@@/utils/api';
 
-export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
+export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price }) => {
 
 
   const formRef = useRef(null);
 
-
-  const handleSubmit = async () => {
-
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
     const form = formRef.current;
-    const { description, amount, email, receipt } = form;
+    const { description, amount, email, phone, receipt } = form;
     if (receipt) {
-      form.amount.value = price;
+      //Отрпвляем запись в БД и получаем orderId 
       const { orderID, status } = await setPayments({
         item: {
           isAvatar: true,
+          avatar_id: avatarId,
           people_id: piopleId,
           email: email.value,
           service: title,
@@ -31,44 +31,22 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
         return;
       }
 
-      form.order.value = orderID;
-      
-      form.receipt.value = JSON.stringify({
-        EmailCompany: "info@avalik-avatar.ru",
-        Taxation: "usn_income",
-        FfdVersion: "1.2",
-        Items: [
-          {
-            Name: description.value || "Оплата",
-            Price: Math.round(amount.value * 100),
-            Quantity: 1.0,
-            Amount: Math.round(amount.value * 100),
-            PaymentMethod: "full_prepayment",
-            PaymentObject: "service",
-            Tax: "none",
-            MeasurementUnit: "pc",
-          },
-        ],
-      });
-    }
-    if (typeof pay !== "undefined") {
-      await pay(form);
-    } else {
-      console.error("Tinkoff JS SDK не загружен");
+      const inv_id = orderID;
+      const out_summ = price;
+      const inv_desc = `${title}`;
+      const mrh_login = process.env.NEXT_PUBLIC_ROBOKASSA_LOGIN;
+      const pass1 = process.env.NEXT_PUBLIC_ROBOKASSA_PASS1;
+
+      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, pass1 }));
+
+      const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&SignatureValue=${signature}`;
+
+      window.location.href = url;
     }
   };
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-  //  handleSubmit();
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    handleSubmit();
   }, []);
 
   return (
@@ -79,7 +57,7 @@ export const PayModal = ({ onClose, emailUser, piopleId, title, price }) => {
         </div>
         <div className={ styles.modalTitle }>{ title }</div>
         <form className={ styles.form } onSubmit={ handleSubmit } ref={ formRef }>
-        <span>К сожалению, оплата услуг сейчас недоступна.</span>
+
           <input type="hidden" name="terminalkey" value={ process.env.NEXT_PUBLIC_TERMINAL_KEY } />
           <input type="hidden" name="frame" value="false" />
           <input type="hidden" name="language" value="ru" />

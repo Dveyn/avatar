@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './Modal.module.css';
 import { preparePaymentData, processPayment } from '@@/utils/payment';
-import { setPayments } from '@@/utils/api';
+import { getRobokassaSignature, setPayments } from '@@/utils/api';
 
 export const Modal = ({ onClose, title, posId, price }) => {
 
@@ -58,43 +58,20 @@ export const Modal = ({ onClose, title, posId, price }) => {
         return;
       }
 
-      form.order.value = orderID;
-      form.amount.value = price;
-      form.receipt.value = JSON.stringify({
-        EmailCompany: "info@avalik-avatar.ru",
-        Taxation: "usn_income",
-        FfdVersion: "1.2",
-        Items: [
-          {
-            Name: description.value || "Оплата",
-            Price: Math.round(amount.value * 100),
-            Quantity: 1.0,
-            Amount: Math.round(amount.value * 100),
-            PaymentMethod: "full_prepayment",
-            PaymentObject: "service",
-            Tax: "none",
-            MeasurementUnit: "pc",
-          },
-        ],
-      });
-    }
-    if (typeof pay !== "undefined") {
-      await pay(form);
-    } else {
-      console.error("Tinkoff JS SDK не загружен");
+      const inv_id = orderID;
+      const out_summ = price; 
+      const inv_desc = `Оплата услуги ${title}`;
+      const mrh_login = process.env.NEXT_PUBLIC_ROBOKASSA_LOGIN;
+      const pass1 = process.env.NEXT_PUBLIC_ROBOKASSA_PASS1;
+
+      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, pass1 }))
+      
+      const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&SignatureValue=${signature}`;
+
+      window.location.href = url;
     }
   };
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <div className={ styles.modal } onClick={ onClose }>
@@ -104,11 +81,10 @@ export const Modal = ({ onClose, title, posId, price }) => {
         </div>
         <div className={ styles.modalTitle }>{ title }</div>
         <form className={ styles.form } onSubmit={ handleSubmit } ref={ formRef }>
-        <span>К сожалению, оплата услуг сейчас недоступна.</span>
-          <input type="hidden" className={ styles.input } value={ mail } onChange={ handleMail } name="email"  placeholder='Ваш email' />
-          <input type="hidden" className={ styles.input } value={ name } onChange={ handleName } placeholder='Ваше имя' />
-          <input type="hidden" className={ styles.input } value={ phone } onChange={ handlePhone } name="phone" placeholder='Ваш телефон' />
-          <input type="hidden" className={ styles.input } value={ date } onChange={ handleDate } placeholder='28.02.2002' />
+          <input className={ styles.input } value={ mail } onChange={ handleMail } name="email" type={ 'email' } placeholder='Ваш email' />
+          <input className={ styles.input } value={ name } onChange={ handleName } placeholder='Ваше имя' />
+          <input className={ styles.input } value={ phone } onChange={ handlePhone } name="phone" placeholder='Ваш телефон' />
+          <input className={ styles.input } value={ date } onChange={ handleDate } type={ 'date' } placeholder='28.02.2002' />
 
 
           <input type="hidden" name="terminalkey" value={ process.env.NEXT_PUBLIC_TERMINAL_KEY } />
@@ -134,7 +110,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
             value={ title }
           />
 
-          <button type="submit" disabled={ true } className={ styles.button }>
+          <button type="submit" className={ styles.button }>
             Записаться
           </button>
 

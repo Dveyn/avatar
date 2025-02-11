@@ -18,6 +18,7 @@ export const Avatars = ({ date }) => {
 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
+  const [avatarId, setAvatarId] = useState();
 
   const clickAvatar = (avatar) => {
     if (avatar.purchased || avatar.preview) {
@@ -70,7 +71,7 @@ export const Avatars = ({ date }) => {
                           onClick={ () => { 
                             setOpenPay(true); 
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                  
+                            setAvatarId(avatarDate.id);
                             setPrice(700);
                             } }
                           >Купить</Button>
@@ -109,7 +110,7 @@ export const Avatars = ({ date }) => {
                           onClick={ () => { 
                             setOpenPay(true); 
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                  
+                            setAvatarId(avatarDate.id);
                             setPrice(700);
                             } }
                           >Купить</Button>
@@ -149,7 +150,7 @@ export const Avatars = ({ date }) => {
                           onClick={ () => { 
                             setOpenPay(true); 
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                  
+                            setAvatarId(avatarDate.id);
                             setPrice(700);
                             } }
                           >Купить</Button>
@@ -189,7 +190,7 @@ export const Avatars = ({ date }) => {
                           onClick={ () => { 
                             setOpenPay(true); 
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                  
+                            setAvatarId(avatarDate.id);
                             setPrice(700);
                             } }
                           >Купить</Button>
@@ -228,6 +229,7 @@ export const Avatars = ({ date }) => {
                           className={ styles.btn } 
                           onClick={ () => { 
                             setOpenPay(true); 
+                            setAvatarId(avatarDate.id);
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
                             setPrice(700);
                             } }
@@ -246,6 +248,7 @@ export const Avatars = ({ date }) => {
         <PayModal onClose={ () => { setOpenPay(false); } }
           emailUser={ date.date.email }
           piopleId={ date.date.id }
+          avatarId={avatarId}
           title={ title }
           price={ price }
         /> }
