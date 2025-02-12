@@ -110,6 +110,8 @@
     font-size: 12px;
     padding: 20px;
     line-height: 1;
+    position: relative;
+    top: 20px;
   }
 
   .char {

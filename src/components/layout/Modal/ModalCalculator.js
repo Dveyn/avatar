@@ -102,7 +102,10 @@ export const ModalCalc = ({ onClose }) => {
       <div className={ styles.modalContent } onClick={ (e) => e.stopPropagation() }>
         <div className={ styles.modal_body }>
           <div className={ styles.modalTitle }>Рассчитать свой аватар</div>
-          <div className={ styles.pretitle }>
+          <div className={styles.desctiption}>
+          Метод Аватаров основан на методе матрицы судьбы и нумерологии, поэтому, чтобы рассчитать бесплатно ваших аватаров, введите, пожалуйста, ваши год, месяц и день рождения. 
+          </div>
+          <div className={ styles.info }>
             ВВЕДИТЕ ВАШУ ДАТУ РОЖДЕНИЯ ДЛЯ РАСЧЕТА
             АВАТАРА В ФОРМАТЕ
             ДЕНЬ, МЕСЯЦ, ГОД

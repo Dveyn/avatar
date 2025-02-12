@@ -10,14 +10,14 @@ export const IntroBlock = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-
+ 
   return (
     <section className={ styles.IntroBlock }>
       <div className={ styles.circle }>
         <div className={ styles.center }>
           <h1 className={ styles.title }>Аватары</h1>
           <div className={ styles.text }><span className={ styles.action }>Познай себя</span>, чтобы получить от жизни все, что хочешь</div>
-          <Button onClick={openModal}>Узнать свой аватар</Button>
+          <Button onClick={openModal}>Познать себя за 5 минут</Button>
         </div>
       </div>
       <div className={ styles.char1 }></div>

@@ -1,6 +1,7 @@
-import { Form } from '@@/components/ui';
+import { Button, Form } from '@@/components/ui';
 import styles from './WhoAreAvatars.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ModalCalc } from '../Modal/ModalCalculator';
 
 export const WhoAreAvatars = () => {
 
@@ -35,18 +36,22 @@ export const WhoAreAvatars = () => {
 
   }, []);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+
   return (
     <div className={ styles.box }>
       <section className={ styles.section } id='avatary'>
         <div className={ styles.blur }></div>
         <h2 className={ styles.title }>Кто такие Аватары?</h2>
-        <div className={ styles.pretitle }>это твое альтер эго, твой друг.</div>
         <Form className={ `${styles.form} ${styles.form1}` }>
           <p>
-            Как в игре, когда у Героя есть доступ к ресурсам и скиллам, артефактам и пр.,
-            у тебя есть круглосуточный доступ к твоим Аватарам и они каждый со своими сильными и
-            слабыми сторонами, плюсами и минусами, ресурсной и теневой сторонами.
+            Аватары — это разные части вашей личности, которые могут проявляться в разных ситуациях.
             <br />
+            <br />
+            Представьте, что у вас внутри есть несколько "я", и каждое из них отвечает за свои чувства, мысли и поведение.
             <br />
             <span style={ { fontWeight: 600 } }>
               И скажу тебе, что в тебе не один Аватар, а больше 10-ти!
@@ -62,12 +67,14 @@ export const WhoAreAvatars = () => {
       <section className={ styles.section2 }>
         <Form className={ `${styles.form} ${styles.form2}` }>
           <p>
-            Если ты будешь знать какие именно у тебя Аватары, их характеристики,
-            ты сможешь использовать их для достижения своих целей, использовать их ресурсы!
-          </p>
+            Аватары помогают нам понимать, почему мы ведем себя так или иначе в разных ситуациях. Они дают возможность лучше разобраться в себе и своих эмоциях.        </p>
+          <br />
+          <br />
+          С помощью аватаров вы можете увидеть, почему проседаете в бизнесе, каким вообще делом заниматься?  Каких людей выбирать в партнеры, а каких избегать?
+          <Button onClick={ openModal }>Узнать своего аватара</Button>
         </Form>
       </section>
-
+      { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </div>
 
   );

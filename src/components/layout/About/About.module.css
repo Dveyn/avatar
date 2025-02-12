@@ -124,7 +124,7 @@
 
 .char_box {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   position: absolute;
   top: 3%;
   flex-wrap: nowrap;
@@ -132,20 +132,24 @@
 }
 
 .char_text1,
-.char_text2 {
+.char_text2,
+.char_text3,
+.char_text4,
+.char_text5,
+.char_text6 {
   background: url(/images/icon/text-form.svg);
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
   text-align: center;
-  height: 320px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
 
   color: #ffffff;
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Parisian', Arial, sans-serif;
   line-height: 1.3;
   font-weight: 400;
@@ -154,17 +158,33 @@
   border-style: solid;
 
   padding: 20px;
-  width: 290px;
+  width: 200px;
 
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
-
-.char {
+.btn {
   opacity: 0;
   transition: opacity 0.5s ease;
-  width: 34%;
+  position: absolute;
+  bottom: 50px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.char {
+
+  width: 70%;
+  position: relative;
+  top: 0;
 }
 
 
@@ -172,6 +192,7 @@
   .about {
     overflow-x: hidden;
   }
+
   .circle {
     width: 80dvw;
     height: 80dvw;
@@ -203,6 +224,34 @@
   }
 
   .char_text2 {
+    position: absolute;
+    top: 40%;
+    height: 200px;
+    z-index: 3;
+  }
+
+  .char_text3 {
+    position: absolute;
+    top: 40%;
+    height: 200px;
+    z-index: 3;
+  }
+
+  .char_text4 {
+    position: absolute;
+    top: 40%;
+    height: 200px;
+    z-index: 3;
+  }
+
+  .char_text5 {
+    position: absolute;
+    top: 40%;
+    height: 200px;
+    z-index: 3;
+  }
+
+  .char_text6 {
     position: absolute;
     top: 40%;
     height: 200px;

@@ -82,7 +82,7 @@ export const AvatarExample = () => {
       </div>
       <ButtonLine className={ styles.btn } />
       <div className={ styles.advantages_block }>
-        <h2 className={ styles.title }>Какие это дает тебе преимущества:</h2>
+        <h2 className={ styles.title }>Аватары - ваш ключ к:</h2>
         <Advantages />
         <div className={ styles.advantages }>
           <div className={ styles.item }>
@@ -151,7 +151,7 @@ export const AvatarExample = () => {
       </div>
       <div className={ styles.end } id='aboutmethod'>
         <div className={ styles.end_text }>
-          Таким образом, знание себя{ ' ' }
+          Знание себя{ ' ' }
           <span style={ { color: "rgb(255, 225, 6)" } }>помогает человеку</span>{ ' ' }
           жить более гармоничной, целенаправленной и осознанной жизнью.
         </div>

@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './About.module.css';
+import { Button } from '@@/components/ui';
+import { ModalCalc } from '../Modal/ModalCalculator';
 
 export const About = () => {
   useEffect(() => {
     let gsap;
     let ScrollTrigger;
-  
+
     const initAnimations = async () => {
       const module = await import('gsap');
       gsap = module.gsap;
       ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
-  
+
       gsap.registerPlugin(ScrollTrigger);
-  
+
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: `.${styles.about}`,
@@ -22,7 +24,7 @@ export const About = () => {
           pin: true,
         },
       });
-  
+
       // Логика для анимации
       ScrollTrigger.matchMedia({
         // Анимация для десктопа
@@ -49,7 +51,7 @@ export const About = () => {
             .addPause('+=5.5')
             .to(`.${styles.circle}`, { opacity: 0, duration: 1 })
             .fromTo(
-              `.${styles.char}`,
+              `.${styles.center}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
             )
@@ -65,6 +67,31 @@ export const About = () => {
             )
             .fromTo(
               `.${styles.char_text2}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            )
+            .fromTo(
+              `.${styles.char_text3}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            )
+            .fromTo(
+              `.${styles.char_text4}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            )
+            .fromTo(
+              `.${styles.char_text5}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            )
+            .fromTo(
+              `.${styles.char_text6}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            )
+            .fromTo(
+              `.${styles.btn}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
             );
@@ -93,7 +120,7 @@ export const About = () => {
             .addPause('+=10')
             .to(`.${styles.circle}`, { opacity: 0, duration: 1 })
             .fromTo(
-              `.${styles.char}`,
+              `.${styles.center}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
             )
@@ -113,16 +140,52 @@ export const About = () => {
               `.${styles.char_text2}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
+            )
+            .addPause('+=10')
+            .to(`.${styles.char_text2}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
+            .fromTo(
+              `.${styles.char_text3}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            ).addPause('+=10')
+            .to(`.${styles.char_text3}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
+            .fromTo(
+              `.${styles.char_text4}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            ).addPause('+=10')
+            .to(`.${styles.char_text4}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
+            .fromTo(
+              `.${styles.char_text5}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            ).addPause('+=10')
+            .to(`.${styles.char_text5}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
+            .fromTo(
+              `.${styles.char_text6}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
+            ).addPause('+=10')
+            .to(`.${styles.char_text6}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
+            .fromTo(
+              `.${styles.btn}`,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 }
             );
         },
       });
     };
-  
+
     initAnimations();
-  
+
   }, []);
 
-  return ( 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+
+  return (
     <section className={ styles.about }>
       <div className={ styles.voln }></div>
       <div className={ styles.circle }>
@@ -134,10 +197,22 @@ export const About = () => {
         </div>
       </div>
       <div className={ styles.char_box }>
-        <div className={ styles.char_text1 }>Кто как ни ты знает чего ты хочешь?</div>
-        <img className={ styles.char } src='/images/icon/char3.png' />
-        <div className={ styles.char_text2 }>Кто как не ты знает свои ресурсы и возможности?</div>
+        <div className={ styles.left }>
+          <div className={ styles.char_text1 }>Как увеличить доход?</div>
+          <div className={ styles.char_text2 }>Как узнать, чего я на самом деле хочу?</div>
+          <div className={ styles.char_text3 }>Что тормозит на пути к цели?</div>
+        </div>
+        <div className={ styles.center }>
+          <img className={ styles.char } src='/images/icon/char3.png' />
+          <Button onClick={openModal} className={ styles.btn }>Получить ответ на свой запрос</Button>
+        </div>
+        <div className={ styles.right }>
+          <div className={ styles.char_text4 }>Как найти партнера для жизни?</div>
+          <div className={ styles.char_text5 }>Почему не идёт бизнес? </div>
+          <div className={ styles.char_text6 }>Нет сил ни на работу, ни на семью</div>
+        </div>
       </div>
+      { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </section>
   );
 };

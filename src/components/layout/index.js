@@ -12,3 +12,5 @@ export { AvatarExample } from './AvatarExample/AvatarExample'
 export { People } from './Profile/People/People'
 export { Avatars } from './Profile/Avatars/Avatars'
 export { AboutMe } from './AboutMe/AboutMe'
+
+export { ISP } from './ISP/isp'

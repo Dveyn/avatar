@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { ButtonLine, Form } from '@@/components/ui';
+import { useEffect, useState } from 'react';
+import { Button, ButtonLine, Form } from '@@/components/ui';
 import styles from './AvatarQuiz.module.css';
+import { ModalCalc } from '../Modal/ModalCalculator';
 
 export const AvatarQuiz = () => {
   useEffect(() => {
@@ -53,6 +54,12 @@ export const AvatarQuiz = () => {
     initAnimations();
 
   }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <section className={ styles.section }>
       <div className={ styles.top }></div>
@@ -62,12 +69,14 @@ export const AvatarQuiz = () => {
           <br />
           <br />
           Чтобы осознавать и управлять познакомься с собой, со своими Аватарами.
+          <br />
+          <Button onClick={openModal}>Познать себя</Button>
         </div>
         <div className={ styles.char }>
           <img className={ styles.img } src='/images/icon/char4.png' />
         </div>
       </Form>
-      <ButtonLine/>
+        { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </section>
   );
 };

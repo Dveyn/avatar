@@ -1,6 +1,7 @@
-import { ButtonLine, Form } from '@@/components/ui';
+import { Button, ButtonLine, Form } from '@@/components/ui';
 import styles from './Method.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ModalCalc } from '../Modal/ModalCalculator';
 
 export const Method = () => {
 
@@ -43,14 +44,14 @@ export const Method = () => {
     const initAnimations = async () => {
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-  
+
       gsap.registerPlugin(ScrollTrigger);
-  
+
       if (window.innerWidth <= 768) {
         const char = document.querySelector(`.${styles.char}`);
         const char2 = document.querySelector(`.${styles.char2}`);
         const card = document.querySelector(`.${styles.card}`);
-  
+
         if (char && char2 && card) {
           ScrollTrigger.create({
             trigger: card,
@@ -70,9 +71,14 @@ export const Method = () => {
         }
       }
     };
-  
+
     initAnimations();
   }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
 
   return (
     <div className={ styles.box }>
@@ -85,10 +91,7 @@ export const Method = () => {
           <Form className={ styles.form }>
             <div className={ styles.form_box }>
               <div className={ styles.text }>
-                Наш метод основан на дате вашего рождения, психологии типирования личностей, подходе IFS и коучинге.
-                <p>
-                  Каждый человек индивидуален и это делает нашу жизнь ярче. Все мы мыслим и действуем по-своему. Нет правильных и неправильных людей. Аватары помогают людям понять – как бы ты не мыслил – это нормально, точно так же нормальны остальные.
-                </p>
+                Вы можете за 1-2 минуты узнать своих основных аватаров. И бесплатно получить полную расшифровку и рекомендации, как с помощью этих знаний улучшить свою жизнь. Ниже вы видите,как будет выглядеть карточка вашего бесплатного аватара.
               </div>
             </div>
           </Form>
@@ -139,7 +142,8 @@ export const Method = () => {
         </div>
       </section>
       <section className={ styles.buttonLine }>
-        <ButtonLine />
+        <Button onClick={ openModal }>Получить аватара бесплатно</Button>
+        { isModalOpen && <ModalCalc onClose={ closeModal } /> }
       </section>
     </div>
   );
