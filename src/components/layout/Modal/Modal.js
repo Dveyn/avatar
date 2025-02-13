@@ -64,9 +64,27 @@ export const Modal = ({ onClose, title, posId, price }) => {
       const mrh_login = process.env.NEXT_PUBLIC_ROBOKASSA_LOGIN;
       const pass1 = process.env.NEXT_PUBLIC_ROBOKASSA_PASS1;
 
-      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, pass1 }))
+      const Receipt =  {
+        "sno":"usn_income",
+        "items": [
+          {
+            "name": description.value || "Оплата",
+            "quantity": 1,
+            "sum": amount.value,
+            "payment_method": "full_payment",
+            "payment_object": "service",
+            "tax": "none"
+          }
+        ]
+      }
+
+      const jsonString = JSON.stringify(Receipt);
+      const encodedJson = encodeURIComponent(jsonString);
       
-      const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&SignatureValue=${signature}`;
+
+      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, Receipt:jsonString, pass1 }))
+      
+      const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&Receipt=${encodedJson}&SignatureValue=${signature}`;
 
       window.location.href = url;
     }
