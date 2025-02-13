@@ -73,7 +73,7 @@
 
 }
 
-@media (max-width: 425px) {
+@media (max-width: 500px) {
   .form {
     background: none;
     display: flex;
