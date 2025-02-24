@@ -51,4 +51,7 @@
   .title {
     font-size: 28px;
   }
+  .avatar_list {
+    justify-content: center;
+  }
 }

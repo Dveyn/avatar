@@ -2,9 +2,20 @@ import { getUserAvatar } from '@@/utils/api';
 import styles from './avatar.module.css';
 import { personalities } from '@@/utils/personality';
 import { useState } from 'react';
+import { generateCharacterBlock } from '@@/utils/pdfGenerator';
+import { Button } from '@@/components/ui';
 
 const AvatarPage = ({ avatar }) => {
   const [openSection, setOpenSection] = useState(null);
+
+  const handleDownload = async () => {
+    const pdfBytes = await generateCharacterBlock(avatar);
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'beautiful-pdf-with-svg.pdf';
+    link.click();
+  };
 
 
   // Структура секций
@@ -15,8 +26,6 @@ const AvatarPage = ({ avatar }) => {
     { title: 'Проявления в действиях тени', content: avatar.manifestationsInShadowActions, key: 'manifestationsInShadowActions' },
     { title: 'Рекомендации', content: avatar.recommendations, key: 'recommendations' },
   ];
-
-  console.log(avatar);
 
   // Функция для переключения секции
   const toggleSection = (key) => {
@@ -30,7 +39,6 @@ const AvatarPage = ({ avatar }) => {
           <div className={ `${styles.text_block} ${styles.text_block1}` }>
             <div className={ styles.dialog }>
               <span className={ styles.text1 }>{ avatar.name }</span>
-              {/* <span className={ styles.text2 }> шут, свобода</span> */ }
             </div>
             <div className={ styles.title }>Ресурс</div>
             <ul className={ styles.feature_block }>
@@ -83,18 +91,21 @@ const AvatarPage = ({ avatar }) => {
                 { title }
               </button>
               <ul className={ styles.accordion_list }>
-                {content ? content?.map((item, index) => (
+                { content ? content?.map((item, index) => (
                   <li key={ index } className={ styles.accordion_item }>
                     { item }
                   </li>
-                )) : 
-                avatar.purchased == 0 && <>После покупки первого аватара, вам станет доступна вся информация</>
+                )) :
+                  avatar.purchased == 0 && <>После покупки первого аватара, вам станет доступна вся информация</>
                 }
               </ul>
             </div>
           )) }
         </div>
+
       </section>
+      <Button className={ styles.btn_save } onClick={ handleDownload }> Скачать PDF</Button>
+
     </div>
   );
 };
