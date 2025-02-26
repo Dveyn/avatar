@@ -70,7 +70,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
           {
             "name": description.value || "Оплата",
             "quantity": 1,
-            "sum": amount.value,
+            "sum": out_summ,
             "payment_method": "full_payment",
             "payment_object": "service",
             "tax": "none"

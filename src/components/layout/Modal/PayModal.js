@@ -43,7 +43,7 @@ export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price 
           {
             "name": description.value || "Оплата",
             "quantity": 1,
-            "sum": amount.value,
+            "sum": out_summ,
             "payment_method": "full_payment",
             "payment_object": "service",
             "tax": "none"
