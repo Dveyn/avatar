@@ -32,14 +32,6 @@ export const ToolDescription = () => {
             <h3 className={ styles.h3 }>Узнать Аватар</h3>
             <p className={ styles.text }>
               Стоимость - <s>2000 руб.</s>
-              <br />
-              <br />
-              До конца февраля 2025 года
-              <b> Акция - скидка 70%</b>
-              на Аватара
-              <br />
-              <br />
-              Аватар - 700 руб.
             </p>
             <Button onClick={ openModalCalc } className={ styles.btn }>узнай свой аватар</Button>
           </div>
