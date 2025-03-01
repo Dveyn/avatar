@@ -31,7 +31,7 @@ export const ToolDescription = () => {
           <div className={ styles.text_block }>
             <h3 className={ styles.h3 }>Узнать Аватар</h3>
             <p className={ styles.text }>
-              Стоимость - <s>2000 руб.</s>
+              Стоимость - 2000 руб.
             </p>
             <Button onClick={ openModalCalc } className={ styles.btn }>узнай свой аватар</Button>
           </div>
