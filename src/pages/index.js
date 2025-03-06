@@ -2,8 +2,8 @@ import { About, AboutMe, AvatarExample, AvatarQuiz, Footer, IntroBlock, ISP, Met
 import Head from "next/head";
 
 export default function Home() {
-  const pageTitle = "Аватары";
-  const pageDescription = "Метод Аватаров - это ваш навигатор к успеху и счастью. Он основан дате вашего рождения, психологии типирования личностей, подходе IFS (системной терапии субличностей) и коучинге.";
+  const pageTitle = "Метод Аватаров: самопознание по дате рождения, матрица судьбы";
+  const pageDescription = "Метод Аватаров – инструмент самопознания, основанный на дате рождения. Он сочетает психологические принципы, типирование личности, архетипы, IFS-терапию и коучинг. Матрица судьбы помогает раскрыть ресурсы, понять цели и управлять энергией, а также получить прогностику.";
   const pageUrl = "https://avalik-avatar.ru/";
   const siteName = "Аватары";
   const imageUrl = "https://avalik-avatar.ru/favicon.png";
