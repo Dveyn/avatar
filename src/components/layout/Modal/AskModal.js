@@ -19,6 +19,7 @@ export const AskModal = ({ onClose, ask }) => {
         'Вы больше проявляется в Тени, чем в Ресурсе и чтобы получить рекомендации и узнать остальные свои Аватары нужно оплатить и получить доступ.';
 
       setSuccess(resultText);
+      window.ym && window.ym(99937024,'reachGoal','ask_success')
     }
 
   };

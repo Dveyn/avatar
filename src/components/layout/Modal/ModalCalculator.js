@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './ModalCalc.module.css';
 import { calculateAvatarData } from '@@/utils/avatarCalculator';
 import { personalities } from '@@/utils/personality';
@@ -70,9 +70,14 @@ export const ModalCalc = ({ onClose }) => {
     } else {
       setSuccess(response.message);
       setError('');
+      window?.ym && window.ym(99937024,'reachGoal','send_reg')
     }
   };
 
+
+  useEffect(()=>{
+    window.ym && window.ym(99937024,'reachGoal','open_calc')
+  }, [])
 
   const dayRef = useRef(null);
   const monthRef = useRef(null);

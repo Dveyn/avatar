@@ -58,6 +58,8 @@ export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price 
 
       const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&Receipt=${encodedJson}&SignatureValue=${signature}`;
 
+      window.ym && window.ym(99937024,'reachGoal','send_pay_avatar')
+
       window.location.href = url;
     }
   };

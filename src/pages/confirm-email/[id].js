@@ -56,6 +56,7 @@ const ConfirmEmail = ({ status }) => {
   }
 
   if (success) {
+    window.ym && window.ym(99937024,'reachGoal','confirm_reg')
     return (
       <div className={ styles.body }>
         <div className={ styles.form } >
