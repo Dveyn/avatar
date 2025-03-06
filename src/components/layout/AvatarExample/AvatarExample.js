@@ -76,9 +76,9 @@ export const AvatarExample = () => {
     <section className={ styles.section } id='advantages'>
       <div className={ styles.img_box }>
         <img src="/images/icon/char10.png" alt="Avatar" />
-        <div ref={ textRef } className={ styles.text }>
+        <h2 ref={ textRef } className={ styles.text }>
           Знание своих Аватаров = знание себя
-        </div>
+        </h2>
       </div>
       <ButtonLine className={ styles.btn } />
       <div className={ styles.advantages_block }>

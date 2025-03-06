@@ -89,11 +89,6 @@ export const About = () => {
               `.${styles.char_text6}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.btn}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
             );
         },
         // Анимация для мобильных устройств
@@ -165,12 +160,6 @@ export const About = () => {
               `.${styles.char_text6}`,
               { opacity: 0 },
               { opacity: 1, duration: 1 }
-            ).addPause('+=10')
-            .to(`.${styles.char_text6}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.btn}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
             );
         },
       });
@@ -204,7 +193,7 @@ export const About = () => {
         </div>
         <div className={ styles.center }>
           <img className={ styles.char } src='/images/icon/char3.png' />
-          <Button onClick={openModal} className={ styles.btn }>Получить ответ на свой запрос</Button>
+          <Button onClick={openModal} className={ styles.btn }>Вижу свой запрос. Что дальше?</Button>
         </div>
         <div className={ styles.right }>
           <div className={ styles.char_text4 }>Как найти партнера для жизни?</div>

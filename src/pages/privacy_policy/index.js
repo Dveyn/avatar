@@ -1,7 +1,13 @@
+import Head from "next/head";
 
 const PrivacyPolicy = () => {
+  const pageTitle = "Аватары | Политика конфиденциальности";
   return (
     <>
+      <Head>
+        <title>{ pageTitle }</title>
+        <meta name="robots" content="noindex" />
+      </Head>
       <div className="container">
         <h1>Политика конфиденциальности</h1>
 

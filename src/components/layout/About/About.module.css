@@ -165,10 +165,10 @@
 }
 
 .btn {
-  opacity: 0;
   transition: opacity 0.5s ease;
   position: absolute;
   bottom: 50px;
+  padding: 40px;
 }
 
 .center {

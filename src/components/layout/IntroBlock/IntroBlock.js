@@ -17,7 +17,7 @@ export const IntroBlock = () => {
         <div className={ styles.center }>
           <h1 className={ styles.title }>Аватары</h1>
           <div className={ styles.text }><span className={ styles.action }>Познай себя</span>, чтобы получить от жизни все, что хочешь</div>
-          <Button onClick={openModal}>Познать себя за 5 минут</Button>
+          <Button className={styles.btn} onClick={openModal}>Стать успешнее и счастливее </Button>
         </div>
       </div>
       <div className={ styles.char1 }></div>

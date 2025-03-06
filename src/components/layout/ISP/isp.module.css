@@ -12,6 +12,9 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.btn {
+  padding: 40px;
+}
 .one_box {
   display: flex;
   justify-content: center;

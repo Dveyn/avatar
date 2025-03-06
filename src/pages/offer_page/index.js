@@ -4,9 +4,10 @@ const OfferPage = () => {
   return (
     <div>
       <Head>
-        <title>Публичная оферта</title>
+        <title>Аватары | Публичная оферта</title>
         <meta name="description" content="Публичная оферта от ИП Ким Светланы Любомировны" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
       </Head>
 
       <main>
