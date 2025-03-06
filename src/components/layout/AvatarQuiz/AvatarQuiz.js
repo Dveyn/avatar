@@ -73,7 +73,7 @@ export const AvatarQuiz = () => {
           <Button onClick={openModal}>Познать себя</Button>
         </div>
         <div className={ styles.char }>
-          <img className={ styles.img } src='/images/icon/char4.png' />
+          <img className={ styles.img } src='/images/icon/char4.png'  alt='аналитика и прогностика'/>
         </div>
       </Form>
         { isModalOpen && <ModalCalc onClose={ closeModal } /> }

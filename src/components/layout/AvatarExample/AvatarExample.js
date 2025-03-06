@@ -75,7 +75,7 @@ export const AvatarExample = () => {
   return (
     <section className={ styles.section } id='advantages'>
       <div className={ styles.img_box }>
-        <img src="/images/icon/char10.png" alt="Avatar" />
+        <img src="/images/icon/char10.png" alt="личные ресурсы" />
         <h2 ref={ textRef } className={ styles.text }>
           Знание своих Аватаров = знание себя
         </h2>
@@ -87,35 +87,35 @@ export const AvatarExample = () => {
         <div className={ styles.advantages }>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/весы.png' } />
+              <img src={ '/images/icon/весы.png' } alt='Понимание своих эмоций' />
             </div>
             <div className={ styles.item_title }>Эмоциональной устойчивости и балансу</div>
             <div className={ styles.item_desc }>Когда человек понимает свои эмоции, он лучше справляется с негативными ситуациями и сохраняет внутреннее равновесие. Знание теневых сторон позволяет не подавлять их, а конструктивно работать с ними.</div>
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/чаша.png' } />
+              <img src={ '/images/icon/чаша.png' } alt="Развитие личных ресурсов" />
             </div>
             <div className={ styles.item_title }>Развитию личных ресурсов</div>
             <div className={ styles.item_desc }>Понимание своих сильных сторон помогает лучше использовать их для достижения целей. Человек становится более эффективным, так как знает, в каких областях он особенно силён и как лучше направить свою энергию.</div>
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/starts.png' } />
+              <img src={ '/images/icon/starts.png' } alt='Разширение возможностей' />
             </div>
             <div className={ styles.item_title }>Расширению возможностей</div>
             <div className={ styles.item_desc }>Человек, осознающий свои ресурсы и ограничения, может более точно ставить цели и достигать их, находя оптимальные пути для реализации своего потенциала.</div>
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/key.png' } />
+              <img src={ '/images/icon/key.png' } alt="Улучшение отношений"/>
             </div>
             <div className={ styles.item_title }> Улучшению отношений</div>
             <div className={ styles.item_desc }>Знание себя даёт возможность лучше понимать других людей, быть более эмпатичным, что улучшает как личные, так и профессиональные отношения.</div>
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/fire.png' } />
+              <img src={ '/images/icon/fire.png' } alt="Повышение уверенности"/>
             </div>
             <div className={ styles.item_title }>Повышению уверенности</div>
             <div className={ styles.item_desc }>
@@ -124,7 +124,7 @@ export const AvatarExample = () => {
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/glass.png' } />
+              <img src={ '/images/icon/glass.png' } alt='Повышение осознанности'/>
             </div>
             <div className={ styles.item_title }>Повышению осознанности</div>
             <div className={ styles.item_desc }>
@@ -133,7 +133,7 @@ export const AvatarExample = () => {
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/rubin.png' } />
+              <img src={ '/images/icon/rubin.png' } alt="Способность к самокоррекции"/>
             </div>
             <div className={ styles.item_title }>Способности <br /> к самокоррекции</div>
             <div className={ styles.item_desc }>
@@ -142,7 +142,7 @@ export const AvatarExample = () => {
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-              <img src={ '/images/icon/draco.png' } />
+              <img src={ '/images/icon/draco.png' } alt="Освобождение от конфликтов"/>
             </div>
             <div className={ styles.item_title }>Освобождению от внутренних конфликтов</div>
             <div className={ styles.item_desc }>Принятие своих теневых сторон помогает интегрировать их в общую картину личности, что снимает внутренние конфликты и освобождает энергию для созидания и роста.</div>
@@ -156,8 +156,8 @@ export const AvatarExample = () => {
           жить более гармоничной, целенаправленной и осознанной жизнью.
         </div>
         <div className={ styles.end_char_box }>
-          <img className={ styles.end_char } src={ '/images/icon/char11.png' } />
-          <img className={ styles.end_stars } src={ '/images/icon/stars_map.png' } />
+          <img className={ styles.end_char } src={ '/images/icon/char11.png' } alt="типы личности"/>
+          <img className={ styles.end_stars } src={ '/images/icon/stars_map.png' } alt='матрица судьбы' />
         </div>
       </div>
     </section>

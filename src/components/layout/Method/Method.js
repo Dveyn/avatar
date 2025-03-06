@@ -84,7 +84,7 @@ export const Method = () => {
     <div className={ styles.box }>
       <section className={ styles.section }></section>
       <section className={ styles.sectionChar }>
-        <img className={ styles.char } src="/images/icon/char9.png" alt="Персонаж" />
+        <img className={ styles.char } src="/images/icon/char9.png" alt="анализ личности по дате рождения" />
       </section>
       <section className={ styles.section2 }>
         <div className={ styles.one_box }>
@@ -125,11 +125,11 @@ export const Method = () => {
             <div className={ styles.title }>Характеристики</div>
             <div className={ styles.desc }>У каждого Аватара есть свои характерные черты, слабые и сильные стороны. Возможно вы отличный работник, внимательны к деталям и все выполняете в срок, но общение с людьми дается тяжело: не получается выражать свои чувства и люди несправедливо считают вас безэмоциональным и замкнутым. Узнав своих Аватаров, вы сможете сделать упор на сильные черты, понять как уменьшить вред от слабых и извлечь пользу даже из неприятных ситуаций.</div>
           </div>
-          <img className={ styles.card } src={ '/images/icon/card-3svg.svg' } />
-          <img className={ styles.char2 } src="/images/icon/char9.png" alt="Персонаж" />
+          <img className={ styles.card } src={ '/images/icon/card-3svg.svg' } alt='типы личности'/>
+          <img className={ styles.char2 } src="/images/icon/char9.png" alt="внутренняя энергия человека" />
           <div className={ `${styles.text_block} ${styles.text_block2}` }>
             <div className={ styles.disvg }>
-              <img className={ styles.imgDisvg } src={ '/images/icon/disvg.svg' } />
+              <img className={ styles.imgDisvg } src={ '/images/icon/disvg.svg' } alt='психологические архетипы' />
               <div className={ styles.textDisvg }>//раскрой все свои стороны</div>
             </div>
             <div className={ styles.textAvatar }>

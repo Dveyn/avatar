@@ -180,7 +180,7 @@ export const About = () => {
       <div className={ styles.circle }>
         <div className={ styles.pos1 }>
           <div className={ styles.text1 }>В первую очередь - познай себя</div>
-          <img className={ styles.book } src='/images/icon/book.png' />
+          <img className={ styles.book } src='/images/icon/book.png' alt='матрица судьбы' />
         </div>
         <div className={ styles.pos2 }> <div className={ styles.text2 }>Так говорили мудрецы еще в древние времена и сегодня это правило тоже работает</div>
         </div>
@@ -192,7 +192,7 @@ export const About = () => {
           <div className={ styles.char_text3 }>Что тормозит на пути к цели?</div>
         </div>
         <div className={ styles.center }>
-          <img className={ styles.char } src='/images/icon/char3.png' />
+          <img className={ styles.char } src='/images/icon/char3.png' alt='прогностика'/>
           <Button onClick={openModal} className={ styles.btn }>Вижу свой запрос. Что дальше?</Button>
         </div>
         <div className={ styles.right }>

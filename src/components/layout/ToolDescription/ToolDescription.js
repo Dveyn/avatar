@@ -36,7 +36,7 @@ export const ToolDescription = () => {
             <Button onClick={ openModalCalc } className={ styles.btn }>узнай свой аватар</Button>
           </div>
           <div className={ `${styles.img} ${styles.img1}` }>
-            <img src={ '/images/icon/cart.png' } />
+            <img src={ '/images/icon/cart.png' } alt='Узнать свой аватар'/>
           </div>
         </Form>
         <Form className={ styles.form } >
@@ -56,7 +56,7 @@ export const ToolDescription = () => {
               className={ styles.btn }>Записаться</Button>
           </div>
           <div className={ `${styles.img} ${styles.img2}` }>
-            <img src={ '/images/icon/char6.png' } />
+            <img src={ '/images/icon/char6.png' } alt='Записаться на личную консультацию'/>
           </div>
         </Form>
         <Form className={ styles.form } >
@@ -74,7 +74,7 @@ export const ToolDescription = () => {
               className={ styles.btn }>Записаться</Button>
           </div>
           <div className={ `${styles.img} ${styles.img3}` }>
-            <img src={ '/images/icon/char7.png' } />
+            <img src={ '/images/icon/char7.png' } alt='консультация и прогностика на 2 года' />
           </div>
         </Form>
         <Form className={ styles.form } >
@@ -91,7 +91,7 @@ export const ToolDescription = () => {
               className={ styles.btn }>Записаться</Button>
           </div>
           <div className={ `${styles.img} ${styles.img4}` }>
-            <img src={ '/images/icon/char8.png' } />
+            <img src={ '/images/icon/char8.png' } alt='Прогностика на год'/>
           </div>
         </Form>
       </div>

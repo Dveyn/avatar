@@ -60,8 +60,8 @@ export const WhoAreAvatars = () => {
 
         </Form>
 
-        <img className={ styles.mage_circle } src={ '/images/icon/mage_circle.svg' } />
-        <img className={ styles.sword } src={ '/images/icon/sword.png' } />
+        <img className={ styles.mage_circle } src={ '/images/icon/mage_circle.svg' } alt='аватар личность'/>
+        <img className={ styles.sword } src={ '/images/icon/sword.png' } alt='энергии аватаров' />
 
       </section>
       <section className={ styles.section2 }>

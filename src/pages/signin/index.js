@@ -3,6 +3,7 @@ import styles from './signin.module.css';
 import { signin } from '@@/utils/api';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const Signin = () => {
 
@@ -30,10 +31,14 @@ const Signin = () => {
 
   };
   return (
-    <div className={ styles.body }>
+<>
+<Head>
+  <title>Аватары | Вход</title>
+</Head>
+<div className={ styles.body }>
       <div className={ styles.form }>
         <div className={ styles.form_body }>
-          <h2 className={ styles.title }>Вход</h2>
+          <h1 className={ styles.title }>Вход</h1>
           <div className={ styles.pretitle }>Внимание! Мы обновили сайт, если не получается войти в профиль, вопспользуйтесь востановлением пароля</div>
           <form onSubmit={ handleSubmit }>
             <div>
@@ -68,6 +73,7 @@ const Signin = () => {
         </div>
       </div>
     </div>
+</>
   );
 };
 
