@@ -253,6 +253,58 @@
   transform: translate(-50%, 0);
 }
 
+.btnAsk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #444; /* Цвет текста */
+  background: linear-gradient(180deg, #FFEB70 0%, #FFD700 100%);
+  border: 2px solid #FFF;
+  border-radius: 50px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  aspect-ratio: auto;
+  margin-left: 50%;
+  transform: translate(-50%, 10px);
+  margin-bottom: 40px;
+}
+
+.btnAsk::before,
+.btnAsk::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 30px;
+  background: linear-gradient(180deg, #FFEB70 0%, #FFD700 100%);
+  border: 2px solid #FFF;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
+.btnAsk::before {
+  left: -16px;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.btnAsk::after {
+  right: -16px;
+}
+
+.btnAsk:hover {
+  background: linear-gradient(180deg, #FFD700 0%, #FFEB70 100%);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btnAsk:active {
+  transform: scale(0.98);
+}
+
 @media (max-width: 1280px) {
   .text_block {
     padding: 10px;
@@ -276,6 +328,9 @@
 }
 
 @media (max-width: 769px) {
+  .btnAsk {
+    width: 90%;
+  }
   .section2 {
     padding: 5px;
   }

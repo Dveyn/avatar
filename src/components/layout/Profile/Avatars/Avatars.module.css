@@ -16,6 +16,23 @@
   padding: 10px;
   box-sizing: border-box;
 }
+.title_av,
+.title_av button{
+  font-family: Parisian;
+  font-size: 40px;
+  font-weight: 400;
+  color: #57576C;
+  text-align: center;
+  text-shadow: 0 0 1px #ffffff;
+  background: #d5b681;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.title_av p {
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: 18px;
+}
 
 .user_info {
   font-family: Parisian;
@@ -47,8 +64,22 @@
   margin-top: -20px;
 }
 
+.text_modal {
+  padding: 30px;
+}
+.btn_modal {
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+}
+.btn_action {
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+}
 @media (max-width: 768px) {
   .title {
+    font-size: 28px;
+  }
+  .title_av, .title_av button {
     font-size: 28px;
   }
   .avatar_list {

@@ -4,9 +4,16 @@ import { personalities } from '@@/utils/personality';
 import { useState } from 'react';
 import { generateCharacterBlock } from '@@/utils/pdfGenerator';
 import { Button } from '@@/components/ui';
+import { AskModal } from '@@/components/layout/Modal/AskModal';
+import { useRouter } from 'next/router';
 
 const AvatarPage = ({ avatar }) => {
   const [openSection, setOpenSection] = useState(null);
+  const [openAsk, setOpenAsk] = useState(false);
+  const { ask } = avatar;
+
+  console.log(avatar)
+  const router = useRouter();
 
   const handleDownload = async () => {
     const pdfBytes = await generateCharacterBlock(avatar);
@@ -77,6 +84,13 @@ const AvatarPage = ({ avatar }) => {
         </div>
       </section>
 
+      <Button
+        className={ styles.btnAsk }
+        onClick={ () => {
+          setOpenAsk(true);
+        } }
+      >Пройдите тест и узнайте, в тени сейчас ваш аватар или нет? Текст займет 2 минуты</Button>
+
       <section className={ styles.section2 }>
         <div className={ styles.img_box }>
           <img src={ avatar.img } alt="Avatar" />
@@ -96,7 +110,15 @@ const AvatarPage = ({ avatar }) => {
                     { item }
                   </li>
                 )) :
-                  avatar.purchased == 0 && <>После покупки первого аватара, вам станет доступна вся информация</>
+                  avatar.purchased == 0 &&
+                  <>
+                    Эта информация станет доступной после покупки первого аватара.
+                    <br />
+                    Если у вас сейчас запрос на увеличение дохода или развития бизнеса, то обратите внимание на аватаров в блоке Финансы
+                    Если запрос на построение семьи, хотите выйти замуж/жениться, то обратите внимание на блок Отношения
+                    Если вам кажется, что вы запутались, ищите своё дело, то посмотрите на аватаров в блоке "Ресурсы и таланты
+                    <Button onClick={()=> router.push(`/profile/people/${avatar.person_id}`) }>Посмотреть Аватаров</Button>
+                  </>
                 }
               </ul>
             </div>
@@ -105,6 +127,7 @@ const AvatarPage = ({ avatar }) => {
 
       </section>
       <Button className={ styles.btn_save } onClick={ handleDownload }> Скачать PDF</Button>
+      { openAsk && <AskModal onClose={ () => { setOpenAsk(false); } } ask={ ask } /> }
 
     </div>
   );
@@ -134,6 +157,8 @@ export async function getServerSideProps({ req, params }) {
     resources: avatarPer.resources[`${gender === 'male' ? 'maleResources' : 'femaleResources'}`],
     shadow: avatarPer.shadow[`${gender === 'male' ? 'maleShadow' : 'femaleShadow'}`],
     purchased: result.avatar.purchased,
+    ask: gender === 'male' ? avatarPer.questions.maleQuestions : avatarPer.questions.femaleQuestions,
+    person_id: result.avatar.person_id
   };
 
   if (result.avatar.purchased) {

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './AboutMe.module.css';
 
 export const AboutMe = () => {
@@ -6,7 +7,7 @@ export const AboutMe = () => {
       <h2 className={ styles.title }>Об авторе метода</h2>
       <div className={ styles.text_block }>
         <div className={styles.img_box}>
-          <img src='/images/icon/IMG_8545.JPG' alt='Света Ким - предприниматель, коуч, эксперт по матрице судьбы'/>
+          <Image className={styles.img} src='/images/icon/IMG_8545.JPG' alt='Света Ким - предприниматель, коуч, эксперт по матрице судьбы' width={400} height={400} priority />
         </div>
         <div className={ styles.text }>
           <p>Привет! Я Света Ким, предприниматель, коуч, эксперт по матрице судьбы, автор метода Аватаров и мама троих детей.</p>

@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { Advantages, ButtonLine } from '@@/components/ui';
+import { useEffect, useRef, useState } from 'react';
+import { Advantages, Button, ButtonLine } from '@@/components/ui';
 import styles from './AvatarExample.module.css';
+import { ModalCalc } from '../Modal/ModalCalculator';
+import Image from 'next/image';
 
 export const AvatarExample = () => {
   const textRef = useRef(null); // Убираем типизацию для совместимости с SSR
@@ -36,6 +38,10 @@ export const AvatarExample = () => {
       initAnimations();
     }
   }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     let gsap;
@@ -75,7 +81,7 @@ export const AvatarExample = () => {
   return (
     <section className={ styles.section } id='advantages'>
       <div className={ styles.img_box }>
-        <img src="/images/icon/char10.png" alt="личные ресурсы" />
+        <Image src={ '/images/icon/char10.png' } alt="личные ресурсы" width={ 300 } height={ 300 } />
         <h2 ref={ textRef } className={ styles.text }>
           Знание своих Аватаров = знание себя
         </h2>
@@ -86,6 +92,69 @@ export const AvatarExample = () => {
         <Advantages />
         <div className={ styles.advantages }>
           <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/starts.png' } width={ 100 } height={ 100 } alt='Успеху и деньгам' />
+            </div>
+            <div className={ styles.item_title }>Успеху и деньгам</div>
+            <div className={ styles.item_desc }>
+              Вы точно знаете, какие действия приведут вас к росту бизнеса и что поможет увеличить доход            </div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+            <Image src={ '/images/icon/key.png' } alt="Улучшение отношений" width={ 100 } height={ 100 } />
+
+            </div>
+            <div className={ styles.item_title }> Улучшению отношений</div>
+            <div className={ styles.item_desc }>
+              Вы знаете, как найти свою вторую половинку, с которой будет комфортно, и как улучшить уже существующие отношения. Знаете, как общаться с детьми, чтобы вас слушали и слышали.    </div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/fire.png' } alt="Уверенности в себе" width={ 100 } height={ 100 } />
+            </div>
+            <div className={ styles.item_title }>Уверенности в себе</div>
+            <div className={ styles.item_desc }>
+              Вы осознаете свои сильные и слабые стороны, а значит, четко понимаете, какие у вас возможности и ресурсы. Перестаете бороться с собой и можете превратить свою слабость в силу.
+            </div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/чаша.png' } alt="Пониманию своих сильных сторон" width={ 100 } height={ 100 } />
+            </div>
+            <div className={ styles.item_title }>Пониманию своих сильных сторон</div>
+            <div className={ styles.item_desc }>
+              Ваши таланты и ресурсы у вас на виду. Вы знаете, в чем вы сильны и 100% добьетесь успеха, понимаете, куда направить время и силы.
+            </div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/весы.png' } alt='Пониманию своих эмоций ' width={ 100 } height={ 100 } />
+            </div>
+            <div className={ styles.item_title }>Пониманию своих эмоций</div>
+            <div className={ styles.item_desc }>Вы четко понимаете, почему вы разозлились, заплакали, проявили агрессию, и знаете, как быстро успокоиться, вернуть ресурс, если нет сил</div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/glass.png' } alt='Спокойствию' width={ 100 } height={ 100 } />
+            </div>
+            <div className={ styles.item_title }>Спокойствию</div>
+            <div className={ styles.item_desc }>
+              Вы понимаете, что и почему влияет на ваши поступки, а значит, можете более спокойно реагировать на внешние обстоятельства.
+            </div>
+          </div>
+          <div className={ styles.item }>
+            <div className={ styles.item_img }>
+              <Image src={ '/images/icon/rubin.png' } alt="Самоконтролю" width={ 100 } height={ 100 } />
+            </div>
+            <div className={ styles.item_title }>Самоконтролю</div>
+            <div className={ styles.item_desc }>
+              Вы понимаете, какие ваши убеждения, паттерны мешают вашему счастью и успеху.
+            </div>
+          </div>
+
+
+
+          {/* <div className={ styles.item }>
             <div className={ styles.item_img }>
               <img src={ '/images/icon/весы.png' } alt='Понимание своих эмоций' />
             </div>
@@ -146,8 +215,10 @@ export const AvatarExample = () => {
             </div>
             <div className={ styles.item_title }>Освобождению от внутренних конфликтов</div>
             <div className={ styles.item_desc }>Принятие своих теневых сторон помогает интегрировать их в общую картину личности, что снимает внутренние конфликты и освобождает энергию для созидания и роста.</div>
-          </div>
+          </div> */}
         </div>
+
+        <Button onClick={ openModal } className={ styles.btn }>ЭТО ТО, ЧТО МНЕ НУЖНО!</Button>
       </div>
       <div className={ styles.end } id='aboutmethod'>
         <div className={ styles.end_text }>
@@ -156,10 +227,11 @@ export const AvatarExample = () => {
           жить более гармоничной, целенаправленной и осознанной жизнью.
         </div>
         <div className={ styles.end_char_box }>
-          <img className={ styles.end_char } src={ '/images/icon/char11.png' } alt="типы личности"/>
+          <img className={ styles.end_char } src={ '/images/icon/char11.png' } alt="типы личности" />
           <img className={ styles.end_stars } src={ '/images/icon/stars_map.png' } alt='матрица судьбы' />
         </div>
       </div>
+      { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </section>
   );
 };

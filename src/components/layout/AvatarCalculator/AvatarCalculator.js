@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { calculateAvatarData } from '@@/utils/avatarCalculator';
 import { personalities } from '@@/utils/personality'
+import Image from 'next/image';
 
 const AvatarCalculator = () => {
     const [selectedGender, setSelectedGender] = useState(null);
@@ -39,7 +40,7 @@ const AvatarCalculator = () => {
             {result && (
                 <div>
                     <h1>{result.title}</h1>
-                    <img src={result.imageSrc} alt="Avatar" />
+                    <Image src={result.imageSrc} alt={result.title} width={300} height={300} />
                     <p>{result.description}</p>
                     <h3>Resources</h3>
                     <ul>

@@ -13,6 +13,7 @@
 
 .img_box img {
   width: 40dvw;
+  height: auto;
 }
 
 .text {
@@ -149,6 +150,11 @@
   -webkit-animation: rotate 30s linear infinite;
 }
 
+.btn {
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  padding: 50px;
+}
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

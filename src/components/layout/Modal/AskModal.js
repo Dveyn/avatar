@@ -1,25 +1,28 @@
 import { useState } from 'react';
 import styles from './AskModal.module.css';
+import { Button } from '@@/components/ui';
 
 export const AskModal = ({ onClose, ask }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [isResours, setIsResours] = useState(false);
 
   const [success, setSuccess] = useState('');
 
   const handleAnswer = (answer) => {
     setAnswers((prev) => [...prev, answer]);
-    if (currentQuestionIndex < ask.length-1) {
+    if (currentQuestionIndex < ask.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       setCurrentQuestionIndex((prev) => prev + 1);
       const yesCount = answers.filter((a) => a === 'Да').length + (answer === 'Да' ? 1 : 0);
+      setIsResours(yesCount >= 4 );
       const resultText = yesCount >= 4 ?
-        'Вы в Ресурсе по этому Аватару. Если хочешь узнать как использовать Ресурс этого и других своих Аватаров нужно оплатить доступ.' :
-        'Вы больше проявляется в Тени, чем в Ресурсе и чтобы получить рекомендации и узнать остальные свои Аватары нужно оплатить и получить доступ.';
+        'Поздравляю! Ваш аватар Характера в ресурсе! ' :
+        'Ваш аватар сейчас в тени, а значит, его энергия может негативно влиять на вашу жизнь';
 
       setSuccess(resultText);
-      window.ym && window.ym(99937024,'reachGoal','ask_success')
+      window.ym && window.ym(99937024, 'reachGoal', 'ask_success');
     }
 
   };
@@ -39,10 +42,14 @@ export const AskModal = ({ onClose, ask }) => {
                 <button onClick={ () => handleAnswer('Да') } className={ styles.yesButton }>Да</button>
                 <button onClick={ () => handleAnswer('Нет') } className={ styles.noButton }>Нет</button>
               </div>
-            </div> 
+            </div>
           ) : null }
-
-          {success !== '' && <div className={styles.success}>{success}</div>}
+          { success !== '' && (
+            <>
+              <div className={ styles.success }>{ success }</div>
+              {/* { isResours? <Button>Как держать аватара в ресурсе</Button> : <Button>Вывести аватара в ресурс</Button> } */}
+            </>
+          ) }
         </div>
       </div>
     </div>
