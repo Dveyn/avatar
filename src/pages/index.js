@@ -46,7 +46,7 @@ export default function Home() {
               "name": siteName,
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://ваш-сайт.com/logo.png" // Замените на URL логотипа
+                "url": imageUrl
               }
             },
             "image": {
