@@ -69,7 +69,7 @@ export const ToolDescription = () => {
                 setTitle('Получить все 10 аватаров, + консультация и прогностика на 2 года');
                 setPosId(2);
                 setPrice(20000);
-                openModal();
+                openModal10();
               } }
               className={ styles.btn }>Записаться</Button>
           </div>
@@ -97,7 +97,7 @@ export const ToolDescription = () => {
       </div>
 
       { isModalCalcOpen && <ModalCalc onClose={ closeModalCalc } /> }
-      { isModalOpen && <Modal onClose={ closeModal } title={title} posI={ posId } price={ price } /> }
+      { isModalOpen && <Modal onClose={ closeModal } title={title} posId={ posId } price={ price } /> }
     </section>
   );
 };

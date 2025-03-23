@@ -20,6 +20,19 @@ export const Avatars = ({ date }) => {
   const [price, setPrice] = useState(0);
   const [avatarId, setAvatarId] = useState();
 
+  const handleBuyAll = (avatars) => {
+    const notPurchasedAvatars = avatars.filter(av => !av.purchased);
+    if (notPurchasedAvatars.length === 0) return;
+    console.log(avatars, notPurchasedAvatars)
+    const discount = notPurchasedAvatars.length >= 2 ? 0.5 : 1;
+    const totalPrice = notPurchasedAvatars.length * 2000 * discount;
+
+    setOpenPay(true);
+    setTitle(`Покупка всех аватаров (${notPurchasedAvatars.length} шт.)`);
+    setAvatarId(notPurchasedAvatars.map(av => av.avatar_id));
+    setPrice(totalPrice);
+  };
+
   const clickAvatar = (avatar) => {
     if (avatar.purchased || avatar.preview) {
       router.push({
@@ -56,13 +69,6 @@ export const Avatars = ({ date }) => {
                       src={ avatarDate.part[`${date.date.gender === 'male' ? 'maleImageSrc' : 'femaleImageSrc'}`] }
                       onClick={ () => { clickAvatar(avatar); } }
                     />
-                    {/* <Button
-                          className={ styles.btn }
-                          onClick={ () => {
-                            setOpenAsk(true);
-                            setAsk(date.date.gender === 'male' ? avatarDate.questions.maleQuestions : avatarDate.questions.femaleQuestions);
-                          } }
-                        >Пройти вопросы</Button> */}
                     {
                       avatar.preview === 1 || avatar.purchased === 1 ?
 
@@ -88,6 +94,12 @@ export const Avatars = ({ date }) => {
           <Accordion className={ styles.title_av } title="Эти аватары показывают твои ресурсы и таланты">
             <p>Эти Аватары показывают ваши ресурсы и таланты. Помогут вам увидеть в какой сфере вам легче реализоваться и что поможет вам реализовать ваш потенциал. </p>
           </Accordion>
+          {avatarResourse.filter(av => !av.purchased && !av.preview).length >= 2 && (
+            <Button className={styles.btn_all} onClick={() => handleBuyAll(avatarResourse)}>
+              Купить всех {avatarResourse.filter(av => !av.purchased && !av.preview).length} шт. 
+              {avatarResourse.filter(av => !av.purchased && !av.preview).length >= 2? <span className='discount'>Скидка 50%</span> : ''}
+            </Button>
+          )}
           <div className={ styles.avatar_list }>
             {
               avatarResourse.map(avatar => {
@@ -125,6 +137,12 @@ export const Avatars = ({ date }) => {
           <Accordion className={ styles.title_av } title="Эти аватары показывают твою внутреннюю суть">
             <p>Поможет  узнать как вам быть в ресурсе, гармонии с собой и  что поможет  найти дело жизни?             .</p>
           </Accordion>
+          {avatarEssence.filter(av => !av.purchased && !av.preview).length >= 2 && (
+            <Button className={styles.btn_all} onClick={() => handleBuyAll(avatarEssence)}>
+              Купить всех {avatarEssence.filter(av => !av.purchased && !av.preview).length} шт. 
+              {avatarEssence.filter(av => !av.purchased && !av.preview).length >= 2? <span className='discount'>Скидка 50%</span> : ''}
+            </Button>
+          )}
           <div className={ styles.avatar_list }>
             {
               avatarEssence.map(avatar => {
@@ -162,6 +180,12 @@ export const Avatars = ({ date }) => {
           <Accordion className={ styles.title_av } title="Эти аватары отвечают за твои Финансы">
             <p>Эти три Аватара отвечают за ваши Финансы. Зная их вы сможете определить в какой сфере вам легче зарабатывать деньги, как расшить  финансовый поток и чего стоит избегать чтобы не сливать свою энергию.</p>
           </Accordion>
+          {avatarFinance.filter(av => !av.purchased && !av.preview).length >= 2 && (
+            <Button className={styles.btn_all} onClick={() => handleBuyAll(avatarFinance)}>
+              Купить всех {avatarFinance.filter(av => !av.purchased && !av.preview).length} шт. 
+              {avatarFinance.filter(av => !av.purchased && !av.preview).length >= 2? <span className='discount'>Скидка 50%</span> : ''}
+            </Button>
+          )}
           <div className={ styles.avatar_list }>
             {
               avatarFinance.map(avatar => {
@@ -199,6 +223,12 @@ export const Avatars = ({ date }) => {
           <Accordion className={ styles.title_av } title="Эти аватары отвечают за твои Отношения">
             <p>Эти три Аватара отвечают за сферу отношений. Помогут узнать какой партнер для вас идеальный, что будет укреплять ваши отношения, а что может их разрушить.</p>
           </Accordion>
+          {avatarComm.filter(av => !av.purchased && !av.preview).length >= 2 && (
+            <Button className={styles.btn_all} onClick={() => handleBuyAll(avatarComm)}>
+              Купить всех {avatarComm.filter(av => !av.purchased && !av.preview).length} шт. 
+              {avatarComm.filter(av => !av.purchased && !av.preview).length >= 2? <span className='discount'>Скидка 50%</span> : ''}
+            </Button>
+          )}
           <div className={ styles.avatar_list }>
             {
               avatarComm.map(avatar => {
@@ -247,8 +277,9 @@ export const Avatars = ({ date }) => {
       { openPay &&
         <PayModal onClose={ () => { setOpenPay(false); } }
           emailUser={ date.date.email }
-          piopleId={ date.date.id }
-          avatarId={ avatarId }
+          peopleId={ date.date.id }
+          gender = {date.date.gender }
+          avatarId={ Array.isArray(avatarId) ? avatarId.join(',') : avatarId }
           title={ title }
           price={ price }
         /> }

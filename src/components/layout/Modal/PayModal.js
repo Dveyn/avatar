@@ -2,10 +2,10 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './PayModal.module.css';
 import { getRobokassaSignature, setPayments } from '@@/utils/api';
+import { personalities } from '@@/utils/personality';
 
-export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price }) => {
-
-
+export const PayModal = ({ onClose, emailUser, avatarId, peopleId, title, price, gender }) => {
+  avatarId = typeof avatarId === 'string' ? avatarId.split(',').map(id => id.trim()) : Array.isArray(avatarId) ? avatarId : [avatarId];
   const formRef = useRef(null);
 
   const handleSubmit = async (e) => {
@@ -17,12 +17,12 @@ export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price 
       const { orderID, status } = await setPayments({
         item: {
           isAvatar: true,
-          avatar_id: avatarId,
-          people_id: piopleId,
+          avatar_ids: avatarId,
+          people_id: peopleId,
           email: email.value,
           service: title,
         },
-        amount: amount.value,
+        amount: price,
         title: title
       });
 
@@ -36,29 +36,31 @@ export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price 
       const inv_desc = `${title}`;
       const mrh_login = process.env.NEXT_PUBLIC_ROBOKASSA_LOGIN;
       const pass1 = process.env.NEXT_PUBLIC_ROBOKASSA_PASS1;
-
       const Receipt = {
         "sno": "usn_income",
-        "items": [
-          {
-            "name": description.value || "Оплата",
+        "items": avatarId.map(avatar => {
+          const foundPersonality = personalities.find(el => Number(el.id) === Number(avatar));
+          
+          return {
+            "name": `${gender === 'male' ? foundPersonality.part.maleTitle : foundPersonality.part.femaleTitle}`,
             "quantity": 1,
-            "sum": out_summ,
+            "sum": price / avatarId.length,
             "payment_method": "full_payment",
             "payment_object": "service",
             "tax": "none"
-          }
-        ]
+          };
+        })
       };
+
+      console.log(Receipt);
       const jsonString = JSON.stringify(Receipt);
       const encodedJson = encodeURIComponent(jsonString);
 
-      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, Receipt:jsonString, pass1 }));
-
+      const signature = await getRobokassaSignature(JSON.stringify({ mrh_login, out_summ, inv_id, Receipt: jsonString, pass1 }));
 
       const url = `https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=${mrh_login}&OutSum=${out_summ}&InvId=${inv_id}&Description=${inv_desc}&Receipt=${encodedJson}&SignatureValue=${signature}`;
 
-      window.ym && window.ym(99937024,'reachGoal','send_pay_avatar')
+      window.ym && window.ym(99937024, 'reachGoal', 'send_pay_avatar');
 
       window.location.href = url;
     }
@@ -105,4 +107,3 @@ export const PayModal = ({ onClose, emailUser, avatarId, piopleId, title, price 
     </div>
   );
 };
-
