@@ -56,7 +56,17 @@ const ConfirmEmail = ({ status }) => {
   }
 
   if (success) {
-    window.ym && window.ym(99937024,'reachGoal','confirm_reg')
+    try {
+      window.ym && window.ym(99937024, 'reachGoal', 'confirm_reg');
+    } catch (error) {
+
+    }
+    try {
+      _tmr.push({ type: 'reachGoal', id: 3628641, goal: 'registration_success' });
+
+    } catch (error) {
+
+    }
     return (
       <div className={ styles.body }>
         <div className={ styles.form } >
@@ -72,10 +82,10 @@ const ConfirmEmail = ({ status }) => {
 
   return (
     <>
-    <Head>
-      <title>Аватары | Подтверждение почты</title>
-      <meta name="robots" content="noindex" />
-    </Head>
+      <Head>
+        <title>Аватары | Подтверждение почты</title>
+        <meta name="robots" content="noindex" />
+      </Head>
       <div className={ styles.body }>
         <div className={ styles.form }>
           <div className={ styles.form_body }>

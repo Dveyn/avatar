@@ -350,3 +350,12 @@
     overflow: hidden;
   }
 } */
+
+.discount_text {
+  color: #333333; /* Темный цвет для текста */
+  font-weight: bold;
+  font-size: 16px; /* Размер текста */
+  display: block;
+  margin-top: 8px;
+}
+
