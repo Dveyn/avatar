@@ -22,25 +22,25 @@ export const Header = () => {
 
         {/* Меню */ }
         <ul className={ `${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}` }>
-          <Link className={ styles.left } href="/#avatary" onClick={ toggleMenu }>
+          <Link className={ styles.left } href="/#avatary" scroll={ false } onClick={ toggleMenu }>
             Кто такие аватары
           </Link>
-          <Link className={ styles.left } href="/#advantages" onClick={ toggleMenu }>
+          <Link className={ styles.left } href="/#advantages" scroll={ false } onClick={ toggleMenu }>
             Преимущества метода
           </Link>
-          <Link className={ styles.left } href="/#services" onClick={ toggleMenu }>
+          <Link className={ styles.left } href="/#services" scroll={ false } onClick={ toggleMenu }>
             Услуги
           </Link>
           <div className={ styles.spacer }></div>
-          <a className={ styles.right } href="/#aboutmethod" onClick={ toggleMenu }>
+          <Link className={ styles.right } href="/#aboutmethod" scroll={ false } onClick={ toggleMenu }>
             О методе
-          </a>
-          <a className={ styles.right } href="/#aboutme" onClick={ toggleMenu }>
+          </Link>
+          <Link className={ styles.right } href="/#aboutme" scroll={ false } onClick={ toggleMenu }>
             Об авторе
-          </a>
-          <a className={ styles.lk } href="/profile" onClick={ toggleMenu }>
+          </Link>
+          <Link className={ styles.lk } href="/profile" scroll={ false } onClick={ toggleMenu }>
             Личный кабинет
-          </a>
+          </Link>
         </ul>
       </nav>
     </header>

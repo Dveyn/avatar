@@ -19,9 +19,9 @@ export const ToolDescription = () => {
   const closeModalCalc = () => setIsModalCalcOpen(false);
 
   return (
-    <section className={ styles.section } id='services'>
+    <section className={ styles.section }>
       <div className={ styles.stars_map }></div>
-      <h2 className={ styles.title }>Мы предлагаем  <span style={ { color: 'rgb(255, 225, 6)' } }>новый инструмент </span><br /> для самопознания</h2>
+      <h2 className={ styles.title } id='services'>Мы предлагаем  <span style={ { color: 'rgb(255, 225, 6)' } }>новый инструмент </span><br /> для самопознания</h2>
       <p className={ styles.description }>
         Он помогает ответить на важные жизненные вопросы: "Кто я?" и "Как реализовать свой потенциал?". Используя вашу дату рождения и психологические типирования, он указывает на ваши таланты и способности, которые помогут достигать целей. Откройте гармоничную и осознанную жизнь с нашим уникальным методом!
       </p>
