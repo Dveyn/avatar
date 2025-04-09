@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
       };
 
       // Задержка в 1 секунду
-      const timer = setTimeout(scrollToHash, 300);
+      const timer = setTimeout(scrollToHash, 1000);
 
       return () => clearTimeout(timer);
     }
