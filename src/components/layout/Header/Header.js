@@ -38,9 +38,9 @@ export const Header = () => {
           <Link className={ styles.right } href="/#aboutme" scroll={ false } onClick={ toggleMenu }>
             Об авторе
           </Link>
-          <Link className={ styles.lk } href="/profile" scroll={ false } onClick={ toggleMenu }>
+          <a className={ styles.lk } href="/profile" scroll={ false } onClick={ toggleMenu }>
             Личный кабинет
-          </Link>
+          </a>
         </ul>
       </nav>
     </header>
