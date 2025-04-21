@@ -30,12 +30,13 @@
 
 .text {
   color: #57576c;
-  font-size: 25px;
+  font-size: 18px;
   font-family: 'Parisian', Arial, sans-serif;
   font-weight: 400;
   transform-origin: center center;
   line-height: 34px;
-  padding: 60px;
+  padding: 50px;
+  padding-right: 30px;
 }
 
 .char {

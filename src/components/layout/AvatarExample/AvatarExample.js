@@ -80,6 +80,7 @@ export const AvatarExample = () => {
 
   return (
     <section className={ styles.section } id='advantages'>
+{/*     
       <div className={ styles.img_box }>
         <Image src={ '/images/icon/char10.png' } alt="личные ресурсы" width={ 300 } height={ 300 } />
         <h2 ref={ textRef } className={ styles.text }>
@@ -215,11 +216,12 @@ export const AvatarExample = () => {
             </div>
             <div className={ styles.item_title }>Освобождению от внутренних конфликтов</div>
             <div className={ styles.item_desc }>Принятие своих теневых сторон помогает интегрировать их в общую картину личности, что снимает внутренние конфликты и освобождает энергию для созидания и роста.</div>
-          </div> */}
+          </div> 
         </div>
 
         <Button onClick={ openModal } className={ styles.btn }>ЭТО ТО, ЧТО МНЕ НУЖНО!</Button>
-      </div>
+      </div> */}
+
       <div className={ styles.end } id='aboutmethod'>
         <div className={ styles.end_text }>
           Знание себя{ ' ' }

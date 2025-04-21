@@ -10,14 +10,18 @@ export const IntroBlock = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
- 
+
   return (
     <section className={ styles.IntroBlock }>
       <div className={ styles.circle }>
         <div className={ styles.center }>
           <h1 className={ styles.title }>Аватары</h1>
-          <div className={ styles.text }><span className={ styles.action }>Познай себя</span>, чтобы получить от жизни все, что хочешь</div>
-          <Button className={styles.btn} onClick={openModal}>Стать успешнее и счастливее </Button>
+          <div className={ styles.text }>
+            <span className={ styles.action }>
+              Узнай свой психологический аватар по дате рождения</span><br />
+            Это ключ к твоим талантам, денежному потенциалу и отношениям.
+          </div>
+          <Button className={ styles.btn } onClick={ openModal }>Получить бесплатно </Button>
         </div>
       </div>
       <div className={ styles.char1 }></div>

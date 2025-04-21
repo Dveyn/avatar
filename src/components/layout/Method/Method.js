@@ -91,14 +91,21 @@ export const Method = () => {
           <Form className={ styles.form }>
             <div className={ styles.form_box }>
               <div className={ styles.text }>
-                Вы можете за 1-2 минуты узнать своих основных аватаров. И бесплатно получить полную расшифровку и рекомендации, как с помощью этих знаний улучшить свою жизнь. 
-                С помощью Аватара вы лучше узнаете  себя и свой характер, знание этого Аватара и проживание в ресурсе поможет вам  жить легче и счастливее. 
-                Ниже вы видите,как будет выглядеть карточка вашего бесплатного аватара.
+                Ниже представлен пример как выглядит Аватар.
+
+                <ul style={ {
+                  textAlign: "left",
+                  listStyle: "decimal"
+                } }>
+                  <li>Введи дату рождения</li>
+                  <li>Оставь email</li>
+                  <li>Получи PDF-аватар с разбором на 2–3 страницы </li>
+                </ul>
               </div>
             </div>
           </Form>
         </div>
-      </section>
+      </section >
       <section className={ styles.section3 }>
         <div className={ styles.info }>
           <div className={ `${styles.text_block} ${styles.text_block1}` }>
@@ -127,7 +134,7 @@ export const Method = () => {
             <div className={ styles.title }>Характеристики</div>
             <div className={ styles.desc }>У каждого Аватара есть свои характерные черты, слабые и сильные стороны. Возможно вы отличный работник, внимательны к деталям и все выполняете в срок, но общение с людьми дается тяжело: не получается выражать свои чувства и люди несправедливо считают вас безэмоциональным и замкнутым. Узнав своих Аватаров, вы сможете сделать упор на сильные черты, понять как уменьшить вред от слабых и извлечь пользу даже из неприятных ситуаций.</div>
           </div>
-          <img className={ styles.card } src={ '/images/icon/card-3svg.svg' } alt='типы личности'/>
+          <img className={ styles.card } src={ '/images/icon/card-3svg.svg' } alt='типы личности' />
           <img className={ styles.char2 } src="/images/icon/char9.png" alt="внутренняя энергия человека" />
           <div className={ `${styles.text_block} ${styles.text_block2}` }>
             <div className={ styles.disvg }>
@@ -147,6 +154,6 @@ export const Method = () => {
         <Button onClick={ openModal }>Получить аватара бесплатно</Button>
         { isModalOpen && <ModalCalc onClose={ closeModal } /> }
       </section>
-    </div>
+    </div >
   );
 };

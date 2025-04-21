@@ -65,18 +65,20 @@ export const AvatarQuiz = () => {
       <div className={ styles.top }></div>
       <Form className={ styles.form }>
         <div className={ styles.text }>
-          На самом деле знать — не значит осознавать и управлять этим!
-          <br />
-          <br />
-          Чтобы осознавать и управлять познакомься с собой, со своими Аватарами.
-          <br />
-          <Button onClick={openModal}>Познать себя</Button>
+          Что ты узнаешь:
+          <ul style={{margin: '0'}}>
+            <li>Кто ты по своей природе: созидатель, лидер, хранитель, вдохновитель?</li>
+            <li>Где твоя финансовая сила и как ты реализуешь себя легко</li>
+            <li>Почему ты привлекаешь одни и те же сценарии в отношениях</li>
+            <li>Как правильно восполнять энергию и избегать выгорания</li>
+          </ul>
+          <Button onClick={ openModal }> Получить мой аватар</Button>
         </div>
         <div className={ styles.char }>
-          <img className={ styles.img } src='/images/icon/char4.png'  alt='аналитика и прогностика'/>
+          <img className={ styles.img } src='/images/icon/char4.png' alt='аналитика и прогностика' />
         </div>
       </Form>
-        { isModalOpen && <ModalCalc onClose={ closeModal } /> }
+      { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </section>
   );
 };

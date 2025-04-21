@@ -48,7 +48,9 @@
 }
 
 .pos1,
-.pos2 {
+.pos2,
+.pos3,
+.pos4 {
   opacity: 0;
   transition: opacity 0.5s ease;
   position: absolute;
@@ -61,7 +63,9 @@
 }
 
 .pos1::before,
-.pos2::before {
+.pos2::before,
+.pos3::before,
+.pos4::before {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -82,7 +86,9 @@
 }
 
 .text1,
-.text2 {
+.text2,
+.text3,
+.text4 {
   color: #5e5da7;
   font-size: 32px;
   font-family: 'Parisian', Arial, sans-serif;
@@ -104,7 +110,9 @@
   margin-bottom: -10%;
 }
 
-.text2 {
+.text2,
+.text3,
+.text4 {
   max-width: 80%;
 }
 
@@ -113,7 +121,9 @@
   opacity: 1;
 }
 
-.text2.visible {
+.text2.visible,
+.text3.visible,
+.text4.visible  {
   opacity: 1;
 }
 

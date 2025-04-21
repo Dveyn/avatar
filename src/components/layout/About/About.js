@@ -49,6 +49,20 @@ export const About = () => {
               { opacity: 1, y: 0, duration: 1 }
             )
             .addPause('+=5.5')
+            .to(`.${styles.pos2}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.pos3}`,
+              { opacity: 0 },
+              { opacity: 1, y: 0, duration: 1 }
+            )
+            .addPause('+=5.5')
+            .to(`.${styles.pos3}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.pos4}`,
+              { opacity: 0 },
+              { opacity: 1, y: 0, duration: 1 }
+            )
+            .addPause('+=5.5')
             .to(`.${styles.circle}`, { opacity: 0, duration: 1 })
             .fromTo(
               `.${styles.center}`,
@@ -109,6 +123,20 @@ export const About = () => {
             .to(`.${styles.pos1}`, { opacity: 0, duration: 1 })
             .fromTo(
               `.${styles.pos2}`,
+              { opacity: 0 },
+              { opacity: 1, y: 0, duration: 1 }
+            )
+            .addPause('+=10')
+            .to(`.${styles.pos2}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.pos3}`,
+              { opacity: 0 },
+              { opacity: 1, y: 0, duration: 1 }
+            )
+            .addPause('+=10')
+            .to(`.${styles.pos3}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.pos4}`,
               { opacity: 0 },
               { opacity: 1, y: 0, duration: 1 }
             )
@@ -179,11 +207,26 @@ export const About = () => {
       <div className={ styles.voln }></div>
       <div className={ styles.circle }>
         <div className={ styles.pos1 }>
-          <div className={ styles.text1 }>В первую очередь - познай себя</div>
+          <div className={ styles.text1 }>Что ты получишь?</div>
           <img className={ styles.book } src='/images/icon/book.png' alt='матрица судьбы' />
         </div>
-        <div className={ styles.pos2 }> <div className={ styles.text2 }>Так говорили мудрецы еще в древние времена и сегодня это правило тоже работает</div>
+
+        <div className={ styles.pos2 }>
+          <div className={ styles.text2 }>
+            Индивидуальный аватар личности с описанием твоих сильных сторон
+          </div>
         </div>
+        <div className={ styles.pos3 }>
+          <div className={ styles.text3 }>
+            Энергетический профиль: что тебе даёт силу, а что забирает
+          </div>
+        </div>
+        <div className={ styles.pos4 }>
+          <div className={ styles.text4 }>
+            Подсказки: куда двигаться в профессии и развитии, как легче выстраивать отношения, как расшить финансовый поток.
+          </div>
+        </div>
+
       </div>
       <div className={ styles.char_box }>
         <div className={ styles.left }>
@@ -192,8 +235,8 @@ export const About = () => {
           <div className={ styles.char_text3 }>Что тормозит на пути к цели?</div>
         </div>
         <div className={ styles.center }>
-          <img className={ styles.char } src='/images/icon/char3.png' alt='прогностика'/>
-          <Button onClick={openModal} className={ styles.btn }>Вижу свой запрос. Что дальше?</Button>
+          <img className={ styles.char } src='/images/icon/char3.png' alt='прогностика' />
+          <Button onClick={ openModal } className={ styles.btn }>Вижу свой запрос. Что дальше?</Button>
         </div>
         <div className={ styles.right }>
           <div className={ styles.char_text4 }>Как найти партнера для жизни?</div>
