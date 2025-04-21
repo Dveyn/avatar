@@ -80,7 +80,7 @@ export const AvatarExample = () => {
 
   return (
     <section className={ styles.section } id='advantages'>
-{/*     
+  
       <div className={ styles.img_box }>
         <Image src={ '/images/icon/char10.png' } alt="личные ресурсы" width={ 300 } height={ 300 } />
         <h2 ref={ textRef } className={ styles.text }>
@@ -217,12 +217,13 @@ export const AvatarExample = () => {
             <div className={ styles.item_title }>Освобождению от внутренних конфликтов</div>
             <div className={ styles.item_desc }>Принятие своих теневых сторон помогает интегрировать их в общую картину личности, что снимает внутренние конфликты и освобождает энергию для созидания и роста.</div>
           </div> 
+          */}
         </div>
 
         <Button onClick={ openModal } className={ styles.btn }>ЭТО ТО, ЧТО МНЕ НУЖНО!</Button>
-      </div> */}
+      </div> 
 
-      <div className={ styles.end } id='aboutmethod'>
+      {/* <div className={ styles.end } id='aboutmethod'>
         <div className={ styles.end_text }>
           Знание себя{ ' ' }
           <span style={ { color: "rgb(255, 225, 6)" } }>помогает человеку</span>{ ' ' }
@@ -232,7 +233,7 @@ export const AvatarExample = () => {
           <img className={ styles.end_char } src={ '/images/icon/char11.png' } alt="типы личности" />
           <img className={ styles.end_stars } src={ '/images/icon/stars_map.png' } alt='матрица судьбы' />
         </div>
-      </div>
+      </div> */}
       { isModalOpen && <ModalCalc onClose={ closeModal } /> }
     </section>
   );
