@@ -33,9 +33,9 @@ export const ToolDescription = () => {
             <p className={ styles.text }>
               Стоимость — 2000 руб.
             </p>
-            <p className={ styles.discount_text }>
+            {/* <p className={ styles.discount_text }>
               При заказе 2 и более аватаров — скидка 50%!
-            </p>
+            </p> */}
             
             <Button onClick={ openModalCalc } className={ styles.btn }>узнай свой аватар</Button>
           </div>

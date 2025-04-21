@@ -24,7 +24,7 @@ export const Avatars = ({ date }) => {
     const notPurchasedAvatars = avatars.filter(av => !av.purchased);
     if (notPurchasedAvatars.length === 0) return;
     console.log(avatars, notPurchasedAvatars)
-    const discount = notPurchasedAvatars.length >= 2 ? 0.5 : 1;
+    const discount =  1;
     const totalPrice = notPurchasedAvatars.length * 2000 * discount;
 
     setOpenPay(true);
