@@ -31,7 +31,7 @@ export const About = () => {
         "(min-width: 768px)": () => {
           timeline
             .fromTo(
-              `.${styles.circle}`,
+              `.${styles.circle1}`,
               { opacity: 0, scale: 0.8 },
               { opacity: 1, scale: 1, duration: 1 }
             )
@@ -41,75 +41,45 @@ export const About = () => {
               { opacity: 1, y: 0, duration: 1 },
               '-=0.5'
             )
-            .addPause('+=5.5')
-            .to(`.${styles.pos1}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle2}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos2}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             )
-            .addPause('+=5.5')
-            .to(`.${styles.pos2}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle3}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos3}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             )
-            .addPause('+=5.5')
-            .to(`.${styles.pos3}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle4}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos4}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
-            )
-            .addPause('+=5.5')
-            .to(`.${styles.circle}`, { opacity: 0, duration: 1 })
-            .fromTo(
-              `.${styles.center}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_box}`,
-              { opacity: 1 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text1}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text2}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text3}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text4}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text5}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text6}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             );
         },
         // Анимация для мобильных устройств
         "(max-width: 767px)": () => {
           timeline
             .fromTo(
-              `.${styles.circle}`,
+              `.${styles.circle1}`,
               { opacity: 0, scale: 0.8 },
               { opacity: 1, scale: 1, duration: 1 }
             )
@@ -119,75 +89,38 @@ export const About = () => {
               { opacity: 1, y: 0, duration: 1 },
               '-=0.5'
             )
-            .addPause('+=10')
-            .to(`.${styles.pos1}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle2}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos2}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             )
-            .addPause('+=10')
-            .to(`.${styles.pos2}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle3}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos3}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             )
-            .addPause('+=10')
-            .to(`.${styles.pos3}`, { opacity: 0, duration: 1 })
+            .fromTo(
+              `.${styles.circle4}`,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 1 }
+            )
             .fromTo(
               `.${styles.pos4}`,
-              { opacity: 0 },
-              { opacity: 1, y: 0, duration: 1 }
-            )
-            .addPause('+=10')
-            .to(`.${styles.circle}`, { opacity: 0, duration: 1 })
-            .fromTo(
-              `.${styles.center}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_box}`,
-              { opacity: 1 },
-              { opacity: 1, duration: 1 }
-            )
-            .fromTo(
-              `.${styles.char_text1}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .addPause('+=10')
-            .to(`.${styles.char_text1}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.char_text2}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            )
-            .addPause('+=10')
-            .to(`.${styles.char_text2}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.char_text3}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            ).addPause('+=10')
-            .to(`.${styles.char_text3}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.char_text4}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            ).addPause('+=10')
-            .to(`.${styles.char_text4}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.char_text5}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
-            ).addPause('+=10')
-            .to(`.${styles.char_text5}`, { opacity: 0, duration: 1 }) // Исчезновение char_text1
-            .fromTo(
-              `.${styles.char_text6}`,
-              { opacity: 0 },
-              { opacity: 1, duration: 1 }
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 1 },
+              '-=0.5'
             );
         },
       });
@@ -201,50 +134,43 @@ export const About = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-
   return (
-    <section className={ styles.about }>
-      <div className={ styles.voln }></div>
-      <div className={ styles.circle }>
-        <div className={ styles.pos1 }>
-          <div className={ styles.text1 }>Что ты получишь?</div>
-          <img className={ styles.book } src='/images/icon/book.png' alt='матрица судьбы' />
-        </div>
-
-        <div className={ styles.pos2 }>
-          <div className={ styles.text2 }>
-            Индивидуальный аватар личности с описанием твоих сильных сторон
-          </div>
-        </div>
-        <div className={ styles.pos3 }>
-          <div className={ styles.text3 }>
-            Энергетический профиль: что тебе даёт силу, а что забирает
-          </div>
-        </div>
-        <div className={ styles.pos4 }>
-          <div className={ styles.text4 }>
-            Подсказки: куда двигаться в профессии и развитии, как легче выстраивать отношения, как расшить финансовый поток.
+    <section className={styles.about}>
+      <div className={styles.voln}></div>
+      <div className={styles.circles_container}>
+        <div className={`${styles.circle} ${styles.circle1}`}>
+          <div className={styles.pos1}>
+            <div className={styles.text1}>Что ты получишь?</div>
+            <img className={styles.book} src='/images/icon/book.png' alt='матрица судьбы' />
           </div>
         </div>
 
+        <div className={`${styles.circle} ${styles.circle2}`}>
+          <div className={styles.pos2}>
+            <div className={styles.text2}>
+              Индивидуальный аватар личности с описанием твоих сильных сторон
+            </div>
+          </div>
+        </div>
+
+        <div className={`${styles.circle} ${styles.circle3}`}>
+          <div className={styles.pos3}>
+            <div className={styles.text3}>
+              Энергетический профиль: что тебе даёт силу, а что забирает
+            </div>
+          </div>
+        </div>
+
+        <div className={`${styles.circle} ${styles.circle4}`}>
+          <div className={styles.pos4}>
+            <div className={styles.text4}>
+              Подсказки: куда двигаться в профессии и развитии, как легче выстраивать отношения, как расшить финансовый поток.
+            </div>
+          </div>
+        </div>
       </div>
-      <div className={ styles.char_box }>
-        <div className={ styles.left }>
-          <div className={ styles.char_text1 }>Как увеличить доход?</div>
-          <div className={ styles.char_text2 }>Как узнать, чего я на самом деле хочу?</div>
-          <div className={ styles.char_text3 }>Что тормозит на пути к цели?</div>
-        </div>
-        <div className={ styles.center }>
-          <img className={ styles.char } src='/images/icon/char3.png' alt='прогностика' />
-          <Button onClick={ openModal } className={ styles.btn }>Вижу свой запрос. Что дальше?</Button>
-        </div>
-        <div className={ styles.right }>
-          <div className={ styles.char_text4 }>Как найти партнера для жизни?</div>
-          <div className={ styles.char_text5 }>Почему не идёт бизнес? </div>
-          <div className={ styles.char_text6 }>Нет сил ни на работу, ни на семью</div>
-        </div>
-      </div>
-      { isModalOpen && <ModalCalc onClose={ closeModal } /> }
+      <Button onClick={openModal} className={styles.btn}>Вижу свой запрос. Что дальше?</Button>
+      {isModalOpen && <ModalCalc onClose={closeModal} />}
     </section>
   );
 };
