@@ -80,13 +80,17 @@ export const AvatarExample = () => {
 
   return (
     <section className={ styles.section } id='advantages'>
-  
-      <div className={ styles.img_box }>
-        <Image src={ '/images/icon/char10.png' } alt="личные ресурсы" width={ 300 } height={ 300 } />
-        <h2 ref={ textRef } className={ styles.text }>
-          Знание своих Аватаров = знание себя
-        </h2>
-      </div>
+
+      {
+        /*
+              <div className={ styles.img_box }>
+              <Image src={ '/images/icon/char10.png' } alt="личные ресурсы" width={ 300 } height={ 300 } />
+              <h2 ref={ textRef } className={ styles.text }>
+                Знание своих Аватаров = знание себя
+              </h2>
+            </div>
+            */
+      }
       <ButtonLine className={ styles.btn } />
       <div className={ styles.advantages_block }>
         <h2 className={ styles.title }>Аватары - ваш ключ к:</h2>
@@ -102,7 +106,7 @@ export const AvatarExample = () => {
           </div>
           <div className={ styles.item }>
             <div className={ styles.item_img }>
-            <Image src={ '/images/icon/key.png' } alt="Улучшение отношений" width={ 100 } height={ 100 } />
+              <Image src={ '/images/icon/key.png' } alt="Улучшение отношений" width={ 100 } height={ 100 } />
 
             </div>
             <div className={ styles.item_title }> Улучшению отношений</div>
@@ -221,7 +225,7 @@ export const AvatarExample = () => {
         </div>
 
         <Button onClick={ openModal } className={ styles.btn }>ЭТО ТО, ЧТО МНЕ НУЖНО!</Button>
-      </div> 
+      </div>
 
       {/* <div className={ styles.end } id='aboutmethod'>
         <div className={ styles.end_text }>
