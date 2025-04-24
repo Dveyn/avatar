@@ -25,7 +25,7 @@ export const Avatars = ({ date }) => {
     if (notPurchasedAvatars.length === 0) return;
     console.log(avatars, notPurchasedAvatars)
     const discount =  1;
-    const totalPrice = notPurchasedAvatars.length * 2000 * discount;
+    const totalPrice = notPurchasedAvatars.length * 700 * discount;
 
     setOpenPay(true);
     setTitle(`Покупка всех аватаров (${notPurchasedAvatars.length} шт.)`);
@@ -80,7 +80,7 @@ export const Avatars = ({ date }) => {
                             setOpenPay(true);
                             setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
                             setAvatarId(avatarDate.id);
-                            setPrice(2000);
+                            setPrice(700);
                           } }
                         >Раскрыть аватара</Button>
                     }
@@ -122,7 +122,7 @@ export const Avatars = ({ date }) => {
                               setOpenPay(true);
                               setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
                               setAvatarId(avatarDate.id);
-                              setPrice(2000);
+                              setPrice(700);
                             } }
                           >Раскрыть аватара</Button>
                       }
@@ -165,7 +165,7 @@ export const Avatars = ({ date }) => {
                               setOpenPay(true);
                               setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
                               setAvatarId(avatarDate.id);
-                              setPrice(2000);
+                              setPrice(700);
                             } }
                           >Раскрыть аватара</Button>
                       }
@@ -208,7 +208,7 @@ export const Avatars = ({ date }) => {
                               setOpenPay(true);
                               setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
                               setAvatarId(avatarDate.id);
-                              setPrice(2000);
+                              setPrice(700);
                             } }
                           >Раскрыть аватара</Button>
                       }
@@ -251,7 +251,7 @@ export const Avatars = ({ date }) => {
                               setOpenPay(true);
                               setAvatarId(avatarDate.id);
                               setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                              setPrice(2000);
+                              setPrice(700);
                             } }
                           >Раскрыть аватара</Button>
                       }

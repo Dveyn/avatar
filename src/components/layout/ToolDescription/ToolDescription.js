@@ -31,7 +31,7 @@ export const ToolDescription = () => {
           <div className={ styles.text_block }>
             <h3 className={ styles.h3 }>Узнать Аватар</h3>
             <p className={ styles.text }>
-              Стоимость — 2000 руб.
+              Стоимость — 700 руб.
             </p>
             {/* <p className={ styles.discount_text }>
               При заказе 2 и более аватаров — скидка 50%!
