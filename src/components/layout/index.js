@@ -8,6 +8,7 @@ export { ToolDescription } from './ToolDescription/ToolDescription';
 export { Method } from './Method/Method';
 export { Footer } from './Footer/Footer';
 export { AvatarExample } from './AvatarExample/AvatarExample'
+export { Reviews } from './Reviews/Reviews'
 
 export { People } from './Profile/People/People'
 export { Avatars } from './Profile/Avatars/Avatars'
