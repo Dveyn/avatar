@@ -59,12 +59,12 @@ export default function Home() {
 
       <IntroBlock />
       <ISP />
-      <Reviews />
       <About />
       <AvatarQuiz />
       <WhoAreAvatars />
       <Method />
       <AvatarExample />
+      <Reviews />
       <ToolDescription />
       <AboutMe />
     </>
