@@ -18,7 +18,7 @@ const MailRuPixel = () => {
           console.log("Mail.Ru Pixel загружен!");
           window._tmr.push({ id: "3628641", type: "pageView", start: new Date().getTime() });
         };
-
+        
         document.head.appendChild(ts);
       } else {
         console.log("Mail.Ru Pixel уже загружен!");
