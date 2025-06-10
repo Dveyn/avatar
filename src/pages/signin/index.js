@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './signin.module.css';
 import { signin } from '@@/utils/api';
 import Cookies from 'js-cookie';
@@ -12,8 +12,15 @@ const Signin = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isTestMode, setIsTestMode] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    // Проверяем наличие параметра is_test в URL
+    const isTest = router.query.is_test === 't';
+    setIsTestMode(isTest);
+  }, [router.query]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +36,42 @@ const Signin = () => {
       setError('Ошибка авторизации. Проверьте данные.');
     }
 
+  };
+
+  const handleVKSignIn = async () => {
+    const vkAppId = process.env.NEXT_PUBLIC_VK_APP_ID;
+    const redirectUri = `${window.location.origin}/api/auth/vk/callback`;
+    const scope = 'email';
+    
+    window.location.href = `https://oauth.vk.com/authorize?client_id=${vkAppId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&display=popup`;
+  };
+
+  const handleTelegramSignIn = () => {
+    if (window.Telegram && window.Telegram.Login) {
+      window.Telegram.Login.auth(
+        { bot_id: process.env.NEXT_PUBLIC_TELEGRAM_BOT_ID },
+        async (data) => {
+          if (data) {
+            try {
+              const result = await signin({ 
+                provider: 'telegram',
+                telegramData: JSON.stringify(data)
+              });
+              
+              if (result?.accessToken && result?.refreshToken) {
+                Cookies.set('accessToken', result.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                Cookies.set('refreshToken', result.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                router.push('/profile');
+              } else {
+                setError('Ошибка авторизации через Telegram');
+              }
+            } catch (error) {
+              setError('Ошибка авторизации через Telegram');
+            }
+          }
+        }
+      );
+    }
   };
 
   const pageTitle = "Аватары | Вход";
@@ -87,6 +130,30 @@ const Signin = () => {
           <div className={ styles.form_body }>
             <h1 className={ styles.title }>Вход</h1>
             <div className={ styles.pretitle }>Внимание! Мы обновили сайт, если не получается войти в профиль, вопспользуйтесь востановлением пароля</div>
+            
+            {isTestMode && (
+              <>
+                <div className={ styles.socialButtons }>
+                  <button
+                    onClick={ handleVKSignIn }
+                    className={ `${ styles.socialButton } ${ styles.vkButton }` }
+                  >
+                    Войти через ВКонтакте
+                  </button>
+                  <button
+                    onClick={ handleTelegramSignIn }
+                    className={ `${ styles.socialButton } ${ styles.telegramButton }` }
+                  >
+                    Войти через Telegram
+                  </button>
+                </div>
+
+                <div className={ styles.divider }>
+                  <span>или</span>
+                </div>
+              </>
+            )}
+
             <form onSubmit={ handleSubmit }>
               <div>
                 <label className={ styles.label } htmlFor="email">Email:</label>
