@@ -1,6 +1,6 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import styles from '../../styles/Auth.module.css';
+import styles from '../../styles/AuthButtons.module.css';
 
 export default function SignIn() {
   const router = useRouter();
