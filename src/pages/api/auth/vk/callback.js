@@ -64,8 +64,26 @@ export default async function handler(req, res) {
         `refreshToken=${result.refreshToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${30 * 24 * 60 * 60}`,
       ]);
 
-      // Редиректим на профиль
-      return res.redirect('/profile');
+      // Отправляем HTML страницу, которая установит куки на клиенте и сделает редирект
+      res.setHeader('Content-Type', 'text/html');
+      res.send(`
+        <html>
+          <head>
+            <script>
+              // Устанавливаем куки на клиенте
+              document.cookie = "accessToken=${result.accessToken}; path=/; secure; samesite=strict; max-age=${30 * 24 * 60 * 60}";
+              document.cookie = "refreshToken=${result.refreshToken}; path=/; secure; samesite=strict; max-age=${30 * 24 * 60 * 60}";
+              
+              // Редирект на профиль
+              window.location.href = '/profile';
+            </script>
+          </head>
+          <body>
+            <p>Перенаправление на профиль...</p>
+          </body>
+        </html>
+      `);
+      return;
     }
 
     throw new Error('Failed to authenticate with VK data');

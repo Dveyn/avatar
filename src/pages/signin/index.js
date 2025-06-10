@@ -39,11 +39,28 @@ const Signin = () => {
   };
 
   const handleVKSignIn = async () => {
-    const vkAppId = process.env.NEXT_PUBLIC_VK_APP_ID;
-    const redirectUri = `${window.location.origin}/api/auth/vk/callback`;
-    const scope = 'email';
-    
-    window.location.href = `https://oauth.vk.com/authorize?client_id=${vkAppId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&display=popup`;
+    try {
+      const vkAppId = process.env.NEXT_PUBLIC_VK_APP_ID;
+      if (!vkAppId) {
+        setError('Ошибка конфигурации: не указан ID приложения ВКонтакте');
+        return;
+      }
+
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+      const redirectUri = `${baseUrl}/api/auth/vk/callback`;
+      
+      const authUrl = new URL('https://oauth.vk.com/authorize');
+      authUrl.searchParams.append('client_id', vkAppId);
+      authUrl.searchParams.append('redirect_uri', redirectUri);
+      authUrl.searchParams.append('scope', 'email');
+      authUrl.searchParams.append('response_type', 'code');
+      authUrl.searchParams.append('display', 'popup');
+      
+      window.location.href = authUrl.toString();
+    } catch (error) {
+      console.error('Ошибка при авторизации через ВКонтакте:', error);
+      setError('Произошла ошибка при попытке входа через ВКонтакте');
+    }
   };
 
   const handleTelegramSignIn = () => {
@@ -59,13 +76,17 @@ const Signin = () => {
               });
               
               if (result?.accessToken && result?.refreshToken) {
-                Cookies.set('accessToken', result.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                Cookies.set('refreshToken', result.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                // Устанавливаем куки
+                document.cookie = `accessToken=${result.accessToken}; path=/; secure; samesite=strict; max-age=${30 * 24 * 60 * 60}`;
+                document.cookie = `refreshToken=${result.refreshToken}; path=/; secure; samesite=strict; max-age=${30 * 24 * 60 * 60}`;
+                
+                // Редирект на профиль
                 router.push('/profile');
               } else {
                 setError('Ошибка авторизации через Telegram');
               }
             } catch (error) {
+              console.error('Ошибка авторизации через Telegram:', error);
               setError('Ошибка авторизации через Telegram');
             }
           }
