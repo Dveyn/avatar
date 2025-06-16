@@ -5,7 +5,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { code } = req.query;
+  const { code, state, error, error_description } = req.query;
+
+  if (error) {
+    console.error('VK OAuth error:', error, error_description);
+    return res.redirect('/signin?error=VK authentication failed: ' + error_description);
+  }
 
   if (!code) {
     return res.redirect('/signin?error=No code provided');
@@ -13,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     // Получаем access token от VK
-    const tokenResponse = await fetch('https://oauth.vk.com/access_token', {
+    const tokenResponse = await fetch('https://id.vk.com/access_token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,12 +26,17 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         client_id: process.env.NEXT_PUBLIC_VK_APP_ID,
         client_secret: process.env.VK_CLIENT_SECRET,
-        redirect_uri: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/vk/callback`,
+        redirect_uri: 'https://avalik-avatar.ru/api/auth/vk/callback',
         code,
+        state,
       }),
     });
 
     const tokenData = await tokenResponse.json();
+
+    if (tokenData.error) {
+      throw new Error(`VK token error: ${tokenData.error_description || tokenData.error}`);
+    }
 
     if (!tokenData.access_token) {
       throw new Error('Failed to get VK access token');
@@ -34,10 +44,14 @@ export default async function handler(req, res) {
 
     // Получаем информацию о пользователе
     const userResponse = await fetch(
-      `https://api.vk.com/method/users.get?user_ids=${tokenData.user_id}&fields=photo_200&access_token=${tokenData.access_token}&v=5.131`
+      `https://api.vk.com/method/users.get?user_ids=${tokenData.user_id}&fields=photo_200,email&access_token=${tokenData.access_token}&v=5.199`
     );
 
     const userData = await userResponse.json();
+
+    if (userData.error) {
+      throw new Error(`VK API error: ${userData.error.error_msg || userData.error.error}`);
+    }
 
     if (!userData.response?.[0]) {
       throw new Error('Failed to get VK user data');
@@ -89,6 +103,6 @@ export default async function handler(req, res) {
     throw new Error('Failed to authenticate with VK data');
   } catch (error) {
     console.error('VK auth error:', error);
-    return res.redirect('/signin?error=VK authentication failed');
+    return res.redirect('/signin?error=VK authentication failed: ' + error.message);
   }
 } 

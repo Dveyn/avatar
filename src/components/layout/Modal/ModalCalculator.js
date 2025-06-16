@@ -26,10 +26,11 @@ export const ModalCalc = ({ onClose }) => {
 
   const handleVKSignIn = async () => {
     const vkAppId = process.env.NEXT_PUBLIC_VK_APP_ID;
-    const redirectUri = `${window.location.origin}/api/auth/vk/callback`;
+    const redirectUri = `https://avalik-avatar.ru/api/auth/vk/callback`;
     const scope = 'email';
+    const state = Math.random().toString(36).substring(7);
     
-    window.location.href = `https://oauth.vk.com/authorize?client_id=${vkAppId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code`;
+    window.location.href = `https://id.vk.com/authorize?client_id=${vkAppId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&state=${state}&display=popup&lang_id=0&scheme=light`;
   };
 
   const handleTelegramSignIn = () => {

@@ -46,15 +46,18 @@ const Signin = () => {
         return;
       }
 
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://avalik-avatar.ru';
       const redirectUri = `${baseUrl}/api/auth/vk/callback`;
       
-      const authUrl = new URL('https://oauth.vk.com/authorize');
+      const authUrl = new URL('https://id.vk.com/authorize');
       authUrl.searchParams.append('client_id', vkAppId);
       authUrl.searchParams.append('redirect_uri', redirectUri);
       authUrl.searchParams.append('scope', 'email');
       authUrl.searchParams.append('response_type', 'code');
+      authUrl.searchParams.append('state', Math.random().toString(36).substring(7));
       authUrl.searchParams.append('display', 'popup');
+      authUrl.searchParams.append('lang_id', '0');
+      authUrl.searchParams.append('scheme', 'light');
       
       window.location.href = authUrl.toString();
     } catch (error) {
