@@ -48,11 +48,12 @@ const VKButton = ({ isRegistration = false }) => {
               const userInfo = await VKID.Auth.userInfo(result.access_token);
               
               // Получаем дату рождения из VK
-              const bdate = userInfo.user.bdate?.split('.') || [];
+              const bdate = userInfo.user.birthday?.split('.') || [];
               const [day, month, year] = bdate;
               
               // Проверяем наличие всех необходимых данных
               if (!day || !month || !year) {
+                console.log('VK user data:', userInfo.user); // для отладки
                 handleError(new Error('Не удалось получить дату рождения из VK. Пожалуйста, укажите дату рождения в настройках VK.'));
                 return;
               }
