@@ -51,11 +51,35 @@ const VKButton = ({ isRegistration = false }) => {
               const bdate = userInfo.user.bdate?.split('.') || [];
               const [day, month, year] = bdate;
               
+              // Проверяем наличие всех необходимых данных
+              if (!day || !month || !year) {
+                handleError(new Error('Не удалось получить дату рождения из VK. Пожалуйста, укажите дату рождения в настройках VK.'));
+                return;
+              }
+
               // Получаем пол из VK
               const gender = userInfo.user.sex === 2 ? 'male' : 'female';
               
+              // Проверяем наличие пола
+              if (!gender) {
+                handleError(new Error('Не удалось получить пол из VK. Пожалуйста, укажите пол в настройках VK.'));
+                return;
+              }
+
+              // Проверяем наличие email
+              if (!userInfo.user.email) {
+                handleError(new Error('Не удалось получить email из VK. Пожалуйста, укажите email в настройках VK.'));
+                return;
+              }
+              
               // Рассчитываем аватары
               const resultData = calculateAvatarData(day, month, year, gender, personalities);
+              
+              // Проверяем результат расчета
+              if (!resultData || !resultData.A) {
+                handleError(new Error('Ошибка расчета аватаров. Пожалуйста, проверьте введенные данные.'));
+                return;
+              }
               
               // Формируем данные для отправки
               const date = {
