@@ -33,16 +33,12 @@ export default Profile;
 
 export async function getServerSideProps({ req }) {
   const cookies = req.headers.cookie || '';
-  console.log('All cookies:', cookies);
-
   const accessToken = cookies
     .split('; ')
     .find((row) => row.startsWith('accessToken='))
     ?.split('=')[1];
-  console.log('Access token:', accessToken);
 
   if (!accessToken) {
-    console.log('No access token found, redirecting to signin');
     return {
       redirect: {
         destination: '/signin',
@@ -53,21 +49,10 @@ export async function getServerSideProps({ req }) {
 
   try {
     const response = await fetchProfile(accessToken);
-    console.log('Profile response:', response);
-    if (!response || response.is_error) {
-      console.log('Profile response error, redirecting to signin');
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false,
-        },
-      };
-    }
     return {
       props: { date: response },
     };
   } catch (error) {
-    console.error('Error fetching profile:', error);
     return {
       redirect: {
         destination: '/signin',
