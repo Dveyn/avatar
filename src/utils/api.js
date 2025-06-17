@@ -2,7 +2,7 @@ const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 export const signup = async (date) => {
-    const response = await fetch(`${API_URL}/auth/register`, {
+    const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const signup = async (date) => {
 };
 
 export const forgot = async (date) => {
-    const response = await fetch(`${API_URL}/auth/forgot`, {
+    const response = await fetch(`${API_URL}/api/auth/forgot`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const forgot = async (date) => {
 };
 
 export const signin = async (date) => {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const signin = async (date) => {
 
 
 export const fetchValidToken = async (token) => {
-    const response = await fetch(`${API_URL}/auth/valid-token`, {
+    const response = await fetch(`${API_URL}/api/auth/valid-token`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const fetchValidToken = async (token) => {
 };
 
 export const fetchRefreshToken = async (date) => {
-    const response = await fetch(`${API_URL}/auth/refresh-token`, {
+    const response = await fetch(`${API_URL}/api/auth/refresh-token`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -67,11 +67,11 @@ export const fetchRefreshToken = async (date) => {
 
 export const fetchConfirmEmail = async (id) => {
     console.log('fetchConfirmEmail', id);
-    const response = await fetch(`${API_URL}/auth/confirm-email/${id}`);
+    const response = await fetch(`${API_URL}/api/auth/confirm-email/${id}`);
     return response.status;
 };
 export const fetchSetPassword = async (id, password) => {
-    const response = await fetch(`${API_URL}/auth/set-password`, {
+    const response = await fetch(`${API_URL}/api/auth/set-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
