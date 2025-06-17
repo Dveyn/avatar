@@ -105,9 +105,8 @@ const VKButton = ({ isRegistration = false }) => {
               console.log('Backend response:', authResult);
 
               if (authResult?.user?.id && authResult?.accessToken && authResult?.refreshToken) {
-                Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                router.push('/profile');
+                // Вместо установки куки на клиенте, делаем редирект на серверный эндпоинт
+                router.push(`/api/auth/set-cookies?accessToken=${authResult.accessToken}&refreshToken=${authResult.refreshToken}&redirect=/profile`);
               } else {
                 handleError(new Error('Ошибка авторизации через VK: неверный формат ответа'));
               }
