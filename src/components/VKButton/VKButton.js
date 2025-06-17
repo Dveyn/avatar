@@ -21,7 +21,7 @@ const VKButton = ({ isRegistration = false }) => {
 
         VKID.Config.init({
           app: 53726578,
-          redirectUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://avalik-avatar.ru'}/api/auth/vk/callback`,
+          redirectUrl: 'https://avalik-avatar.ru/api/auth/vk/callback',
           responseMode: VKID.ConfigResponseMode.Callback,
           source: VKID.ConfigSource.LOWCODE,
           scope: '',
@@ -39,12 +39,19 @@ const VKButton = ({ isRegistration = false }) => {
           })
           .on(VKID.WidgetEvents.ERROR, handleError)
           .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, async function (payload) {
+            console.log('VK ID Login Success, payload:', payload);
             const code = payload.code;
             const deviceId = payload.device_id;
             try {
+              console.log('Exchanging code for token...');
               const result = await VKID.Auth.exchangeCode(code, deviceId);
-              const userInfo = await VKID.Auth.userInfo(result.access_token);
+              console.log('Token exchange result:', result);
               
+              console.log('Getting user info...');
+              const userInfo = await VKID.Auth.userInfo(result.access_token);
+              console.log('User info:', userInfo);
+              
+              console.log('Sending to backend...');
               // Используем signin или signup в зависимости от контекста
               const authResult = isRegistration 
                 ? await signup({
@@ -55,15 +62,17 @@ const VKButton = ({ isRegistration = false }) => {
                     provider: 'vk',
                     socialData: JSON.stringify(userInfo)
                   });
+              console.log('Backend response:', authResult);
 
               if (authResult?.accessToken && authResult?.refreshToken) {
                 Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
                 Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
                 router.push('/profile');
               } else {
-                handleError(new Error('Ошибка авторизации через VK'));
+                handleError(new Error('Ошибка авторизации через VK: нет токенов в ответе'));
               }
             } catch (err) {
+              console.error('VK auth error:', err);
               handleError(err);
             }
           });
