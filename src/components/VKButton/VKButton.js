@@ -104,7 +104,7 @@ const VKButton = ({ isRegistration = false }) => {
 
               console.log('Backend response:', authResult);
 
-              if (authResult?.id || (authResult?.accessToken && authResult?.refreshToken)) {
+              if (authResult?.user?.id || (authResult?.accessToken && authResult?.refreshToken)) {
                 if (authResult?.accessToken && authResult?.refreshToken) {
                   Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
                   Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
