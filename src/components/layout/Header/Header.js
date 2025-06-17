@@ -31,6 +31,9 @@ export const Header = () => {
           <Link className={ styles.left } href="/#services" scroll={ false } onClick={ toggleMenu }>
             Услуги
           </Link>
+          <Link className={ styles.left } href="/#reviews" scroll={ false } onClick={ toggleMenu }>
+            Отзывы
+          </Link>
           <div className={ styles.spacer }></div>
           <Link className={ styles.right } href="/#aboutmethod" scroll={ false } onClick={ toggleMenu }>
             О методе

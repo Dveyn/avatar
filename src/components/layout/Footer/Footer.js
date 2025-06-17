@@ -22,6 +22,7 @@ export const Footer = () => {
           <a className={ styles.item } href="/#avatary">{ '{Кто такие аватары}' }</a>
           <a className={ styles.item } href="/#aboutmethod">{ '{О методе}' }</a>
           <a className={ styles.item } href="/#advantages">{ '{Преимущества метода}' }</a>
+          <a className={ styles.item } href="/#reviews">{ '{Отзывы}' }</a>
           <div className={ styles.item } onClick={openModal}>{ '{Расчитать своих аватаров}' }</div>
           { isModalOpen && <ModalCalc onClose={ closeModal } /> }
         </div>

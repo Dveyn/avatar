@@ -33,7 +33,7 @@ const reviews = [
 
 export const Reviews = () => {
   return (
-    <section className={ styles.reviews }>
+    <section className={ styles.reviews } id="reviews">
       <div className={ styles.container }>
         <h2 className={ styles.title }>Отзывы наших пользователей</h2>
         <div className={ styles.reviewsGrid }>
