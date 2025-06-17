@@ -21,7 +21,7 @@ const VKButton = ({ isRegistration = false }) => {
 
         VKID.Config.init({
           app: 53726578,
-          redirectUrl: 'https://avalik-avatar.ru/api/auth/vk/callback',
+          redirectUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://avalik-avatar.ru'}/api/auth/vk/callback`,
           responseMode: VKID.ConfigResponseMode.Callback,
           source: VKID.ConfigSource.LOWCODE,
           scope: '',
