@@ -1,0 +1,20 @@
+.vkButtonContainer {
+  width: 100%;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 130px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-size: 14px;
+} 

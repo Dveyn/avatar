@@ -4,6 +4,7 @@ import { Footer, Header } from "@@/components/layout";
 import MailRuPixel from "@@/components/layout/Pixel/Pixel";
 import YandexMetrika from "@@/components/layout/YandexMetrika/YandexMetrika";
 import "@@/styles/globals.css";
+import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -29,6 +30,10 @@ export default function App({ Component, pageProps }) {
   }, [router.asPath]);
   return (
     <>
+      <Script 
+        src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"
+        strategy="beforeInteractive"
+      />
       <MailRuPixel />
       <YandexMetrika />
       <Header />

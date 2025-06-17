@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import styles from './signin.module.css';
-import { signin, socialAuth } from '@@/utils/api';
+import { signin } from '@@/utils/api';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Script from 'next/script';
+import VKButton from '../../components/VKButton/VKButton';
 
 const Signin = () => {
 
@@ -44,9 +45,9 @@ const Signin = () => {
         async (data) => {
           if (data) {
             try {
-              const result = await socialAuth({ 
+              const result = await signin({ 
                 provider: 'telegram',
-                telegramData: JSON.stringify(data)
+                socialData: JSON.stringify(data)
               });
               
               if (result?.accessToken && result?.refreshToken) {
@@ -167,11 +168,9 @@ const Signin = () => {
             
             {isTestMode && (
               <div className={styles.socialButtons}>
-                <div id="vk-container" className={styles.vkButton}></div>
-                <button
-                  onClick={handleTelegramSignIn}
-                  className={`${styles.socialButton} ${styles.telegramButton}`}
-                >
+                <VKButton isRegistration={false} />
+                <button type="button" className={styles.telegramButton} onClick={handleTelegramSignIn}>
+                  <img src="/images/icon/telegram.png" alt="Telegram" />
                   Войти через Telegram
                 </button>
               </div>

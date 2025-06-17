@@ -1,4 +1,4 @@
-import { socialAuth } from '@@/utils/api';
+import { signin } from '@@/utils/api';
 import Cookies from 'js-cookie';
 
 export default async function handler(req, res) {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const result = await socialAuth({ 
+    const result = await signin({ 
       provider: 'vk',
       code: code
     });
