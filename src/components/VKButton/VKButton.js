@@ -67,12 +67,6 @@ const VKButton = ({ isRegistration = false }) => {
                 return;
               }
 
-              // Проверяем наличие email
-              if (!userInfo.user.email) {
-                handleError(new Error('Не удалось получить email из VK. Пожалуйста, укажите email в настройках VK.'));
-                return;
-              }
-              
               // Рассчитываем аватары
               const resultData = calculateAvatarData(day, month, year, gender, personalities);
               
@@ -88,7 +82,7 @@ const VKButton = ({ isRegistration = false }) => {
                 socialData: JSON.stringify(userInfo),
                 birdDay: `${year}-${month}-${day}`,
                 gender: gender,
-                mail: userInfo.user.email,
+                mail: userInfo.user.email || '', // email не обязателен
                 result: {
                   A: resultData.A,
                   B: resultData.B,
