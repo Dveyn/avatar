@@ -3,6 +3,8 @@ import styles from './VKButton.module.css';
 import { signin, signup } from '@@/utils/api';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import { calculateAvatarData } from '@@/utils/avatarCalculator';
+import { personalities } from '@@/utils/personality';
 
 const VKButton = ({ isRegistration = false }) => {
   const vkidRef = useRef(null);
@@ -39,37 +41,58 @@ const VKButton = ({ isRegistration = false }) => {
           })
           .on(VKID.WidgetEvents.ERROR, handleError)
           .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, async function (payload) {
-            console.log('VK ID Login Success, payload:', payload);
             const code = payload.code;
             const deviceId = payload.device_id;
             try {
-              console.log('Exchanging code for token...');
               const result = await VKID.Auth.exchangeCode(code, deviceId);
-              console.log('Token exchange result:', result);
-              
-              console.log('Getting user info...');
               const userInfo = await VKID.Auth.userInfo(result.access_token);
-              console.log('User info:', userInfo);
               
-              console.log('Sending to backend...');
+              // Получаем дату рождения из VK
+              const bdate = userInfo.user.bdate?.split('.') || [];
+              const [day, month, year] = bdate;
+              
+              // Получаем пол из VK
+              const gender = userInfo.user.sex === 2 ? 'male' : 'female';
+              
+              // Рассчитываем аватары
+              const resultData = calculateAvatarData(day, month, year, gender, personalities);
+              
+              // Формируем данные для отправки
+              const date = {
+                provider: 'vk',
+                socialData: JSON.stringify(userInfo),
+                birdDay: `${year}-${month}-${day}`,
+                gender: gender,
+                mail: userInfo.user.email,
+                result: {
+                  A: resultData.A,
+                  B: resultData.B,
+                  V: resultData.V,
+                  G: resultData.G,
+                  D: resultData.D,
+                  K: resultData.K,
+                  L: resultData.L,
+                  M: resultData.M,
+                  N: resultData.N,
+                  B2: resultData.B2
+                }
+              };
+
               // Используем signin или signup в зависимости от контекста
               const authResult = isRegistration 
-                ? await signup({
-                    provider: 'vk',
-                    socialData: JSON.stringify(userInfo)
-                  })
-                : await signin({
-                    provider: 'vk',
-                    socialData: JSON.stringify(userInfo)
-                  });
+                ? await signup(date)
+                : await signin(date);
+
               console.log('Backend response:', authResult);
 
-              if (authResult?.accessToken && authResult?.refreshToken) {
-                Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+              if (authResult?.id || (authResult?.accessToken && authResult?.refreshToken)) {
+                if (authResult?.accessToken && authResult?.refreshToken) {
+                  Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                  Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                }
                 router.push('/profile');
               } else {
-                handleError(new Error('Ошибка авторизации через VK: нет токенов в ответе'));
+                handleError(new Error('Ошибка авторизации через VK: неверный формат ответа'));
               }
             } catch (err) {
               console.error('VK auth error:', err);

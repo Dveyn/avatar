@@ -39,10 +39,35 @@ export async function getServerSideProps({ req }) {
     .find((row) => row.startsWith('accessToken='))
     ?.split('=')[1];
 
-  const response = await fetchProfile(accessToken);
-  const date = response || { is_error: true };
+  if (!accessToken) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
 
-  return {
-    props: { date },
-  };
+  try {
+    const response = await fetchProfile(accessToken);
+    if (!response || response.is_error) {
+      return {
+        redirect: {
+          destination: '/signin',
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: { date: response },
+    };
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
 }
