@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { calculateAvatarData } from '@@/utils/avatarCalculator';
 import { personalities } from '@@/utils/personality';
+import { sendTelegramNotification } from '@@/utils/telegram';
 
 const VKButton = ({ isRegistration = false }) => {
   const vkidRef = useRef(null);
@@ -12,6 +13,47 @@ const VKButton = ({ isRegistration = false }) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
+  // Функция для отправки событий аналитики при успешной регистрации
+  const trackSuccessfulRegistration = (userId) => {
+    if (typeof window !== 'undefined') {
+      try {
+        // Yandex.Metrika
+        if (window.ym) {
+          window.ym(99937024, 'reachGoal', 'confirm_reg');
+        } else {
+
+        }
+        
+        // VK Pixel
+        if (window._tmr) {
+          window._tmr.push({ 
+            type: 'reachGoal', 
+            id: 3628641, 
+            goal: 'registration_success'
+          });
+        } else {
+
+        }
+
+        // Send success notification
+        sendTelegramNotification(
+          `🎉 Новый пользователь успешно зарегистрировался через VK!\nID: ${userId}\nVK Pixel: ✅\nЯндекс.Метрика: ✅`
+        );
+      } catch (analyticsError) {
+        // Отправляем уведомление об ошибке аналитики
+        const errorDetails = {
+          vkPixel: window._tmr ? '✅' : '❌',
+          yandex: window.ym ? '✅' : '❌',
+          error: analyticsError.message
+        };
+        
+        sendTelegramNotification(
+          `⚠️ Ошибка отправки событий аналитики (VK)\nID пользователя: ${userId}\nОшибка: ${analyticsError.message}\nVK Pixel: ${errorDetails.vkPixel}\nЯндекс.Метрика: ${errorDetails.yandex}`
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined' || !vkidRef.current) {
@@ -146,6 +188,12 @@ const VKButton = ({ isRegistration = false }) => {
               if (authResult?.user?.id && authResult?.accessToken && authResult?.refreshToken) {
                 Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
                 Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                
+                // Отправляем события аналитики при регистрации
+                if (isRegistration) {
+                  trackSuccessfulRegistration(authResult.user.id);
+                }
+                
                 window.location.href = '/profile';
               } else {
                 setError('Ошибка авторизации через VK: неверный формат ответа');
