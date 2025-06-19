@@ -6,6 +6,7 @@ import { signup } from '@@/utils/api';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import VKButton from '../../VKButton/VKButton';
+import TelegramWidget from '../../TelegramWidget/TelegramWidget';
 import Cookies from 'js-cookie';
 
 export const ModalCalc = ({ onClose }) => {
@@ -19,12 +20,6 @@ export const ModalCalc = ({ onClose }) => {
   const [success, setSuccess] = useState('');
   const [showDateForm, setShowDateForm] = useState(false);
   const [socialData, setSocialData] = useState(null);
-  const [isTestMode, setIsTestMode] = useState(false);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    setIsTestMode(urlParams.get('is_test') === 'true');
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,35 +97,6 @@ export const ModalCalc = ({ onClose }) => {
     setValue(value.replace(/^0+/, "") || "0");
   };
 
-  const handleTelegramSignIn = () => {
-    if (window.Telegram && window.Telegram.Login) {
-      window.Telegram.Login.auth(
-        { bot_id: process.env.NEXT_PUBLIC_TELEGRAM_BOT_ID },
-        async (data) => {
-          if (data) {
-            try {
-              const result = await signup({ 
-                provider: 'telegram',
-                socialData: JSON.stringify(data)
-              });
-              
-              if (result?.accessToken && result?.refreshToken) {
-                Cookies.set('accessToken', result.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                Cookies.set('refreshToken', result.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                router.push('/profile');
-              } else {
-                setError('Ошибка регистрации через Telegram');
-              }
-            } catch (error) {
-              console.error('Ошибка регистрации через Telegram:', error);
-              setError('Ошибка регистрации через Telegram');
-            }
-          }
-        }
-      );
-    }
-  };
-
   return (
     <>
       <Script 
@@ -147,21 +113,14 @@ export const ModalCalc = ({ onClose }) => {
 
             {!showDateForm ? (
               <>
-                {isTestMode && (
-                  <div className={styles.socialButtons}>
-                    <VKButton isRegistration={true} />
-                    <button type="button" className={styles.telegramButton} onClick={handleTelegramSignIn}>
-                      <img src="/images/icon/telegram.png" alt="Telegram" />
-                      Войти через Telegram
-                    </button>
-                  </div>
-                )}
+                <div className={styles.socialButtons}>
+                  <VKButton isRegistration={true} />
+                  <TelegramWidget isRegistration={true} />
+                </div>
 
-                {isTestMode && (
-                  <div className={styles.divider}>
-                    <span>или</span>
-                  </div>
-                )}
+                <div className={styles.divider}>
+                  <span>или</span>
+                </div>
 
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.date_block}>

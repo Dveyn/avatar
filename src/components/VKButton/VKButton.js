@@ -10,39 +10,81 @@ const VKButton = ({ isRegistration = false }) => {
   const vkidRef = useRef(null);
   const [isRendered, setIsRendered] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !vkidRef.current) return;
+    if (typeof window === 'undefined' || !vkidRef.current) {
+      return;
+    }
+    
     vkidRef.current.innerHTML = '';
+    setIsLoading(true);
+    setError(null);
 
-    let oneTap = null;
-    try {
-      if ('VKIDSDK' in window) {
+    // Функция для инициализации VK ID
+    const initVKID = () => {
+      try {
+        // Проверяем, загружен ли VK ID SDK
+        if (!('VKIDSDK' in window)) {
+          setTimeout(initVKID, 1000); // Повторяем через 1 секунду
+          return;
+        }
+
         const VKID = window.VKIDSDK;
 
-        VKID.Config.init({
+        // Проверяем доступность необходимых методов
+        if (!VKID.Config || !VKID.Config.init) {
+          setError('Ошибка инициализации VK ID: Config.init недоступен');
+          setIsLoading(false);
+          return;
+        }
+
+        if (!VKID.ConfigResponseMode || !VKID.ConfigSource) {
+          setError('Ошибка инициализации VK ID: константы недоступны');
+          setIsLoading(false);
+          return;
+        }
+
+        // Инициализируем конфигурацию
+        const config = {
           app: 53726578,
           redirectUrl: 'https://avalik-avatar.ru/api/auth/vk/callback',
           responseMode: VKID.ConfigResponseMode.Callback,
           source: VKID.ConfigSource.LOWCODE,
           scope: '',
-        });
+        };
 
-        oneTap = new VKID.OneTap();
+        VKID.Config.init(config);
+
+        // Проверяем доступность OneTap
+        if (!VKID.OneTap) {
+          setError('Ошибка инициализации VK ID: OneTap недоступен');
+          setIsLoading(false);
+          return;
+        }
+
+        // Создаем OneTap виджет
+        const oneTap = new VKID.OneTap();
+        
+        const renderConfig = {
+          container: vkidRef.current,
+          showAlternativeLogin: true,
+          styles: {
+            borderRadius: 50,
+            height: 36,
+          },
+        };
+
         oneTap
-          .render({
-            container: vkidRef.current,
-            showAlternativeLogin: true,
-            styles: {
-              borderRadius: 50,
-              height: 36,
-            },
+          .render(renderConfig)
+          .on(VKID.WidgetEvents.ERROR, (error) => {
+            setError('Ошибка виджета VK ID: ' + (error?.message || 'Неизвестная ошибка'));
           })
-          .on(VKID.WidgetEvents.ERROR, handleError)
           .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, async function (payload) {
             const code = payload.code;
             const deviceId = payload.device_id;
+            
             try {
               const result = await VKID.Auth.exchangeCode(code, deviceId);
               const userInfo = await VKID.Auth.userInfo(result.access_token);
@@ -53,8 +95,7 @@ const VKButton = ({ isRegistration = false }) => {
               
               // Проверяем наличие всех необходимых данных
               if (!day || !month || !year) {
-                console.log('VK user data:', userInfo.user); // для отладки
-                handleError(new Error('Не удалось получить дату рождения из VK. Пожалуйста, укажите дату рождения в настройках VK.'));
+                setError('Не удалось получить дату рождения из VK. Пожалуйста, укажите дату рождения в настройках VK.');
                 return;
               }
 
@@ -63,7 +104,7 @@ const VKButton = ({ isRegistration = false }) => {
               
               // Проверяем наличие пола
               if (!gender) {
-                handleError(new Error('Не удалось получить пол из VK. Пожалуйста, укажите пол в настройках VK.'));
+                setError('Не удалось получить пол из VK. Пожалуйста, укажите пол в настройках VK.');
                 return;
               }
 
@@ -72,7 +113,7 @@ const VKButton = ({ isRegistration = false }) => {
               
               // Проверяем результат расчета
               if (!resultData || !resultData.A) {
-                handleError(new Error('Ошибка расчета аватаров. Пожалуйста, проверьте введенные данные.'));
+                setError('Ошибка расчета аватаров. Пожалуйста, проверьте введенные данные.');
                 return;
               }
               
@@ -102,37 +143,29 @@ const VKButton = ({ isRegistration = false }) => {
                 ? await signup(date)
                 : await signin(date);
 
-              console.log('Backend response:', authResult);
-
               if (authResult?.user?.id && authResult?.accessToken && authResult?.refreshToken) {
-                // Вместо установки куки на клиенте, делаем редирект на серверный эндпоинт
-                router.push(`/api/auth/set-cookies?accessToken=${authResult.accessToken}&refreshToken=${authResult.refreshToken}&redirect=/profile`);
+                Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
+                router.push('/profile');
               } else {
-                handleError(new Error('Ошибка авторизации через VK: неверный формат ответа'));
+                setError('Ошибка авторизации через VK: неверный формат ответа');
               }
             } catch (err) {
-              console.error('VK auth error:', err);
-              handleError(err);
+              setError('Ошибка авторизации через VK: ' + (err?.message || 'Неизвестная ошибка'));
             }
           });
-        setIsRendered(true);
-      }
-    } catch (e) {
-      if (e instanceof Error) {
-        setError('Ошибка рендера VKID: ' + (e?.message || ''));
-      } else {
-        setError('Ошибка рендера VKID: неизвестная ошибка');
-      }
-    }
 
-    function handleError(error) {
-      if (error instanceof Error) {
-        setError('Ошибка vkidOnError: ' + (error?.message || ''));
-        console.error('VKID error', error);
-      } else {
-        setError('Ошибка рендера VKID: неизвестная ошибка');
+        setIsRendered(true);
+        setIsLoading(false);
+        
+      } catch (e) {
+        setError('Ошибка инициализации VK ID: ' + (e?.message || 'Неизвестная ошибка'));
+        setIsLoading(false);
       }
-    }
+    };
+
+    // Запускаем инициализацию
+    initVKID();
 
     return () => {
       if (vkidRef.current) {
@@ -144,7 +177,7 @@ const VKButton = ({ isRegistration = false }) => {
   return (
     <div className={styles.vkButtonContainer}>
       <div ref={vkidRef} />
-      {!isRendered && !error && (
+      {isLoading && !error && (
         <div className={styles.loading}>Загрузка VK ID...</div>
       )}
       {error && <div className={styles.error}>{error}</div>}

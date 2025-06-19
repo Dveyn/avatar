@@ -1,0 +1,39 @@
+.telegramWidgetContainer {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loading {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+}
+
+.error {
+  color: #ff4444;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  background-color: #ffe6e6;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+
+/* Стили для Telegram виджета */
+.telegramWidgetContainer :global(script) {
+  display: block;
+  width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .telegramWidgetContainer {
+    min-height: 50px;
+  }
+} 

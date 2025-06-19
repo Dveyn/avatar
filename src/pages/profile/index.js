@@ -33,31 +33,16 @@ export default Profile;
 
 export async function getServerSideProps({ req }) {
   const cookies = req.headers.cookie || '';
+
   const accessToken = cookies
     .split('; ')
     .find((row) => row.startsWith('accessToken='))
     ?.split('=')[1];
 
-  if (!accessToken) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
+  const response = await fetchProfile(accessToken);
+  const date = response || { is_error: true };
 
-  try {
-    const response = await fetchProfile(accessToken);
-    return {
-      props: { date: response },
-    };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    };
-  }
+  return {
+    props: { date },
+  };
 }

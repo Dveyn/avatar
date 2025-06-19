@@ -2,7 +2,7 @@ const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 export const signup = async (date) => {
-    const response = await fetch(`${API_URL}/api/auth/register`, {
+    const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const forgot = async (date) => {
 };
 
 export const signin = async (date) => {
-    const response = await fetch(`${API_URL}/api/auth/login`, {
+    const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,26 +41,25 @@ export const signin = async (date) => {
 
 
 export const fetchValidToken = async (token) => {
-    const response = await fetch(`${API_URL}/api/auth/valid-token`, {
+    const response = await fetch(`${API_URL}/auth/valid-token`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${token.value}`,
+            'Authorization': `${token}`,
         },
     }
     );
     return response;
 };
 
-export const fetchRefreshToken = async (date) => {
-    const response = await fetch(`${API_URL}/api/auth/refresh-token`, {
+export const fetchRefreshToken = async (refreshToken) => {
+    const response = await fetch(`${API_URL}/auth/refresh-token`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: date
-    }
-    );
+            'Authorization': refreshToken
+        }
+    });
     return response;
 };
 
@@ -85,6 +84,7 @@ export const fetchSetPassword = async (id, password) => {
 
 
 export const fetchProfile = async (token) => {
+    console.log('Making profile request to:', `${API_URL}/user/profile`);
     const response = await fetch(`${API_URL}/user/profile`, {
         method: 'GET',
         headers: {
@@ -94,7 +94,10 @@ export const fetchProfile = async (token) => {
     }
     );
 
-    return response.json();
+    console.log('Profile response status:', response.status);
+    const data = await response.json();
+    console.log('Profile response data:', data);
+    return data;
 };
 
 export const fetchPeople = async () => {
