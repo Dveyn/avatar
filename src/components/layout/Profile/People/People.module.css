@@ -32,25 +32,276 @@
 }
 
 .body {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
+  width: 100%;
 }
-.item {
-  background: #EEE4D8;
-  margin-top: 1.2rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  border: 0.4rem solid #FFFFFF;
-  border-radius: 10px;
+
+/* Контейнер для пустого состояния */
+.noPeopleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 40px 20px;
+}
+
+.noPeopleContent {
+  text-align: center;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.noPeopleIcon {
+  margin-bottom: 20px;
+  color: #d5b681;
+  opacity: 0.7;
+}
+
+.noPeopleTitle {
+  font-family: 'Parisian', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 400;
+  color: #57576C;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+.noPeopleDescription {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0 0 30px 0;
+  line-height: 1.6;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #d5b681, #c4a574);
+  color: #57576C;
+  padding: 15px 25px;
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(213, 182, 129, 0.3);
+}
+
+.addButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(213, 182, 129, 0.4);
+  background: linear-gradient(135deg, #e0c391, #d5b681);
+}
+
+/* Заголовок для списка людей */
+.peopleHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.peopleTitle {
+  font-family: 'Parisian', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: #57576C;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.peopleSubtitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(87, 87, 108, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Сетка людей */
+.peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 0 10px;
+}
+
+/* Карточка человека */
+.personCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.personCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d5b681, #c4a574);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.personCard:hover::before {
+  transform: scaleX(1);
+}
+
+.personCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+.personCardContent {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: stretch;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.personAvatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d5b681;
+  box-shadow: 0 4px 15px rgba(213, 182, 129, 0.2);
+  transition: all 0.3s ease;
+}
+
+.personCard:hover .personAvatar {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(213, 182, 129, 0.3);
+}
+
+.personName {
+  font-family: 'Parisian', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #57576C;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.personAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.personCard:hover .personAction {
+  color: #d5b681;
+  transform: translateX(5px);
+}
+
+.personAction svg {
+  transition: transform 0.3s ease;
+}
+
+.personCard:hover .personAction svg {
+  transform: translateX(3px);
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .noPeopleContainer {
+    min-height: 300px;
+    padding: 20px;
+  }
+  
+  .noPeopleContent {
+    padding: 30px 20px;
+    border-radius: 15px;
+  }
+  
+  .peopleHeader {
+    margin-bottom: 30px;
+  }
+  
+  .peopleGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 5px;
+  }
+  
+  .personCard {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .personAvatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .personName {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .noPeopleContainer {
+    padding: 15px;
+  }
+  
+  .noPeopleContent {
+    padding: 25px 15px;
+  }
+  
+  .peopleGrid {
+    gap: 15px;
+  }
+  
+  .personCard {
+    padding: 18px;
+  }
+  
+  .personAvatar {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .personName {
+    font-size: 1.2rem;
+  }
 }

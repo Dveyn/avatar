@@ -1,88 +1,436 @@
 .body {
-  padding: 40px;
-}
-
-.header {}
-
-.title {
-  font-family: Parisian;
-  font-size: 40px;
-  font-weight: 400;
-  color: #57576C;
-  text-align: center;
-  text-shadow: 0 0 1px #ffffff;
-  background: #d5b681;
-  border-radius: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-.title_av,
-.title_av button{
-  font-family: Parisian;
-  font-size: 40px;
-  font-weight: 400;
-  color: #57576C;
-  text-align: center;
-  text-shadow: 0 0 1px #ffffff;
-  background: #d5b681;
-  border-radius: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-.title_av p {
-  font-family: 'Manrope', Arial, sans-serif;
-  font-size: 18px;
-}
-
-.user_info {
-  font-family: Parisian;
-  font-size: 30px;
-  font-weight: 400;
-  color: #57576C;
-  text-align: center;
-}
-
-.avatar_list {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-
-.avatar_card {
-  text-align: center;
-  max-width: 300px;
-}
-
-.avatar_card img {
   width: 100%;
 }
 
-.btn {
-  margin-top: -20px;
+/* Header секция */
+.header {
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-.text_modal {
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.userAvatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #d5b681, #c4a574);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #57576C;
+  box-shadow: 0 8px 25px rgba(213, 182, 129, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.userDetails {
+  text-align: left;
+}
+
+.userName {
+  font-family: 'Parisian', serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 400;
+  color: #57576C;
+  margin: 0 0 5px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userSubtitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(87, 87, 108, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Секции аватаров */
+.avatarSection {
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.6s ease-out;
 }
-.btn_modal {
-  margin-left: 50%;
-  transform: translate(-50%, 0);
+
+.sectionTitle {
+  margin-bottom: 20px;
 }
-.btn_action {
-  margin-left: 50%;
-  transform: translate(-50%, 0);
+
+.sectionTitleContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Parisian', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  color: #57576C;
 }
+
+.sectionIcon {
+  color: #d5b681;
+  display: flex;
+  align-items: center;
+}
+
+.sectionDescription {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 15px 0 0 0;
+}
+
+/* Кнопка покупки всех */
+.buyAllButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  margin-bottom: 25px;
+}
+
+.buyAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Сетка аватаров */
+.avatarGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 100%;
+}
+
+/* Карточка аватара */
+.avatarCard {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.avatarCard.unlocked {
+  border: 2px solid #d5b681;
+}
+
+.avatarCard.locked {
+  opacity: 0.8;
+  filter: grayscale(0.3);
+}
+
+.avatarCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+.avatarCard.unlocked:hover {
+  border-color: #c4a574;
+}
+
+/* Контейнер изображения */
+.avatarImageContainer {
+  position: relative;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  max-width: 100%;
+}
+
+.avatarImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.avatarCard:hover .avatarImage {
+  transform: scale(1.05);
+}
+
+/* Оверлей замка */
+.lockOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  backdrop-filter: blur(2px);
+}
+
+/* Информация об аватаре */
+.avatarInfo {
+  text-align: center;
+}
+
+.avatarName {
+  font-family: 'Parisian', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #57576C;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+/* Кнопки */
+.viewButton,
+.unlockButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewButton {
+  background: linear-gradient(135deg, #d5b681, #c4a574);
+  color: #57576C;
+  box-shadow: 0 4px 15px rgba(213, 182, 129, 0.3);
+}
+
+.viewButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(213, 182, 129, 0.4);
+  background: linear-gradient(135deg, #e0c391, #d5b681);
+}
+
+.unlockButton {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.unlockButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #7c8ff0, #667eea);
+}
+
+/* Секция действий */
+.actionSection {
+  text-align: center;
+  margin-top: 40px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #d5b681, #c4a574);
+  color: #57576C;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-family: 'Parisian', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(213, 182, 129, 0.3);
+}
+
+.actionButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(213, 182, 129, 0.4);
+  background: linear-gradient(135deg, #e0c391, #d5b681);
+}
+
+/* Модальное окно */
+.modalContent {
+  text-align: center;
+  padding: 30px;
+  max-width: 500px;
+}
+
+.modalTitle {
+  font-family: 'Parisian', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #57576C;
+  margin: 0 0 20px 0;
+}
+
+.modalText {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+}
+
+.modalButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #d5b681, #c4a574);
+  color: #57576C;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(213, 182, 129, 0.3);
+  margin-top: 20px;
+}
+
+.modalButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(213, 182, 129, 0.4);
+  background: linear-gradient(135deg, #e0c391, #d5b681);
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-  .title {
-    font-size: 28px;
+  .userInfo {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
-  .title_av, .title_av button {
-    font-size: 28px;
+  
+  .userAvatar {
+    width: 60px;
+    height: 60px;
   }
-  .avatar_list {
-    justify-content: center;
+  
+  .userDetails {
+    text-align: center;
+  }
+  
+  .avatarSection {
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitleContent {
+    font-size: 1.3rem;
+  }
+  
+  .avatarGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .avatarCard {
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 320px;
+  }
+  
+  .actionSection {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .actionButton {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 30px;
+  }
+  
+  .userAvatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .avatarSection {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .sectionTitleContent {
+    font-size: 1.2rem;
+  }
+  
+  .avatarGrid {
+    gap: 15px;
+  }
+  
+  .avatarCard {
+    padding: 12px;
+    max-width: 280px;
+  }
+  
+  .avatarName {
+    font-size: 1.1rem;
+  }
+  
+  .actionSection {
+    padding: 15px;
+  }
+  
+  .actionButton {
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 }
