@@ -146,7 +146,7 @@ const VKButton = ({ isRegistration = false }) => {
               if (authResult?.user?.id && authResult?.accessToken && authResult?.refreshToken) {
                 Cookies.set('accessToken', authResult.accessToken, { secure: true, sameSite: 'Strict', expires: 30 });
                 Cookies.set('refreshToken', authResult.refreshToken, { secure: true, sameSite: 'Strict', expires: 30 });
-                router.push('/profile');
+                window.location.href = '/profile';
               } else {
                 setError('Ошибка авторизации через VK: неверный формат ответа');
               }

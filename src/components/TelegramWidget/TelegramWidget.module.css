@@ -7,6 +7,30 @@
   position: relative;
 }
 
+.telegramButton {
+  width: 100%;
+  min-height: 40px;
+  background-color: #0088cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.telegramButton:hover {
+  opacity: 0.9;
+}
+
+.telegramButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .loading {
   color: #666;
   font-size: 14px;
