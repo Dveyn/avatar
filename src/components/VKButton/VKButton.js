@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { calculateAvatarData } from '@@/utils/avatarCalculator';
 import { personalities } from '@@/utils/personality';
-import { sendTelegramNotification } from '@@/utils/telegram';
 
 const VKButton = ({ isRegistration = false }) => {
   const vkidRef = useRef(null);
@@ -36,21 +35,8 @@ const VKButton = ({ isRegistration = false }) => {
 
         }
 
-        // Send success notification
-        sendTelegramNotification(
-          `🎉 Новый пользователь успешно зарегистрировался через VK!\nID: ${userId}\nVK Pixel: ✅\nЯндекс.Метрика: ✅`
-        );
       } catch (analyticsError) {
-        // Отправляем уведомление об ошибке аналитики
-        const errorDetails = {
-          vkPixel: window._tmr ? '✅' : '❌',
-          yandex: window.ym ? '✅' : '❌',
-          error: analyticsError.message
-        };
-        
-        sendTelegramNotification(
-          `⚠️ Ошибка отправки событий аналитики (VK)\nID пользователя: ${userId}\nОшибка: ${analyticsError.message}\nVK Pixel: ${errorDetails.vkPixel}\nЯндекс.Метрика: ${errorDetails.yandex}`
-        );
+        console.error('Analytics error (VK):', analyticsError);
       }
     }
   };

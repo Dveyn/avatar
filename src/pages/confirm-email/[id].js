@@ -1,5 +1,4 @@
 import { fetchConfirmEmail, fetchSetPassword } from '@@/utils/api';
-import { sendTelegramNotification } from '@@/utils/telegram';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -28,23 +27,17 @@ const ConfirmEmail = ({ status }) => {
           webvisor: true
         });
       } else {
-        sendTelegramNotification(
-          `⚠️ Ошибка инициализации Яндекс.Метрики\nID пользователя: ${id}\nПричина: ym не определен`
-        );
+        console.error('Yandex.Metrika is not defined', { userId: id });
       }
 
       // Initialize VK Pixel
       if (typeof window !== 'undefined' && window._tmr) {
         window._tmr.push({ type: 'init', id: 3628641 });
       } else {
-        sendTelegramNotification(
-          `⚠️ Ошибка инициализации VK Pixel\nID пользователя: ${id}\nПричина: _tmr не определен`
-        );
+        console.error('VK Pixel (_tmr) is not defined', { userId: id });
       }
     } catch (error) {
-      sendTelegramNotification(
-        `⚠️ Ошибка инициализации аналитики\nID пользователя: ${id}\nОшибка: ${error.message}`
-      );
+      console.error('Analytics init error', { userId: id, error: error?.message || error });
     }
   }, [id]);
 
@@ -85,36 +78,17 @@ const ConfirmEmail = ({ status }) => {
             } else {
               throw new Error('_tmr не определен');
             }
-
-            // Send success notification
-            sendTelegramNotification(
-              `🎉 Новый пользователь успешно зарегистрировался!\nID: ${id}\nVK Pixel: ✅\nЯндекс.Метрика: ✅`
-            );
           } catch (analyticsError) {
-            // Отправляем уведомление об ошибке аналитики
-            const errorDetails = {
-              vkPixel: window._tmr ? '✅' : '❌',
-              yandex: window.ym ? '✅' : '❌',
-              error: analyticsError.message
-            };
-            
-            sendTelegramNotification(
-              `⚠️ Ошибка отправки событий аналитики\nID пользователя: ${id}\nОшибка: ${analyticsError.message}\nVK Pixel: ${errorDetails.vkPixel}\nЯндекс.Метрика: ${errorDetails.yandex}`
-            );
+            console.error('Analytics error (confirm email)', analyticsError);
           }
         }
       } else {
         setError('Ошибка при установке пароля');
-        sendTelegramNotification(
-          `❌ Ошибка установки пароля\nID пользователя: ${id}\nСтатус ответа: ${response}`
-        );
+        console.error('Set password failed', { userId: id, status: response });
       }
     } catch (error) {
       setError('Произошла ошибка');
       console.error('Registration error:', error);
-      sendTelegramNotification(
-        `❌ Критическая ошибка регистрации\nID пользователя: ${id}\nОшибка: ${error.message}`
-      );
     } finally {
       setLoading(false);
     }

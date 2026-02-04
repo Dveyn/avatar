@@ -18,10 +18,10 @@ export const IntroBlock = () => {
           <h1 className={ styles.title }>Аватары</h1>
           <div className={ styles.text }>
             <span className={ styles.action }>
-              Узнай свой психологический аватар по дате рождения</span><br />
-            Это ключ к твоим талантам, денежному потенциалу и отношениям.
+            Открой свой внутренний код и получи персональные рекомендации по деньгам, отношениям и жизненному пути</span><br />
+            Мой метод «Аватар личности» показывает, где вы теряете энергию,  ваши сильные стороны, финансовый потенциал и ключевые жизненные темы, чтобы принимать решения уверенно.
           </div>
-          <Button className={ styles.btn } onClick={ openModal }>Получить бесплатно </Button>
+          <Button className={ styles.btn } onClick={ openModal }>Хочу узнать</Button>
         </div>
       </div>
       <div className={ styles.char1 }></div>

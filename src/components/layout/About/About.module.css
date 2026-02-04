@@ -108,7 +108,7 @@
 .text4 {
   color: #5e5da7;
   font-size: 24px;
-  font-family: 'Parisian', Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   line-height: 1.2;
   font-weight: 400;
   padding: 20px;
@@ -128,6 +128,35 @@
   padding: 20px;
 }
 
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about {
+    padding: 40px 24px;
+  }
+
+  .circles_container {
+    max-width: 900px;
+    gap: 30px;
+  }
+
+  .circle {
+    width: 260px;
+    height: 260px;
+  }
+
+  .circle4 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .text1,
+  .text2,
+  .text3,
+  .text4 {
+    font-size: 20px;
+    padding: 16px;
+  }
+}
 @media (max-width: 1024px) {
   .circles_container {
     grid-template-areas:

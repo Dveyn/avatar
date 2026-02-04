@@ -27,7 +27,7 @@
 
   color: #655c1a;
   font-size: 28px;
-  font-family: 'Parisian', Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   font-weight: 400;
 
   margin: auto;
@@ -96,7 +96,7 @@
 .item_title {
   color: #57576c;
   font-size: 20px;
-  font-family: 'Parisian', Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   line-height: 1.2;
   font-weight: 400;
   margin-bottom: 20px;
@@ -121,7 +121,7 @@
 .end_text {
   color: #ffffff;
   font-size: 50px;
-  font-family: 'Parisian', Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   font-weight: 400;
   width: 40dvw;
 }

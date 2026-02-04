@@ -76,8 +76,8 @@
   background-position: center center;
   border-color: transparent;
   border-style: solid;
-  max-width: 284px;
   text-align: center;
+  max-width: 65dvw;
 }
 
 .action {
@@ -121,8 +121,8 @@
 
 /* Медиазапросы */
 
-/* Для экранов до 1024px (таблетки и большие мобильные устройства) */
-@media (max-width: 1280) {
+/* Крупные экраны до 1280px */
+@media (max-width: 1280px) {
   .IntroBlock {
     height: 80dvh;
   }
@@ -176,6 +176,40 @@
     width: 40dvh;
     height: 45dvh;
     bottom: 4dvh;
+  }
+}
+
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .IntroBlock {
+    height: 80dvh;
+  }
+
+  .circle {
+    width: 70dvh;
+    height: 70dvh;
+  }
+
+  .title {
+    font-size: 64px;
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  .text {
+    font-size: 20px;
+    max-width: 60dvw;
+  }
+
+  .char1,
+  .char2 {
+    width: 45dvh;
+    height: 50dvh;
+    bottom: 5dvh;
+  }
+
+  .btn {
+    padding: 32px 40px;
   }
 }
 

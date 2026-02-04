@@ -1,4 +1,4 @@
-import { About, AboutMe, AvatarExample, AvatarQuiz, Footer, IntroBlock, ISP, Method, ToolDescription, WhoAreAvatars, Reviews } from "@@/components/layout";
+import { WhoIsWork, AboutMe, AvatarExample, AvatarQuiz, Footer, IntroBlock, ISP, Method, ToolDescription, WhoAreAvatars, Reviews, ThisIsForYou } from "@@/components/layout";
 import Head from "next/head";
 
 export default function Home() {
@@ -59,9 +59,11 @@ export default function Home() {
 
       <IntroBlock />
       <ISP />
-      <About />
+      <WhoIsWork/>
+      {/* <About /> */}
+      <ThisIsForYou />
       <AvatarQuiz />
-      <WhoAreAvatars />
+      {/* <WhoAreAvatars /> */}
       <Method />
       <AvatarExample />
       <Reviews />

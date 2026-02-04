@@ -256,6 +256,35 @@
   text-align: center;
 }
 
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 20px 24px;
+  }
+
+  .section2 {
+    padding: 60px 24px;
+    margin-top: -105vh;
+  }
+
+  .section3 {
+    padding: 40px 24px;
+  }
+
+  .form {
+    width: 60dvw;
+  }
+
+  .text {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .info {
+    grid-template-columns: 1.4fr 1fr 1.4fr;
+  }
+}
+
 
 /* Экран шириной до 1280px */
 @media (max-width: 1280px) {

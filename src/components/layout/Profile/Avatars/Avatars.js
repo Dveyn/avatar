@@ -25,17 +25,15 @@ export const Avatars = ({ date }) => {
     setMounted(true);
   }, []);
 
-  const handleBuyAll = (avatars) => {
-    const notPurchasedAvatars = avatars.filter(av => !av.purchased);
+  // Покупка сразу всех аватаров человека
+  const handleBuyAllAvatars = () => {
+    const notPurchasedAvatars = date.avatars.filter(av => !av.purchased && !av.preview);
     if (notPurchasedAvatars.length === 0) return;
-    console.log(avatars, notPurchasedAvatars)
-    const discount =  1;
-    const totalPrice = notPurchasedAvatars.length * 700 * discount;
 
     setOpenPay(true);
     setTitle(`Покупка всех аватаров (${notPurchasedAvatars.length} шт.)`);
     setAvatarId(notPurchasedAvatars.map(av => av.avatar_id));
-    setPrice(totalPrice);
+    setPrice(7000); // фиксированная стоимость полного набора
   };
 
   const clickAvatar = (avatar) => {
@@ -55,9 +53,7 @@ export const Avatars = ({ date }) => {
 
   console.log(date);
 
-  const renderAvatarSection = (avatars, title, description, icon) => {
-    const notPurchasedCount = avatars.filter(av => !av.purchased && !av.preview).length;
-    
+  const renderAvatarSection = (avatars, title, description, icon) => {    
     return (
       <div className={styles.avatarSection}>
         <Accordion 
@@ -71,20 +67,6 @@ export const Avatars = ({ date }) => {
         >
           <p className={styles.sectionDescription}>{description}</p>
         </Accordion>
-        
-        {notPurchasedCount >= 2 && (
-          <Button 
-            className={styles.buyAllButton} 
-            onClick={() => handleBuyAll(avatars)}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-            </svg>
-            Купить всех {notPurchasedCount} шт.
-            <span className={styles.discount}>Скидка 50%</span>
-          </Button>
-        )}
         
         <div className={styles.avatarGrid}>
           {avatars.map((avatar, index) => {
@@ -131,17 +113,12 @@ export const Avatars = ({ date }) => {
                   ) : (
                     <Button
                       className={styles.unlockButton}
-                      onClick={() => {
-                        setOpenPay(true);
-                        setTitle(`Покупка Аватара ${date.date.gender === 'male' ? avatarDate.part.maleTitle : avatarDate.part.femaleTitle}`);
-                        setAvatarId(avatarDate.id);
-                        setPrice(700);
-                      }}
+                      onClick={handleBuyAllAvatars}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                       </svg>
-                      Раскрыть аватара
+                      Купить все аватары за 7000 ₽
                     </Button>
                   )}
                 </div>
@@ -213,6 +190,22 @@ export const Avatars = ({ date }) => {
             </div>
           </div>
         </div>
+
+        {/* Глобальная кнопка покупки всех аватаров */}
+        {date.avatars.filter(av => !av.purchased && !av.preview).length > 0 && (
+          <div className={styles.globalBuyAll}>
+            <Button 
+              className={styles.buyAllButton} 
+              onClick={handleBuyAllAvatars}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+              </svg>
+              Купить все аватары за 7000 ₽
+            </Button>
+          </div>
+        )}
 
         {/* Бесплатные аватары */}
         {renderAvatarSection(

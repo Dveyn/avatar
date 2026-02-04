@@ -117,6 +117,51 @@
   width: 20dvw;
 }
 
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 20px 24px;
+  }
+
+  .section2 {
+    padding: 60px 24px;
+  }
+
+  .title {
+    font-size: 52px;
+    line-height: 1.1;
+  }
+
+  .pretitle {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .form {
+    width: 90dvw;
+    max-width: 900px;
+    grid-template-columns: 1.1fr 0.9fr;
+    column-gap: 24px;
+  }
+
+  .form p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mage_circle {
+    width: 65dvw;
+    max-width: 650px;
+    transform: translate(10%, -5%);
+  }
+
+  .sword {
+    top: 12dvh;
+    right: 10dvw;
+    width: 18dvw;
+  }
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 29px;

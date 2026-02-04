@@ -18,7 +18,7 @@
 }
 
 .form {
-  width: 65dvw;
+  width: 85dvw;
   margin: auto;
   margin-top: 15dvh;
   display: grid;
@@ -26,12 +26,13 @@
   justify-items: center;
   align-items: center;
   position: relative;
+  max-width: 900px;
 }
 
 .text {
   color: #57576c;
   font-size: 18px;
-  font-family: 'Parisian', Arial, sans-serif;
+  font-family: 'Manrope', Arial, sans-serif;
   font-weight: 400;
   transform-origin: center center;
   line-height: 34px;
@@ -50,6 +51,31 @@
   width: 120%;
   top: -24%;
   left: -15%;
+}
+
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    background-size: 140% 140%;
+  }
+
+  .form {
+    width: 90dvw;
+    margin-top: 12dvh;
+    column-gap: 24px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 40px 32px 40px 40px;
+  }
+
+  .img {
+    width: 110%;
+    top: -18%;
+    left: -10%;
+  }
 }
 
 @media (max-width: 768px) {

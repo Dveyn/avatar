@@ -2,7 +2,7 @@ const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 export const signup = async (date) => {
-    const response = await fetch(`${API_URL}/auth/register`, {
+    const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const forgot = async (date) => {
 };
 
 export const signin = async (date) => {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const signin = async (date) => {
 
 
 export const fetchValidToken = async (token) => {
-    const response = await fetch(`${API_URL}/auth/valid-token`, {
+    const response = await fetch(`${API_URL}/api/auth/valid-token`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -53,19 +53,18 @@ export const fetchValidToken = async (token) => {
 };
 
 export const fetchRefreshToken = async (refreshToken) => {
-    const response = await fetch(`${API_URL}/auth/refresh-token`, {
-        method: 'GET',
+    const response = await fetch(`${API_URL}/api/auth/refresh-token`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': refreshToken
-        }
+        },
+        body: JSON.stringify({ refreshToken })
     });
     return response;
 };
 
 
 export const fetchConfirmEmail = async (id) => {
-    console.log('fetchConfirmEmail', id);
     const response = await fetch(`${API_URL}/api/auth/confirm-email/${id}`);
     return response.status;
 };
@@ -84,8 +83,7 @@ export const fetchSetPassword = async (id, password) => {
 
 
 export const fetchProfile = async (token) => {
-    console.log('Making profile request to:', `${API_URL}/user/profile`);
-    const response = await fetch(`${API_URL}/user/profile`, {
+    const response = await fetch(`${API_URL}/api/user/profile`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -94,9 +92,7 @@ export const fetchProfile = async (token) => {
     }
     );
 
-    console.log('Profile response status:', response.status);
     const data = await response.json();
-    console.log('Profile response data:', data);
     return data;
 };
 
@@ -106,7 +102,7 @@ export const fetchPeople = async () => {
 };
 
 export const getUserAvatar = async (personData, token) => {
-    const response = await fetch(`${API_URL}/user/avatar`, {
+    const response = await fetch(`${API_URL}/api/user/avatar`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -119,8 +115,7 @@ export const getUserAvatar = async (personData, token) => {
 };
 
 export const setPayments = async (personData) => {
-    console.log(personData);
-    const response = await fetch(`${API_URL}/pay/create`, {
+    const response = await fetch(`${API_URL}/api/pay/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -132,7 +127,7 @@ export const setPayments = async (personData) => {
 };
 
 export const getUserAvatars = async (personData, token) => {
-    const response = await fetch(`${API_URL}/user/avatars`, {
+    const response = await fetch(`${API_URL}/api/user/avatars`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -145,7 +140,7 @@ export const getUserAvatars = async (personData, token) => {
 };
 
 export const addPerson = async (personData, token) => {
-    const response = await fetch(`${API_URL}/user/add`, {
+    const response = await fetch(`${API_URL}/api/user/add`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -158,7 +153,7 @@ export const addPerson = async (personData, token) => {
 
 
 export const getUsersAdmin = async (token) => {
-    const response = await fetch(`${API_URL}/admin/get_users`, {
+    const response = await fetch(`${API_URL}/api/admin/get_users`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -170,7 +165,7 @@ export const getUsersAdmin = async (token) => {
 };
 
 export const getPeoplesAdmin = async (token, data) => {
-    const response = await fetch(`${API_URL}/admin/get_peoples`, {
+    const response = await fetch(`${API_URL}/api/admin/get_peoples`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -183,7 +178,7 @@ export const getPeoplesAdmin = async (token, data) => {
 };
 
 export const getAvatarsAdmin = async (token, data) => {
-    const response = await fetch(`${API_URL}/admin/get_avatar`, {
+    const response = await fetch(`${API_URL}/api/admin/get_avatar`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -197,7 +192,7 @@ export const getAvatarsAdmin = async (token, data) => {
 
 
 export const setPreview = async (data) => {
-    const response = await fetch(`${API_URL}/admin/set_preview`, {
+    const response = await fetch(`${API_URL}/api/admin/set_preview`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -209,7 +204,7 @@ export const setPreview = async (data) => {
 };
 
 export const setAll = async (data) => {
-    const response = await fetch(`${API_URL}/admin/set_all`, {
+    const response = await fetch(`${API_URL}/api/admin/set_all`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -222,7 +217,7 @@ export const setAll = async (data) => {
 
 
 export const getRobokassaSignature = async (data) => {
-    const response = await fetch(`${API_URL}/pay/robokassa-signature`, {
+    const response = await fetch(`${API_URL}/api/pay/robokassa-signature`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

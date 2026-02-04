@@ -64,13 +64,18 @@
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  background: #F8F3ED;
   justify-items: center;
   align-items: center;
   width: 42dvw;
+  box-sizing: border-box;
+  padding: 32px 32px 40px;
   position: relative;
   z-index: 3;
 }
-
+.accordion {
+  min-height: 30px;
+}
 .h3 {
   color: #57576c;
   font-size: 27px;
@@ -81,9 +86,39 @@
   margin-top: 20px;
 }
 
+/* Планшеты 768–1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 46px;
+    line-height: 1.1;
+    margin-top: 60px;
+  }
+
+  .description {
+    max-width: 70dvw;
+    font-size: 15px;
+  }
+
+  .form_block {
+    padding: 10px;
+    gap: 40px;
+  }
+
+  .form {
+    width: 80dvw;
+  }
+
+  .h3 {
+    font-size: 24px;
+  }
+}
+
 .text_block {
   margin-left: 40px;
-  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -180,13 +215,12 @@
 
 
   .form {
-    background: url(/images/icon/form_rt.png);
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    aspect-ratio: 292.075/504.994;
+    background:#F8F3ED;
     width: 320px;
     height: 553px;
+    border: 3px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: auto;
   }
@@ -217,38 +251,16 @@
   }
 
   .btn {
-    margin: auto;
+    margin: 0 auto 8px;
   }
 
-  .img1 {
-    width: 50%;
-    bottom: 9px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .img2 {
-    width: 50%;
-    bottom: 6px;
-    right: -51px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .img3 {
-    width: 50%;
-    bottom: 10px;
-    right: -51px;
-    position: relative;
-    overflow: hidden;
-  }
-
+  /* В мобильной версии скрываем иллюстрации, оставляем только текст и кнопки */
+  .img,
+  .img1,
+  .img2,
+  .img3,
   .img4 {
-    width: 50%;
-    bottom: 1px;
-    right: -56px;
-    position: relative;
-    overflow: hidden;
+    display: none;
   }
 }
 /* @media (max-width: 470px) {
