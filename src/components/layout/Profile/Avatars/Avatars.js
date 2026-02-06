@@ -18,14 +18,14 @@ export const Avatars = ({ date }) => {
   const [openAction, setOpenAction] = useState(false);
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
-  const [avatarId, setAvatarId] = useState();
+  const [avatarId, setAvatarId] = useState([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Покупка сразу всех аватаров человека
+  // Покупка сразу всех закрытых аватаров
   const handleBuyAllAvatars = () => {
     const notPurchasedAvatars = date.avatars.filter(av => !av.purchased && !av.preview);
     if (notPurchasedAvatars.length === 0) return;
@@ -33,7 +33,9 @@ export const Avatars = ({ date }) => {
     setOpenPay(true);
     setTitle(`Покупка всех аватаров (${notPurchasedAvatars.length} шт.)`);
     setAvatarId(notPurchasedAvatars.map(av => av.avatar_id));
-    setPrice(7000); // фиксированная стоимость полного набора
+
+    const totalPrice = notPurchasedAvatars.length * 700; // 700 ₽ за каждый закрытый аватар
+    setPrice(totalPrice);
   };
 
   const clickAvatar = (avatar) => {
@@ -50,8 +52,6 @@ export const Avatars = ({ date }) => {
   const avatarEssence = date.avatars.filter(av => av.keyWord == 'D');
   const avatarFinance = date.avatars.filter(av => av.keyWord == 'V' || av.keyWord == 'G' || av.keyWord == 'L');
   const avatarComm = date.avatars.filter(av => av.keyWord == 'K' || av.keyWord == 'N' || av.keyWord == 'M');
-
-  console.log(date);
 
   const renderAvatarSection = (avatars, title, description, icon) => {    
     return (
@@ -118,7 +118,7 @@ export const Avatars = ({ date }) => {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                       </svg>
-                      Купить все аватары за 7000 ₽
+                      Купить все закрытые аватары за {date.avatars.filter(av => !av.purchased && !av.preview).length * 700} ₽
                     </Button>
                   )}
                 </div>
@@ -202,12 +202,12 @@ export const Avatars = ({ date }) => {
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
               </svg>
-              Купить все аватары за 7000 ₽
+              Купить все закрытые аватары за {date.avatars.filter(av => !av.purchased && !av.preview).length * 700} ₽
             </Button>
           </div>
         )}
 
-        {/* Бесплатные аватары */}
+        {/* Секции аватаров */}
         {renderAvatarSection(
           avatarFree,
           "Базовые аватары",
@@ -217,7 +217,6 @@ export const Avatars = ({ date }) => {
           </svg>
         )}
 
-        {/* Ресурсы и таланты */}
         {renderAvatarSection(
           avatarResourse,
           "Ресурсы и таланты",
@@ -227,7 +226,6 @@ export const Avatars = ({ date }) => {
           </svg>
         )}
 
-        {/* Внутренняя суть */}
         {renderAvatarSection(
           avatarEssence,
           "Внутренняя суть",
@@ -240,7 +238,6 @@ export const Avatars = ({ date }) => {
           </svg>
         )}
 
-        {/* Финансы */}
         {renderAvatarSection(
           avatarFinance,
           "Финансы",
@@ -250,7 +247,6 @@ export const Avatars = ({ date }) => {
           </svg>
         )}
 
-        {/* Отношения */}
         {renderAvatarSection(
           avatarComm,
           "Отношения",
