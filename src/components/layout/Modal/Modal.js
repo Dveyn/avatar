@@ -14,6 +14,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
   const [date, setDate] = useState(null); // Дата консультации
   const [birthDate, setBirthDate] = useState(null); // Дата рождения
   const [gender, setGender] = useState('');
+  const [policy, setPolicy] = useState(false)
   const formRef = useRef(null);
 
   const handleMail = (e) => {
@@ -93,7 +94,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
           name: name,
           service: title,
           date: date,
-          posId: posId, 
+          posId: posId,
           dateBirthdate: birthDate,
           gender: posId === 2 ? gender : null
         },
@@ -139,7 +140,7 @@ export const Modal = ({ onClose, title, posId, price }) => {
     }
   };
 
-  console.log(posId)
+  console.log(posId);
 
   return (
     <div className={ styles.modal } onClick={ onClose }>
@@ -149,51 +150,51 @@ export const Modal = ({ onClose, title, posId, price }) => {
         </div>
         <div className={ styles.modalTitle }>{ title }</div>
         <form className={ styles.form } onSubmit={ handleSubmit } ref={ formRef }>
-          <label className={styles.label}>
+          <label className={ styles.label }>
             Ваш email
             <input className={ styles.input } value={ mail } onChange={ handleMail } name="email" type={ 'email' } placeholder='example@mail.com' />
           </label>
-          <label className={styles.label}>
+          <label className={ styles.label }>
             Ваше имя
             <input className={ styles.input } value={ name } onChange={ handleName } placeholder='Введите имя' />
           </label>
-          <label className={styles.label}>
+          <label className={ styles.label }>
             Ваш телефон
             <input className={ styles.input } value={ phone } onChange={ handlePhone } name="phone" placeholder='+7 (999) 999-99-99' />
           </label>
-          <label className={styles.label}>
+          <label className={ styles.label }>
             Дата консультации
             <input className={ styles.input } value={ date } onChange={ handleDate } type={ 'date' } />
           </label>
           { posId === 2 &&
             <>
-              <label className={styles.label}>
+              <label className={ styles.label }>
                 Дата рождения
                 <input className={ styles.input } value={ birthDate } onChange={ handleBirthDate } type={ 'date' } />
               </label>
 
-              <div className={styles.gender}>
-                <div className={styles.title}>Ваш пол:</div>
-                <label className={`${styles.gender_btn} ${gender === 'male' ? styles.btn_active : ''}`}>
+              <div className={ styles.gender }>
+                <div className={ styles.title }>Ваш пол:</div>
+                <label className={ `${styles.gender_btn} ${gender === 'male' ? styles.btn_active : ''}` }>
                   Муж
                   <input
                     type="radio"
                     name="gender"
                     value="male"
-                    checked={gender === 'male'}
-                    onChange={() => setGender('male')}
-                    className={styles.hiddenRadio}
+                    checked={ gender === 'male' }
+                    onChange={ () => setGender('male') }
+                    className={ styles.hiddenRadio }
                   />
                 </label>
-                <label className={`${styles.gender_btn} ${gender === 'female' ? styles.btn_active : ''}`}>
+                <label className={ `${styles.gender_btn} ${gender === 'female' ? styles.btn_active : ''}` }>
                   Жен
                   <input
                     type="radio"
                     name="gender"
                     value="female"
-                    checked={gender === 'female'}
-                    onChange={() => setGender('female')}
-                    className={styles.hiddenRadio}
+                    checked={ gender === 'female' }
+                    onChange={ () => setGender('female') }
+                    className={ styles.hiddenRadio }
                   />
                 </label>
               </div>
@@ -223,13 +224,17 @@ export const Modal = ({ onClose, title, posId, price }) => {
             value={ title }
           />
 
-          <button type="submit" className={ styles.button }>
+          <div>
+            <label>
+              <input type='checkbox' name='' onChange={()=>setPolicy(e.target.checked)} id='policy' />
+              <span>Я соглашаюсь с <a href='/privacy_policy'>Политикой в отношении</a> обработки персональных данных</span>
+            </label>
+          </div>
+
+          <button type="submit" className={ styles.button } disabled={!policy}>
             Записаться
           </button>
-
-          <div className={ styles.policy }>
-            Нажимая кнопку "записаться", я соглашаюсь с Политикой в отношении обработки персональных данных
-          </div>
+          {policy && <div className={styles.error}>Вы должны согласиться с политикой обработки персональных данных</div>}
         </form>
       </div>
     </div>

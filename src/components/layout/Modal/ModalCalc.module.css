@@ -57,6 +57,7 @@
   padding: 10px;
   color: #1c911c;
 }
+
 .form {
   display: grid;
   justify-content: center;
@@ -79,6 +80,7 @@
   text-align: center;
   margin: 20px 0;
 }
+
 .info {
   font-family: Manrope;
   font-size: 14px;
@@ -155,6 +157,7 @@
 .btn_active {
   color: #2871bd;
 }
+
 .inputMail {
   color: #000000;
   border: 1px solid #c9c9c9;
@@ -175,6 +178,7 @@
     margin: auto;
     width: 98dvw;
     height: 98dvh;
+    max-width: 98dvw;
   }
 
   .modal_body {
@@ -182,12 +186,40 @@
   }
 
   .modalTitle {
-    font-size: 28px;
+    font-size: 24px;
     text-align: center;
   }
 
+  .date_block .input {
+    font-size: 24px;
+  }
 
+  .gender_btn {
+    font-size: 20px;
+  }
 
+  .modal {
+    padding: 10px;
+  }
+
+  .desctiption {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+  .form {
+    gap: 5px;
+  }
+  .socialButtons {
+    margin-bottom: 4px !important;
+  }
+
+  .date_block {
+    margin-top: 0px;
+  }
+
+  .gender {
+    margin-top: 0px;
+  }
 }
 
 .socialButtons {

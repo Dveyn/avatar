@@ -20,6 +20,7 @@ export const ModalCalc = ({ onClose }) => {
   const [success, setSuccess] = useState('');
   const [showDateForm, setShowDateForm] = useState(false);
   const [socialData, setSocialData] = useState(null);
+  const [policy, setPolicy] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -189,13 +190,18 @@ export const ModalCalc = ({ onClose }) => {
                     placeholder='example@domain.com'
                   />
 
-                  <button type="submit" className={styles.button}>
+                  <div>
+                    <label>
+                      <input type='checkbox' name='' onChange={()=>setPolicy(e.target.checked)} id='policy' />
+                      <span>Я соглашаюсь с <a href='/privacy_policy'>Политикой в отношении</a> обработки персональных данных</span>
+                    </label>
+                  </div>
+
+                  <button type="submit" className={styles.button} disabled={!policy}>
                     Рассчитать
                   </button>
+                  {policy && <div className={styles.error}>Вы должны согласиться с политикой обработки персональных данных</div>}
                   {error !== '' && <div className={styles.error}>{error}</div>}
-                  <div className={styles.policy}>
-                    Нажимая кнопку "Рассчитать", я соглашаюсь с Политикой в отношении обработки персональных данных
-                  </div>
                 </form>
               </>
             ) : (
