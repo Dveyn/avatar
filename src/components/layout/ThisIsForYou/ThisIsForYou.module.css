@@ -133,4 +133,15 @@
   .text p {
     font-size: 12px;
   }
+  .text ul {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .btn {
+    font-size: 11px;
+    padding: 20px;
+  }
+  .title {
+    font-size: 30px;
+  }
 }

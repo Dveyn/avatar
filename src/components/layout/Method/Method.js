@@ -99,7 +99,7 @@ export const Method = () => {
                 } }>
                   <li>Введи дату рождения</li>
                   <li>Оставь email</li>
-                  <li>Получи PDF-аватар с разбором на 2–3 страницы </li>
+                  <li>Получи PDF-аватар с разбором </li>
                 </ul>
               </div>
             </div>
@@ -151,7 +151,7 @@ export const Method = () => {
         </div>
       </section>
       <section className={ styles.buttonLine }>
-        <Button onClick={ openModal }>Получить аватара бесплатно</Button>
+        <Button onClick={ openModal }>Хочу Аватаров</Button>
         { isModalOpen && <ModalCalc onClose={ closeModal } /> }
       </section>
     </div >

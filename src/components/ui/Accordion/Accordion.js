@@ -1,44 +1,35 @@
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./Accordion.module.css";
 
-const Accordion = ({ title, children, className }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Accordion = ({ title, children, className, isOpen, onToggle }) => {
   const contentRef = useRef(null);
-  const accordionRef = useRef(null);
 
-  const toggle = () => {
+  useEffect(() => {
     const el = contentRef.current;
-    const accordion = accordionRef.current;
     if (!el) return;
 
     if (isOpen) {
       el.style.height = el.scrollHeight + "px";
-      accordion.style.minHeight = el.scrollHeight+ 30 + "px";
-      requestAnimationFrame(() => {
-        el.style.height = "0px";
-        accordion.style.minHeight = "30px";
-      });
-    } else {
-      el.style.height = el.scrollHeight + "px";
-      accordion.style.minHeight = el.scrollHeight+ 30 + "px";
       const onEnd = () => {
         el.style.height = "auto";
-        accordion.style.minHeight = "30px";
         el.removeEventListener("transitionend", onEnd);
       };
       el.addEventListener("transitionend", onEnd);
+    } else {
+      // если закрываем, нужно сбросить в 0
+      el.style.height = el.scrollHeight + "px"; // стартовая высота
+      requestAnimationFrame(() => {
+        el.style.height = "0px";
+      });
     }
-
-    setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return (
-    <div className={`${styles.accordion} ${className}`} ref={accordionRef}>
-      <button className={styles.header} onClick={toggle}>
+    <div className={`${styles.accordion} ${className}`}>
+      <button className={styles.header} onClick={onToggle}>
         <span className={styles.title}>{title}</span>
         <span className={isOpen ? styles.arrowOpen : styles.arrow}>&#9660;</span>
       </button>
-
       <div ref={contentRef} className={styles.content}>
         {children}
       </div>

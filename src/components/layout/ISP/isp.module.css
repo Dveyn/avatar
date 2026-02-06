@@ -104,5 +104,14 @@
 
   .text p {
     font-size: 12px;
+    line-height: 1.2;
+  }
+  .text ul {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .btn {
+    font-size: 11px;
+    padding: 20px;
   }
 }

@@ -38,18 +38,16 @@ export const PayModal = ({ onClose, emailUser, avatarId, peopleId, title, price,
       const pass1 = process.env.NEXT_PUBLIC_ROBOKASSA_PASS1;
       const Receipt = {
         "sno": "usn_income",
-        "items": avatarId.map(avatar => {
-          const foundPersonality = personalities.find(el => Number(el.id) === Number(avatar));
-          
-          return {
-            "name": `${gender === 'male' ? foundPersonality.part.maleTitle : foundPersonality.part.femaleTitle}`,
+        "items": [
+          {
+            "name": "Открытие всех доступных аватаров",
             "quantity": 1,
-            "sum": price / avatarId.length,
+            "sum": price,
             "payment_method": "full_payment",
             "payment_object": "service",
             "tax": "none"
-          };
-        })
+          }
+        ]
       };
 
       console.log(Receipt);

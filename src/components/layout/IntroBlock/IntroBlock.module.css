@@ -225,12 +225,12 @@
   }
 
   .title {
-    font-size: 50px;
-    margin-top: 60px;
+    font-size: 30px;
+    margin-top: 90px;
   }
 
   .text {
-    font-size: 18px;
+    font-size: 13px;
     max-width: 230px;
   }
 
@@ -239,6 +239,11 @@
     width: 30dvh;
     height: 35dvh;
     bottom: 4dvh;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 20px;
   }
 
   .char1 {
