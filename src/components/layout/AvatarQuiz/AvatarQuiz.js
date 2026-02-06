@@ -61,24 +61,26 @@ export const AvatarQuiz = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <section className={ styles.section }>
-      <div className={ styles.top }></div>
-      <Form className={ styles.form }>
-        <div className={ styles.text }>
-          Что ты узнаешь:
-          <ul style={{margin: '0'}}>
-            <li>Кто ты по своей природе: созидатель, лидер, хранитель, вдохновитель?</li>
-            <li>Где твоя финансовая сила и как ты реализуешь себя легко</li>
-            <li>Почему ты привлекаешь одни и те же сценарии в отношениях</li>
-            <li>Как правильно восполнять энергию и избегать выгорания</li>
-          </ul>
-          <Button onClick={ openModal }> Получить мой аватар</Button>
-        </div>
-        <div className={ styles.char }>
-          <img className={ styles.img } src='/images/icon/char4.png' alt='аналитика и прогностика' />
-        </div>
-      </Form>
+    <>
+      <section className={ styles.section }>
+        <div className={ styles.top }></div>
+        <Form className={ styles.form }>
+          <div className={ styles.text }>
+            Что ты узнаешь:
+            <ul style={ { margin: '0' } }>
+              <li>Кто ты по своей природе: созидатель, лидер, хранитель, вдохновитель?</li>
+              <li>Где твоя финансовая сила и как ты реализуешь себя легко</li>
+              <li>Почему ты привлекаешь одни и те же сценарии в отношениях</li>
+              <li>Как правильно восполнять энергию и избегать выгорания</li>
+            </ul>
+            <Button onClick={ openModal }> Получить мой аватар</Button>
+          </div>
+          <div className={ styles.char }>
+            <img className={ styles.img } src='/images/icon/char4.png' alt='аналитика и прогностика' />
+          </div>
+        </Form>
+      </section>
       { isModalOpen && <ModalCalc onClose={ closeModal } /> }
-    </section>
+    </>
   );
 };

@@ -95,22 +95,51 @@
   font-size: 14px;
 }
 
-@media (max-width: 425px) {
-  .form {
-    gap: 10px;
-  }
-  .modalTitle {
-    font-size: 28px;
-  }
-  .input {
-    padding: 0 14px;
-    font-size: 16px;
+@media (max-width: 769px) {
+  .modalContent {
+    margin: auto;
+    width: 98dvw;
+    height: 98dvh;
+    max-width: 98dvw;
   }
 
-  .button {
-    font-size: 16px;
+  .modal_body {
+    height: 100%;
   }
-  .policy {
+
+  .modalTitle {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .date_block .input {
+    font-size: 24px;
+  }
+
+  .gender_btn {
+    font-size: 20px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .desctiption {
     font-size: 12px;
+    margin: 5px 0;
+  }
+  .form {
+    gap: 5px;
+  }
+  .socialButtons {
+    margin-bottom: 4px !important;
+  }
+
+  .date_block {
+    margin-top: 0px;
+  }
+
+  .gender {
+    margin-top: 0px;
   }
 }

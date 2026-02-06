@@ -173,7 +173,7 @@
   padding: 0 20px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 769px) {
   .modalContent {
     margin: auto;
     width: 98dvw;

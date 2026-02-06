@@ -152,6 +152,9 @@
 }
 
 @media (max-width: 1024px) {
+  .circle {
+    background: none;
+  }
   .IntroBlock {
     height: 70dvh;
   }
